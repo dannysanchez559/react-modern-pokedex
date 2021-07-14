@@ -36,8 +36,6 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^7.30.0",
-    "prettier": "^2.3.2",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.0",
@@ -45,6 +43,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-react-native": "^3.11.0"
+    "eslint-plugin-react-native": "^3.11.0",
+    "prettier": "^2.3.2"
   }
 }

@@ -1,0 +1,27 @@
+.pokeApp {
+  background-color: #a29bcb;
+}
+
+.header {
+  border: 2px solid red;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+nav {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+}
+
+li {
+}
+
+.searchBarContainer {
+  background-color: white;
+  height: 50px;
+}
+
+.searchBarButton {
+}
