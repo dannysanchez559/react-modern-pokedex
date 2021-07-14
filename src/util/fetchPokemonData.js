@@ -1,6 +1,7 @@
 const baseUrl = `https://pokeapi.co/api/v2/pokemon/`;
 
-export const fetchPokemonDataByName = async (name) => {
+// the following function can accept either pokemon name or Id
+export const fetchPokemonDataBySearchInput = async (name) => {
   try {
     const nameUrl = `${baseUrl}${name}`;
     return await fetch(nameUrl)

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "./Header";
-import { fetchPokemonDataByName } from "../util/fetchPokemonData";
+import { fetchPokemonDataBySearchInput } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 
 function PokeApp() {
@@ -15,7 +15,7 @@ function PokeApp() {
   const getSearchBarDataApi = async () => {
     try {
       // call fetch api function
-      const pokemonData = await fetchPokemonDataByName(pokemonName);
+      const pokemonData = await fetchPokemonDataBySearchInput(pokemonName);
 
       console.log(pokemonData);
     } catch (error) {
