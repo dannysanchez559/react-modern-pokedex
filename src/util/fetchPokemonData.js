@@ -1,6 +1,7 @@
 const baseUrl = `https://pokeapi.co/api/v2/pokemon/`;
+const abiliUrl = `https://pokeapi.co/api/v2/ability/?offset=0&limit=327`;
 
-// the following function can accept either pokemon name or Id
+// the following function can accept either pokemon name or Id and search individual pokemon
 export const fetchPokemon = async (nameOrId) => {
   try {
     const nameUrl = `${baseUrl}${nameOrId}`;
@@ -12,14 +13,23 @@ export const fetchPokemon = async (nameOrId) => {
   }
 };
 
-
 export const fetchAllPokemons = async () => {
   try {
-    return await fetch(baseUrl)
+    return await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`)
       .then((response) => response.json())
-      .then(data=>data);
+      .then((data) => data);
   } catch (error) {
     console.error(error);
   }
 };
 
+// fetchAllAbilities for ability filter
+export const fetchAllAbilities = async () => {
+  try {
+    return await fetch(abiliUrl)
+      .then((response) => response.json())
+      .then((data) => data["results"]);
+  } catch (error) {
+    console.error(error);
+  }
+};
