@@ -1,5 +1,6 @@
 import React from "react";
 import PokeCard from "./PokeCard";
+import Filter from "./Filter";
 
 const PokeList = ({
   userDidSearch,
@@ -37,7 +38,10 @@ const PokeList = ({
   return (
     <div>
       {!userDidSearch ? (
-        <>{allCards}</>
+        <div>
+          {" "}
+          <Filter /> {allCards}
+        </div>
       ) : fetchedData.length < 1 ? (
         <h1>Please search pokemon.</h1>
       ) : (
