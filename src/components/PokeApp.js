@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PokeList from "./PokeList";
 import Header from "./Header";
-import {
-  fetchPokemon,
-  fetchAllPokemons
-} from "../util/fetchPokemonData";
+import { fetchPokemon, fetchAllPokemons } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 
 function PokeApp() {
@@ -15,7 +12,7 @@ function PokeApp() {
 
   const handleNameSearch = (e) => {
     const searchBarValue = e.target.value;
-    setUserDidSearch(true)
+    setUserDidSearch(true);
     setPokemonName(searchBarValue);
   };
 
@@ -29,25 +26,24 @@ function PokeApp() {
     }
   };
 
-  const getAllPokemon = async (pokeUrls)=>{
+  const getAllPokemon = async (pokeUrls) => {
     try {
       const data = await fetchAllPokemons();
       // need data["next"] & data["previous"]
       // loop over results and fetch
-      const pokemonObjs = data["results"].map((obj)=>{
+      const pokemonObjs = data["results"].map((obj) => {
         const name = obj["name"];
         return fetchPokemon(name);
-      })
+      });
 
-      Promise.all(pokemonObjs).then(data=>setAllPokemon(data));
-    } catch(error){
-      console.error(error)
+      Promise.all(pokemonObjs).then((data) => setAllPokemon(data));
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     // get all data: pagination/scroll, pokemon urls array
-    console.log(`fetchedData`,fetchedData)
     getAllPokemon();
   }, []);
 
@@ -63,7 +59,7 @@ function PokeApp() {
         allPokemons={allPokemons}
         userDidSearch={userDidSearch}
         setUserDidSearch={setUserDidSearch}
-        />
+      />
     </div>
   );
 }
