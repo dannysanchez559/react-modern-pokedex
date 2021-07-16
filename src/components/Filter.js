@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Select from "react-select";
 import { fetchAllAbilities } from "../util/fetchPokemonData";
 
-function Filter() {
-  const [selectTypeOption, setSelectTypeOption] = useState("");
-  const [selectAbilityOption, setSelectAbilityOption] = useState("");
-  const [abilityOptions, setAbilityOptions] = useState([]);
+function Filter({
+  selectTypeOption,
+  setSelectTypeOption,
+  selectAbilityOptions,
+  setSelectAbilityOption,
+  abilityOptions,
+  setAbilityOptions,
+  heightSortClick,
+  weightSortClick,
+  dexNoSortClick,
+  abcSortClick
+}) {
   // handler for Type drop-down
-  const handleTypeChange = (setSelectTypeOption) => {
-    setSelectTypeOption({ selectTypeOption });
-
+  const handleTypeChange = (selectTypeOption) => {
+    setSelectTypeOption(selectTypeOption);
     if (setSelectTypeOption) {
       console.log(`Selected: ${selectTypeOption.label}`);
     }
   };
   // handler for Abilities drop-down
-  const handleAbilityChange = (setSelectAbilityOption) => {
-    setSelectAbilityOption({ selectAbilityOption });
+  const handleAbilityChange = (selectAbilityOption) => {
+    setSelectAbilityOption(selectAbilityOption);
 
     if (setSelectAbilityOption) {
       console.log(`Selected: ${selectAbilityOption.label}`);
@@ -38,7 +45,7 @@ function Filter() {
         };
         return choice;
       });
-      // sort array of objects, with keys: "value" & "label" alphabetically
+      // sort array of objects by "value" key alphabetically
       const sortedAbilities = abiliObjs.sort((a, b) => {
         const nameA = a["value"].toUpperCase();
         const nameB = b["value"].toUpperCase();
@@ -138,7 +145,6 @@ function Filter() {
       <div>
         <Select
           className="filterDropDown"
-          value={selectTypeOption}
           onChange={handleTypeChange}
           options={allTypes}
           placeholder="Select Type"
@@ -147,14 +153,13 @@ function Filter() {
       <Select
         placeholder="Select Ability"
         className="filterDropDown"
-        value={selectAbilityOption}
         onChange={handleAbilityChange}
         options={abilityOptions}
       />
-      <div>A-Z</div>
-      <div>Height</div>
-      <div>Weight</div>
-      <div>Dex Number</div>
+      <button onClick={abcSortClick}>A-Z</button>
+      <button onClick={heightSortClick}>Height</button>
+      <button onClick={weightSortClick}>Weight</button>
+      <button onClick={dexNoSortClick}>Dex No.</button>
     </div>
   );
 }
