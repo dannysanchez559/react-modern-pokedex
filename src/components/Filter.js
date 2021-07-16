@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Select from "react-select";
 import { fetchAllAbilities } from "../util/fetchPokemonData";
+import SortTypes from "../util/SortTypes";
 
 function Filter({
   selectTypeOption,
@@ -9,10 +10,7 @@ function Filter({
   setSelectAbilityOption,
   abilityOptions,
   setAbilityOptions,
-  heightSortClick,
-  weightSortClick,
-  dexNoSortClick,
-  abcSortClick
+  setSortType
 }) {
   // handler for Type drop-down
   const handleTypeChange = (selectTypeOption) => {
@@ -141,7 +139,7 @@ function Filter({
     },
   ];
   return (
-    <div>
+    <div className="filterBar">
       <div>
         <Select
           className="filterDropDown"
@@ -156,10 +154,10 @@ function Filter({
         onChange={handleAbilityChange}
         options={abilityOptions}
       />
-      <button onClick={abcSortClick}>A-Z</button>
-      <button onClick={heightSortClick}>Height</button>
-      <button onClick={weightSortClick}>Weight</button>
-      <button onClick={dexNoSortClick}>Dex No.</button>
+      <button onClick={()=>setSortType(SortTypes.ABC)}>A-Z</button>
+      <button onClick={()=>setSortType(SortTypes.HEIGHT)}>Height</button>
+      <button onClick={()=>setSortType(SortTypes.WEIGHT)}>Weight</button>
+      <button onClick={()=>setSortType(SortTypes.DEX_NO)}>Dex No.</button>
     </div>
   );
 }
