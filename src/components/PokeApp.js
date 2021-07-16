@@ -47,7 +47,6 @@ function PokeApp() {
 
   useEffect(() => {
     // get all data: pagination/scroll, pokemon urls array
-    console.log(`fetchedData`,fetchedData)
     getAllPokemon();
   }, []);
 

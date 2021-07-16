@@ -11,7 +11,7 @@ const PokeList = ({ userDidSearch, setUserDidSearch, fetchedData, allPokemons })
       return <span key={i}>{obj["type"]["name"]} </span>;
     });
   }
-  // <PokeCard dexNo={id} name={name} sprites={sprites} typeTags={typeTags}/>
+
 
    const allCards = allPokemons.map(pokeObj=>{
      const {id, name, sprites, types} = pokeObj;
