@@ -134,7 +134,7 @@ function Filter() {
     },
   ];
   return (
-    <div>
+    <div className="filterBar">
       <div>
         <Select
           className="filterDropDown"

@@ -1,6 +1,8 @@
 import React from "react";
 import PokeCard from "./PokeCard";
 import Filter from "./Filter";
+import getTypeColors from "../util/getTypeColor";
+import "../styles/pokeAppStyle.css";
 
 const PokeList = ({
   userDidSearch,
@@ -21,8 +23,20 @@ const PokeList = ({
 
   const allCards = allPokemons.map((pokeObj) => {
     const { id, name, sprites, types } = pokeObj;
+
     let typeTags = types.map((obj, i) => {
-      return <span key={i}>{obj["type"]["name"]} </span>;
+      const typeName = obj["type"]["name"];
+
+      // console.log(`color numbers`, getTypeColors[typeName]);
+
+      return (
+        <span
+          style={{ backgroundColor: getTypeColors[typeName] }}
+          key={i}
+          className="typeTag">
+          {obj["type"]["name"]}
+        </span>
+      );
     });
     let sprite = sprites["other"]["official-artwork"]["front_default"];
     return (
@@ -37,12 +51,13 @@ const PokeList = ({
   });
 
   return (
-    <div>
+    <div className="pokeList">
       {!userDidSearch ? (
-        <div>
+        <>
           {" "}
-          <Filter /> {allCards}
-        </div>
+          <Filter />
+          {allCards}
+        </>
       ) : fetchedData.length < 1 ? (
         <h1>Please search pokemon.</h1>
       ) : (
