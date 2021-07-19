@@ -26,7 +26,12 @@ const PokeCard = ({ name, dexNo, typeTags, sprite }) => {
         onRequestClose={() => {
           return setModalIsOpen(false);
         }}>
-        <CustomModal setIsOpen={setModalIsOpen} />
+        <CustomModal
+          setIsOpen={setModalIsOpen}
+          name={name}
+          dexNo={dexNo}
+          sprite={sprite}
+        />
       </Modal>
     </div>
   );

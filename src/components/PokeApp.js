@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PokeList from "./PokeList";
 import Header from "./Header";
-import { fetchPokemon, fetchAllPokemons } from "../util/fetchPokemonData";
+import {
+  fetchPokemon,
+  fetchAllPokemons,
+  fetchSpecies,
+} from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 
 function PokeApp() {
