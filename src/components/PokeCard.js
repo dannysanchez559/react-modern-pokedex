@@ -1,4 +1,5 @@
 import React from "react";
+import getTypeColors from "../util/getTypeColor";
 
 const PokeCard = ({ name, dexNo, typeTags, sprite }) => {
   return (

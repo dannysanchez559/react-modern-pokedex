@@ -35,15 +35,6 @@ const PokeList = ({
     setUserDidSort(true);
   };
 
-  // generate tags, check for tags and types
-  let typeTags, sprite;
-  if (types && sprites) {
-    sprite = sprites["other"]["official-artwork"]["front_default"];
-    typeTags = types.map((obj, i) => {
-      return <span key={i}>{obj["type"]["name"]} </span>;
-    });
-  }
-
   // arrays of Pokemon objects sorted by keys: name, weight, height, dex no
   const sortByName = (pokemonList) => {
     return pokemonList.sort((a, b) => {
@@ -104,17 +95,30 @@ const PokeList = ({
     sortAndFilter();
   }, [sortType, reverse]);
 
+   // generate tags, check for tags and types
+  let typeTags, sprite;
+  if (types && sprites) {
+    sprite = sprites["other"]["official-artwork"]["front_default"];
+    typeTags = types.map((obj, i) => {
+      const typeName = obj["type"]["name"];
+      return <span className="type-tag" style={{ backgroundColor: getTypeColors[typeName] }} key={i}>{obj["type"]["name"]} </span>;
+    });
+  }
+
   const generateSortedCards = (pokemonList) => {
     const sortedCards = pokemonList.map((pokeObj) => {
       const { id, name, sprites, types } = pokeObj;
-
+      let typeTags=types.map((typeObj,i)=>{
+        const typeName = typeObj["type"]["name"];
+        return <span style={{ backgroundColor: getTypeColors[typeName], color: '#303030', fontSize: '22px', borderRadius: "4px", padding: "4px" }} key={i}>{typeName}</span>
+      })
       let sprite = sprites["other"]["official-artwork"]["front_default"];
+
       return (
         <PokeCard
           dexNo={id}
           name={name}
           sprite={sprite}
-          typeTags={typeTags}
           key={id}
           typeTags={typeTags}
         />
@@ -126,7 +130,7 @@ const PokeList = ({
   return (
     <div className="pokeList">
       {!userDidSearch ? (
-        <div>
+        <>
           <Filter
             selectTypeOption={selectTypeOption}
             setSelectTypeOption={setSelectTypeOption}
@@ -136,8 +140,10 @@ const PokeList = ({
             setAbilityOptions={setAbilityOptions}
             setSortType={setSortTypeFlags}
           />
-          {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
-        </div>
+          <div className="card-container">
+            {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
+          </div>
+        </>
       ) : fetchedData.length < 1 ? (
         <h1>Please search pokemon.</h1>
       ) : (
