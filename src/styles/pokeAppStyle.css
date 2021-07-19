@@ -87,3 +87,12 @@ li {
   margin: 4px;
   color: white;
 }
+
+.modalWindow {
+  display: flex;
+  width: 75%;
+  height: 600px;
+  border: 2px solid red;
+  margin: 0 auto;
+  background-color: white;
+}
