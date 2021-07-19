@@ -1,3 +1,10 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .pokeApp {
   background-color: #a29bcb;
   margin: 0 auto;
@@ -40,21 +47,19 @@ nav {
 .pokeList {
   display: flex;
   flex-direction: column;
-  margin: 20px 50px;
 }
 
 .filterBar {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 100vw;
-  margin: 0 100px;
   border: 2px solid black;
 }
 
 .filterDropDown {
-  width: 200px;
+  width: 150px;
 }
 
 .card-container {
