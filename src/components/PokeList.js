@@ -16,16 +16,24 @@ const PokeList = ({
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
   // abilityOptions: array of sorted ability names for drop-down
   const [abilityOptions, setAbilityOptions] = useState([]);
-  // state for sorting toggle
+  // Set sort type; by default, sort by Dex number
   const [sortType, setSortType] = useState(SortTypes.DEX_NO);
-  // stores filtered Pokemon array returned by sortAndFilter()
+  // stores sorted/filtered Pokemon array returned by sortAndFilter()
   const [filteredPokemons, setFilteredPokemons] = useState([]);
-  const [userDidSort, setUserDidSort]= useState(false)
+  const [userDidSort, setUserDidSort] = useState(false);
+  // Boolean for checking if user wants reverse sorted results
+  const [reverse, setReverse] = useState(false);
 
-  const setSortTypeFlags = (sortType)=>{
-    setSortType(sortType);
+  // reverse sorting
+  const setSortTypeFlags = (newSortFlag) => {
+    if (newSortFlag === sortType) {
+      setReverse(!reverse);
+    } else {
+      setSortType(newSortFlag);
+      setReverse(false);
+    }
     setUserDidSort(true);
-  }
+  };
 
   // generate tags, check for tags and types
   let typeTags, sprite;
@@ -35,13 +43,14 @@ const PokeList = ({
       return <span key={i}>{obj["type"]["name"]} </span>;
     });
   }
-  // array of Pokemon objects sorted by keys: name, weight, height, dex no
+
+  // arrays of Pokemon objects sorted by keys: name, weight, height, dex no
   const sortByName = (pokemonList) => {
     return pokemonList.sort((a, b) => {
       const nameA = a["name"];
       const nameB = b["name"];
-      if (nameA < nameB) return -1;
-      if (nameA > nameB) return 1;
+      if (nameA < nameB) return reverse ? 1 : -1;
+      if (nameA > nameB) return reverse ? -1 : 1;
       return 0;
     });
   };
@@ -50,7 +59,7 @@ const PokeList = ({
     return pokemonList.sort((a, b) => {
       const weightA = a["weight"];
       const weightB = b["weight"];
-      return weightA - weightB;
+      return reverse ? weightB - weightA : weightA - weightB;
     });
   };
 
@@ -58,14 +67,15 @@ const PokeList = ({
     return pokemonList.sort((a, b) => {
       const heightA = a["height"];
       const heightB = b["height"];
-      return heightA - heightB;
+      return reverse ? heightB - heightA : heightA - heightB;
     });
   };
+
   const sortByDexNumber = (pokemonList) => {
     return pokemonList.sort((a, b) => {
       const id1 = a["id"];
       const id2 = b["id"];
-      return id1 - id2;
+      return reverse ? id2 - id1 : id1 - id2;
     });
   };
 
@@ -92,20 +102,12 @@ const PokeList = ({
 
   useEffect(() => {
     sortAndFilter();
-  }, [sortType]);
-
+  }, [sortType, reverse]);
 
   const generateSortedCards = (pokemonList) => {
     const sortedCards = pokemonList.map((pokeObj) => {
       const { id, name, sprites, types } = pokeObj;
-      let typeTags = types.map((obj, i) => {
-        const typeName = obj["type"]["name"];
-        return (
-          <span style={{ backgroundColor: getTypeColors[typeName] }} key={i}>
-            {obj["type"]["names"]}
-          </span>
-        );
-      });
+
       let sprite = sprites["other"]["official-artwork"]["front_default"];
       return (
         <PokeCard
@@ -114,6 +116,7 @@ const PokeList = ({
           sprite={sprite}
           typeTags={typeTags}
           key={id}
+          typeTags={typeTags}
         />
       );
     });
@@ -133,7 +136,7 @@ const PokeList = ({
             setAbilityOptions={setAbilityOptions}
             setSortType={setSortTypeFlags}
           />
-          {generateSortedCards(userDidSort ? filteredPokemons: allPokemons)}
+          {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
         </div>
       ) : fetchedData.length < 1 ? (
         <h1>Please search pokemon.</h1>
