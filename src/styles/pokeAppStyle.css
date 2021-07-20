@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html,
 body {
   margin: 0;
@@ -95,6 +101,123 @@ nav {
   height: auto;
 }
 
+.typeTag {
+  border-radius: 15px;
+  padding: 3px 5px;
+  margin: 4px;
+  color: white;
+}
+
+.ReactModal__Overlay {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.15) !important;
+}
+
+.modalWindow {
+  z-index: 100;
+  box-sizing: border-box;
+  width: 975px;
+  height: 650px;
+  background-color: #f9cf30;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.backgroundModalWrapper {
+  z-index: 1;
+  width: 975px;
+  height: 650px;
+  border-radius: 25px;
+  background: url("../img/pokeballBG.svg") no-repeat;
+  background-position: 98% 2%;
+}
+
+.modalDetailsTop {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+}
+
+.dexNo {
+  font-size: 2.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  border: 2px solid red;
+}
+
+.spriteWrapper {
+  border: 2px solid red;
+}
+
+.spriteWrapper img {
+  height: 250px;
+  width: auto;
+  border: 2px solid red;
+}
+
+.modalCloseButton {
+  border: 2px solid red;
+  background-size: contain;
+  z-index: 2;
+}
+
+.modalCloseButton button {
+  background: transparent;
+  border: none;
+  opacity: 0.7;
+}
+
+.modalCloseButton button img {
+  width: 35px;
+  height: 35px;
+}
+
+.modalDetailsBottom {
+  box-sizing: border-box;
+  height: 60%;
+  width: 100%;
+  background-color: white;
+  border-radius: 25px;
+  position: absolute;
+}
 .lite-font {
   color: #ccc;
+}
+
+.nameContainer {
+  border: 2px solid green;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.nameContainer img {
+  width: 30px;
+  height: 30px;
+}
+
+.nameContainer button {
+  background: transparent;
+  border: none;
+}
+
+.modalPokeName {
+  margin: 10px;
+  text-transform: uppercase;
+}
+
+.modalTabBar {
+  border: 2px solid green;
+  padding: 10px;
+  margin: 10px;
+  text-transform: uppercase;
+}
+
+.modalTabContent {
 }
