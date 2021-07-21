@@ -12,17 +12,19 @@ const PokeList = ({
   allPokemons,
 }) => {
   const { id, name, sprites, types } = fetchedData;
+  // 2 state variables(strings) to keep track of value of user's drop-down selection
   const [selectTypeOption, setSelectTypeOption] = useState("");
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
   // abilityOptions: array of sorted ability names for drop-down
   const [abilityOptions, setAbilityOptions] = useState([]);
   // Set sort type; by default, sort by Dex number
   const [sortType, setSortType] = useState(SortTypes.DEX_NO);
-  // stores sorted/filtered Pokemon array returned by sortAndFilter()
+  // stores sorted/filtered Pokemon array returned by sortAndFilter() in useEffect
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [userDidSort, setUserDidSort] = useState(false);
   // Boolean for checking if user wants reverse sorted results
   const [reverse, setReverse] = useState(false);
+
 
   // reverse sorting
   const setSortTypeFlags = (newSortFlag) => {
@@ -35,6 +37,24 @@ const PokeList = ({
     setUserDidSort(true);
   };
 
+   // Filter for pokemon by selected type, returns pokemon obj that has type
+  const filteredByType = (pokemonList, selectedType) => {
+    return pokemonList.filter((pokemon) => {
+      for (const typeObj of pokemon.types) {
+        if (typeObj.type.name === selectedType) return true;
+      }
+      return false;
+    });
+  };
+
+  const filteredByAbil = (pokemonList, selectedAbility) => {
+    return pokemonList.filter((pokemon) => {
+      for (const abiliObj of pokemon.abilities) {
+        if (abiliObj.ability.name === selectedAbility) return true;
+      }
+      return false;
+    });
+  };
   // arrays of Pokemon objects sorted by keys: name, weight, height, dex no
   const sortByName = (pokemonList) => {
     return pokemonList.sort((a, b) => {
@@ -70,6 +90,7 @@ const PokeList = ({
     });
   };
 
+  // Makes copy of allPokemons array, determines sort type, and calls filtered pokemons array to state variable
   const sortAndFilter = () => {
     let allPokemonsFiltered = [...allPokemons];
     switch (sortType) {
@@ -85,6 +106,18 @@ const PokeList = ({
       case SortTypes.WEIGHT:
         allPokemonsFiltered = sortByWeight(allPokemonsFiltered);
         break;
+      case SortTypes.TYPE:
+        allPokemonsFiltered = filteredByType(
+          allPokemonsFiltered,
+          selectTypeOption
+        );
+        break;
+      case SortTypes.ABIL:
+        allPokemonsFiltered = filteredByAbil(
+          allPokemonsFiltered,
+          selectAbilityOption
+        );
+        break;
       default:
         console.error(`Invalid sort type: ${sortType}`);
     }
@@ -95,25 +128,45 @@ const PokeList = ({
     sortAndFilter();
   }, [sortType, reverse]);
 
-   // generate tags, check for tags and types
+  // generate tags, check for tags and types
   let typeTags, sprite;
   if (types && sprites) {
     sprite = sprites["other"]["official-artwork"]["front_default"];
     typeTags = types.map((obj, i) => {
       const typeName = obj["type"]["name"];
-      return <span className="type-tag" style={{ backgroundColor: getTypeColors[typeName] }} key={i}>{obj["type"]["name"]} </span>;
+      return (
+        <span
+          className="type-tag"
+          style={{ backgroundColor: getTypeColors[typeName] }}
+          key={i}>
+          {obj["type"]["name"]}{" "}
+        </span>
+      );
     });
   }
 
   const generateSortedCards = (pokemonList) => {
     const sortedCards = pokemonList.map((pokeObj) => {
       const { id, name, sprites, types } = pokeObj;
-      let typeTags=types.map((typeObj,i)=>{
-        const typeName = typeObj["type"]["name"];
-        return <span style={{ backgroundColor: getTypeColors[typeName], color: '#303030', fontSize: '22px', borderRadius: "4px", padding: "4px" }} key={i}>{typeName}</span>
-      })
-      let sprite = sprites["other"]["official-artwork"]["front_default"];
 
+      const typeTags = types.map((typeObj, i) => {
+        const typeName = typeObj["type"]["name"];
+        return (
+          <span
+            style={{
+              backgroundColor: getTypeColors[typeName],
+              color: "#303030",
+              fontSize: "22px",
+              borderRadius: "4px",
+              padding: "4px",
+            }}
+            key={i}>
+            {typeName}
+          </span>
+        );
+      });
+
+      const sprite = sprites["other"]["official-artwork"]["front_default"];
       return (
         <PokeCard
           dexNo={id}
@@ -141,6 +194,7 @@ const PokeList = ({
             setSortType={setSortTypeFlags}
           />
           <div className="card-container">
+          {/* By default, display all Pokemons, else show  filtered/sorted cards */}
             {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
           </div>
         </>

@@ -14,18 +14,13 @@ function Filter({
 }) {
   // handler for Type drop-down
   const handleTypeChange = (selectTypeOption) => {
-    setSelectTypeOption(selectTypeOption);
-    if (setSelectTypeOption) {
-      console.log(`Selected: ${selectTypeOption.label}`);
-    }
+    setSortType(SortTypes.TYPE);
+    setSelectTypeOption(selectTypeOption.value);
   };
   // handler for Abilities drop-down
   const handleAbilityChange = (selectAbilityOption) => {
-    setSelectAbilityOption(selectAbilityOption);
-
-    if (setSelectAbilityOption) {
-      console.log(`Selected: ${selectAbilityOption.label}`);
-    }
+    setSortType(SortTypes.ABIL);
+    setSelectAbilityOption(selectAbilityOption.value);
   };
 
   // get all Abilities and save data to hook
