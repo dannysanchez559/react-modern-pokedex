@@ -9,10 +9,10 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
+  background-color: #a29bcb;
 }
 
 .pokeApp {
-  background-color: #a29bcb;
   margin: 0 auto;
   border: 2px solid green;
   display: flex;
