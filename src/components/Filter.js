@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Select from "react-select";
 import { fetchAllAbilities } from "../util/fetchPokemonData";
+import allTypes  from "../util/allTypes";
 import SortTypes from "../util/SortTypes";
 
 function Filter({
@@ -10,7 +11,7 @@ function Filter({
   setSelectAbilityOption,
   abilityOptions,
   setAbilityOptions,
-  setSortType
+  setSortType,
 }) {
   // handler for Type drop-down
   const handleTypeChange = (selectTypeOption) => {
@@ -58,81 +59,6 @@ function Filter({
     getAllAbilities();
   }, []);
 
-  // array of options for Type drop-down
-  const allTypes = [
-    {
-      value: "fire",
-      label: "Fire",
-    },
-    {
-      value: "grass",
-      label: "Grass",
-    },
-    {
-      value: "water",
-      label: "Water",
-    },
-    {
-      value: "normal",
-      label: "Normal",
-    },
-    {
-      value: "dark",
-      label: "Dark",
-    },
-    {
-      value: "electric",
-      label: "Electric",
-    },
-    {
-      value: "ice",
-      label: "Ice",
-    },
-    {
-      value: "psychic",
-      label: "Psychic",
-    },
-    {
-      value: "ground",
-      label: "Ground",
-    },
-    {
-      value: "rock",
-      label: "Rock",
-    },
-    {
-      value: "bug",
-      label: "Bug",
-    },
-    {
-      value: "fighting",
-      label: "Fighting",
-    },
-    {
-      value: "poison",
-      label: "Poison",
-    },
-    {
-      value: "ghost",
-      label: "Ghost",
-    },
-    {
-      value: "fairy",
-      label: "Fairy",
-    },
-    {
-      value: "dragon",
-      label: "Dragon",
-    },
-    {
-      value: "steel",
-      label: "Steel",
-    },
-    {
-      value: "flying",
-      label: "Flying",
-    },
-  ];
   return (
     <div className="filterBar">
       <div>
@@ -149,10 +75,10 @@ function Filter({
         onChange={handleAbilityChange}
         options={abilityOptions}
       />
-      <button onClick={()=>setSortType(SortTypes.ABC)}>A-Z</button>
-      <button onClick={()=>setSortType(SortTypes.HEIGHT)}>Height</button>
-      <button onClick={()=>setSortType(SortTypes.WEIGHT)}>Weight</button>
-      <button onClick={()=>setSortType(SortTypes.DEX_NO)}>Dex No.</button>
+      <button onClick={() => setSortType(SortTypes.ABC)}>A-Z</button>
+      <button onClick={() => setSortType(SortTypes.HEIGHT)}>Height</button>
+      <button onClick={() => setSortType(SortTypes.WEIGHT)}>Weight</button>
+      <button onClick={() => setSortType(SortTypes.DEX_NO)}>Dex No.</button>
     </div>
   );
 }
