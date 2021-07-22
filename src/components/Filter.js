@@ -72,7 +72,7 @@ function Filter({
         />
       </div>
       <Select
-        placeholder="ABILITY"I
+        placeholder="ABILITY"
         className="filterDropDown"
         onChange={handleAbilityChange}
         options={abilityOptions}
