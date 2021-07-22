@@ -8,27 +8,25 @@ function Header(props) {
 
   return (
     <div className="header">
-      <img src="logo.svg" alt="pokeball"></img>
-
+      <img src="logo.svg" alt="pokeball" className="logo"/>
       <nav>
-        <ul>
-          <li>
-            <a href="">
-              <img src="allPokemonLogo.png" alt="pokeball logo" />
+        <ul className="nav-ul">
+          <li className="nav-li">
+            <a href="/" className="nav-link">
+              <img src="allPokemonLogo.png" alt="pokeball logo" className="nav-icon"/>
               All Pokemon
             </a>
           </li>
-
-          <li>
-            <a href="">
-              <img src="topPicksLogo.png" alt="person logo" />
+          <li className="nav-li">
+            <a href="/" className="nav-link">
+              <img src="topPicksLogo.png" alt="person logo" className="nav-icon"/>
               Top Picks
             </a>
           </li>
 
-          <li>
-            <a href="">
-              <img src="gamesLogo.png" alt="game logo" />
+          <li className="nav-li">
+            <a href="/" className="nav-link">
+              <img src="gamesLogo.png" alt="game logo" className="nav-icon"/>
               Games
             </a>
           </li>
@@ -40,9 +38,10 @@ function Header(props) {
             type="text"
             placeholder="Enter Pokemon Name..."
             onChange={props.handleNameSearch}
+            className="searchbar-input"
           />
           <button className="searchBarButton" onClick={() => onSubmit()}>
-            <img src="searchBarLogo.png" alt="searchbar magnifier logo" />
+            <img src="searchBarLogo.png" alt="searchbar magnifier logo" className="search-icon"/>
           </button>
         </div>
       </nav>
