@@ -103,20 +103,31 @@ nav {
 .pokeList {
   display: flex;
   flex-direction: column;
-  border: 1px dashed rgb(136, 240, 240);
 }
 
 .filterBar {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 0 50px 0 50px;
-  border: 2px solid black;
+  font-size: 1.25rem;
+}
+
+.filterBar button {
+  font-size: 1.25rem;
+  padding: 6px 20px;
+  border-radius: 20px;
+  outline: none;
+  border: 1px solid #ccc;
+  color: #494089;
+  display: flex;
+  align-items: center;
 }
 
 .filterDropDown {
   width: 150px;
+  padding: 0 8px 0 8px;
 }
 
 .card-container {
