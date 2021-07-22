@@ -3,6 +3,7 @@ import Select from "react-select";
 import { fetchAllAbilities } from "../util/fetchPokemonData";
 import allTypes  from "../util/allTypes";
 import SortTypes from "../util/SortTypes";
+import dropDownStyles from "../styles/dropDownStyles";
 
 function Filter({
   selectTypeOption,
@@ -66,19 +67,21 @@ function Filter({
           className="filterDropDown"
           onChange={handleTypeChange}
           options={allTypes}
-          placeholder="Select Type"
+          placeholder="TYPE"
+          styles={dropDownStyles}
         />
       </div>
       <Select
-        placeholder="Select Ability"
+        placeholder="ABILITY"I
         className="filterDropDown"
         onChange={handleAbilityChange}
         options={abilityOptions}
+        styles={dropDownStyles}
       />
-      <button onClick={() => setSortType(SortTypes.ABC)}>A-Z</button>
-      <button onClick={() => setSortType(SortTypes.HEIGHT)}>Height</button>
-      <button onClick={() => setSortType(SortTypes.WEIGHT)}>Weight</button>
-      <button onClick={() => setSortType(SortTypes.DEX_NO)}>Dex No.</button>
+      <button onClick={() => setSortType(SortTypes.ABC)}>A-Z <img src="toggle.png" alt="toggle icon" /></button>
+      <button onClick={() => setSortType(SortTypes.HEIGHT)}>HEIGHT <img src="toggle.png" alt="toggle icon" /></button>
+      <button onClick={() => setSortType(SortTypes.WEIGHT)}>WEIGHT <img src="toggle.png" alt="toggle icon" /></button>
+      <button onClick={() => setSortType(SortTypes.DEX_NO)}>DEX NO. <img src="toggle.png" alt="toggle icon" /></button>
     </div>
   );
 }
