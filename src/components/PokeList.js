@@ -24,7 +24,6 @@ const PokeList = ({
   // stores sorted/filtered Pokemon array returned by sortAndFilter() in useEffect
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [userDidSort, setUserDidSort] = useState(false);
-  const [userDidFilter, setUserDidFilter] = useState(false);
   // Boolean for checking if user wants reverse sorted results
   const [reverse, setReverse] = useState(false);
 
@@ -37,13 +36,6 @@ const PokeList = ({
       setReverse(false);
     }
     setUserDidSort(true);
-  };
-
-  const setFilterTypeFlag = (newFilterFlag) => {
-    if (newFilterFlag === filterType) {
-      setFilterType(newFilterFlag);
-    }
-    setUserDidFilter(true);
   };
 
   // Filter for pokemon by selected type, returns pokemon obj that has type
@@ -210,7 +202,7 @@ const PokeList = ({
           <div className="card-container">
             {/* By default, display all Pokemons, else show  filtered/sorted cards */}
             {generateSortedCards(
-              userDidSort || userDidFilter ? filteredPokemons : allPokemons
+              userDidSort ? filteredPokemons : allPokemons
             )}
           </div>
         </>

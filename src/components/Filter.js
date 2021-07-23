@@ -67,7 +67,6 @@ function Filter({
         <Select
           className="filterDropDown"
           onChange={handleTypeChange}
-          // onClick={()=>setFilterType(FilterTypes.TYPE)}
           options={[{value: '', label: 'None'},...allTypes]}
           placeholder="TYPE"
           styles={dropDownStyles}
@@ -76,7 +75,6 @@ function Filter({
       <Select
         placeholder="ABILITY"I
         className="filterDropDown"
-        // onClick={()=>setFilterType(FilterTypes.ABILITY)}
         onChange={handleAbilityChange}
         options={[{value: '', label: 'None'},...abilityOptions]}
         styles={dropDownStyles}
