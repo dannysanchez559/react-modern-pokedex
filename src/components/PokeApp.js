@@ -13,6 +13,7 @@ function PokeApp() {
   const [fetchedData, setFetchedData] = useState([]);
   const [allPokemons, setAllPokemon] = useState([]);
   const [userDidSearch, setUserDidSearch] = useState(false);
+  const [modalData, setModalData] = useState([]);
 
   const handleNameSearch = (e) => {
     const searchBarValue = e.target.value;
@@ -40,7 +41,21 @@ function PokeApp() {
         return fetchPokemon(name);
       });
 
-      Promise.all(pokemonObjs).then((data) => setAllPokemon(data));
+      Promise.all(pokemonObjs).then((data) => {
+        setAllPokemon(data);
+        setFetchedData(data);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getPokemonModalAboutContent = async (nameOrId) => {
+    // fetch call to pokemon-species url in here
+    try {
+      const data = await fetchSpecies(nameOrId);
+      setModalData(data);
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -63,6 +78,8 @@ function PokeApp() {
         allPokemons={allPokemons}
         userDidSearch={userDidSearch}
         setUserDidSearch={setUserDidSearch}
+        modalData={modalData}
+        getPokemonModalAboutContent={getPokemonModalAboutContent}
       />
     </div>
   );

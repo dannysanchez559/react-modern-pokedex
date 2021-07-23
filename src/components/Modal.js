@@ -1,10 +1,22 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PokemonDetails from "./PokemonDetails";
 import closeButton from "../img/closeButton.png";
 import crySpeaker from "../img/speaker.png";
 import speakerOff from "../img/speakerOff.png";
+import TabBar from "./TabBar";
 
-export const Modal = (props) => {
+export const Modal = ({
+  setIsOpen,
+  name,
+  dexNo,
+  sprite,
+  typeTags,
+  modalData,
+  getPokemonModalAboutContent,
+  height,
+  weight,
+  abilities,
+}) => {
   const [cryUrlIsValid, setCryUrlIsValid] = useState(true);
   const speakerRef = useRef();
   const speakerButtonRef = useRef();
@@ -18,7 +30,7 @@ export const Modal = (props) => {
   };
 
   // url for pokemon cry
-  const cryUrl = `https://play.pokemonshowdown.com/audio/cries/${props.name}.mp3`;
+  const cryUrl = `https://play.pokemonshowdown.com/audio/cries/${name}.mp3`;
   const cry = new Audio(cryUrl);
   cry.onerror = handleCryUrlError;
 
@@ -26,20 +38,29 @@ export const Modal = (props) => {
     cry.play();
   };
 
+  // const triggerModalData = () => {
+  //   props.getPokemonModalAboutContent(props.name);
+  // };
+
+  // useEffect(() => {
+  //   // pokemon modal content
+  //   triggerModalData();
+  // }, []);
+
   return (
     <>
       <div className="backgroundModalWrapper">
         <div className="modalDetailsTop">
-          <div className="dexNo">{props.dexNo}</div>
+          <div className="dexNo">{dexNo}</div>
 
           <div className="spriteWrapper">
-            <img src={props.sprite} alt={`${props.name} sprite`} />
+            <img src={sprite} alt={`${name} sprite`} />
           </div>
 
           <div className="modalCloseButton">
             <button
               onClick={() => {
-                props.setIsOpen(false);
+                setIsOpen(false);
               }}>
               <img src={closeButton} />
             </button>
@@ -47,24 +68,19 @@ export const Modal = (props) => {
         </div>
         <div className="modalDetailsBottom">
           <div className="nameContainer">
-            <h1 className="modalPokeName">{props.name}</h1>
+            <h1 className="modalPokeName">{name}</h1>
             <button onClick={playPokemonCry} ref={speakerButtonRef}>
               <img src={crySpeaker} ref={speakerRef} />
             </button>
+            <span>{typeTags}</span>
           </div>
 
-          <div className="modalTabBar">
-            <ul>
-              <li>About</li>
-              <li>Base Stats</li>
-              <li>Evolution</li>
-              <li>Moves</li>
-            </ul>
-          </div>
-
-          <div className="modalTabContent">
-            <p>**Content goes in here **</p>
-          </div>
+          <TabBar
+            modalData={modalData}
+            height={height}
+            weight={weight}
+            abilities={abilities}
+          />
         </div>
       </div>
     </>

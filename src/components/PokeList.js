@@ -10,8 +10,10 @@ const PokeList = ({
   setUserDidSearch,
   fetchedData,
   allPokemons,
+  modalData,
+  getPokemonModalAboutContent,
 }) => {
-  const { id, name, sprites, types } = fetchedData;
+  const { id, name, sprites, types, height, weight, abilities } = fetchedData;
   const [selectTypeOption, setSelectTypeOption] = useState("");
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
   // abilityOptions: array of sorted ability names for drop-down
@@ -95,23 +97,42 @@ const PokeList = ({
     sortAndFilter();
   }, [sortType, reverse]);
 
-   // generate tags, check for tags and types
+  // generate tags, check for tags and types
   let typeTags, sprite;
   if (types && sprites) {
     sprite = sprites["other"]["official-artwork"]["front_default"];
     typeTags = types.map((obj, i) => {
       const typeName = obj["type"]["name"];
-      return <span className="type-tag" style={{ backgroundColor: getTypeColors[typeName] }} key={i}>{obj["type"]["name"]} </span>;
+      return (
+        <span
+          className="type-tag"
+          style={{ backgroundColor: getTypeColors[typeName] }}
+          key={i}>
+          {obj["type"]["name"]}{" "}
+        </span>
+      );
     });
   }
 
   const generateSortedCards = (pokemonList) => {
     const sortedCards = pokemonList.map((pokeObj) => {
       const { id, name, sprites, types } = pokeObj;
-      let typeTags=types.map((typeObj,i)=>{
+      let typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
-        return <span style={{ backgroundColor: getTypeColors[typeName], color: '#303030', fontSize: '22px', borderRadius: "4px", padding: "4px" }} key={i}>{typeName}</span>
-      })
+        return (
+          <span
+            style={{
+              backgroundColor: getTypeColors[typeName],
+              color: "#303030",
+              fontSize: "22px",
+              borderRadius: "4px",
+              padding: "4px",
+            }}
+            key={i}>
+            {typeName}
+          </span>
+        );
+      });
       let sprite = sprites["other"]["official-artwork"]["front_default"];
 
       return (
@@ -121,6 +142,11 @@ const PokeList = ({
           sprite={sprite}
           key={id}
           typeTags={typeTags}
+          modalData={modalData}
+          getPokemonModalAboutContent={getPokemonModalAboutContent}
+          height={height}
+          weight={weight}
+          abilities={abilities}
         />
       );
     });
@@ -147,7 +173,17 @@ const PokeList = ({
       ) : fetchedData.length < 1 ? (
         <h1>Please search pokemon.</h1>
       ) : (
-        <PokeCard dexNo={id} name={name} sprite={sprite} typeTags={typeTags} />
+        <PokeCard
+          dexNo={id}
+          name={name}
+          sprite={sprite}
+          typeTags={typeTags}
+          modalData={modalData}
+          getPokemonModalAboutContent={getPokemonModalAboutContent}
+          height={height}
+          weight={weight}
+          abilities={abilities}
+        />
       )}
     </div>
   );
