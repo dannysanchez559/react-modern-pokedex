@@ -25,8 +25,6 @@ export const Modal = ({
   const handleCryUrlError = () => {
     if (speakerRef.current) speakerRef.current.src = speakerOff;
     if (speakerButtonRef.current) speakerButtonRef.current.disabled = true;
-
-    console.log(speakerRef);
   };
 
   // url for pokemon cry
@@ -37,15 +35,6 @@ export const Modal = ({
   const playPokemonCry = () => {
     cry.play();
   };
-
-  // const triggerModalData = () => {
-  //   props.getPokemonModalAboutContent(props.name);
-  // };
-
-  // useEffect(() => {
-  //   // pokemon modal content
-  //   triggerModalData();
-  // }, []);
 
   return (
     <>

@@ -39,14 +39,14 @@ function a11yProps(index) {
 
 export default function BasicTabs({ modalData, height, weight, abilities }) {
   const [value, setValue] = React.useState(0);
-  const [isAboutTextEnglish, setIsAboutTextEnglish] = React.useState(false);
+  const [isAboutTextEnglish, setIsAboutTextEnglish] = React.useState(true);
   const [englishAboutTextIndex, setEnglishAboutTextIndex] = React.useState(0);
-  const [isSpeciesTextEnglish, setIsSpeciesTextEnglish] = React.useState(false);
+  const [isSpeciesTextEnglish, setIsSpeciesTextEnglish] = React.useState(true);
   const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] =
     React.useState(0);
 
-  console.log(`height, weight, abilites, ${height}, ${weight}, ${abilities}`);
-
+  // console.log(`height, weight, abilites, ${height}, ${weight}, ${abilities}`);
+  // console.log(`modalData in TaBar`, modalData);
   // create function that updates setAboutTextIsEnglish state to true
   // when flavor_text_entries[i]["language"].name === "en"
   // props.modalData["flavor_text_entries"]["0"]["flavor_text"];
@@ -84,7 +84,7 @@ export default function BasicTabs({ modalData, height, weight, abilities }) {
       }
     }
 
-    console.log(`found!: i: ${i}, text: ${pathNameEntries[i].genus}`);
+    // console.log(`found!: i: ${i}, text: ${pathNameEntries[i].genus}`);
   };
 
   React.useEffect(() => {
@@ -103,7 +103,7 @@ export default function BasicTabs({ modalData, height, weight, abilities }) {
         <Tabs
           value={value}
           onChange={handleChange}
-          aria-label="basic tabs example">
+          aria-label="pokemon-modal-tabs">
           <Tab label="About" {...a11yProps(0)} />
           <Tab label="Base Stats" {...a11yProps(1)} />
           <Tab label="Evolutions" {...a11yProps(2)} />
@@ -134,17 +134,19 @@ export default function BasicTabs({ modalData, height, weight, abilities }) {
 
             <div className="heightRowContainer">
               <p className="aboutSpecsLabel">Height</p>
-              <p className="heightValue">height value</p>
+              <p className="heightValue">{height}</p>
             </div>
 
             <div className="weightRowContainer">
-              <p className="aboutSpecsLabel">Weight</p>
+              <p className="aboutSpecsLabel">{weight}</p>
               <p className="weightValue">weight value goes in here</p>
             </div>
 
             <div className="abilitiesRowContainer">
               <p className="aboutSpecsLabel">Abilities</p>
-              <p className="abilitiesValue">abilities values goes in here</p>
+              <p className="abilitiesValue">
+                {abilities.map((index) => index["ability"].name + " ")}
+              </p>
             </div>
           </div>
         </TabPanel>

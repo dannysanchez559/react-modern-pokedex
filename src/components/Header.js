@@ -3,6 +3,7 @@ import React from "react";
 function Header(props) {
   const onSubmit = () => {
     // invoke api search function in pokeapp
+    props.setUserDidSearch(true);
     props.getSearchBarDataApi();
   };
 

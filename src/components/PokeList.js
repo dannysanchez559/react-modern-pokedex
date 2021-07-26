@@ -13,7 +13,9 @@ const PokeList = ({
   modalData,
   getPokemonModalAboutContent,
 }) => {
-  const { id, name, sprites, types, height, weight, abilities } = fetchedData;
+  const { id, name, sprites, types, height, weight, abilities } =
+    fetchedData[0];
+
   const [selectTypeOption, setSelectTypeOption] = useState("");
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
   // abilityOptions: array of sorted ability names for drop-down
@@ -152,7 +154,7 @@ const PokeList = ({
     });
     return sortedCards;
   };
-
+  // console.log(`modal in PokeList`, modalData);
   return (
     <div className="pokeList">
       {!userDidSearch ? (
@@ -170,7 +172,7 @@ const PokeList = ({
             {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
           </div>
         </>
-      ) : fetchedData.length < 1 ? (
+      ) : !fetchedData.length ? (
         <h1>Please search pokemon.</h1>
       ) : (
         <PokeCard

@@ -10,13 +10,13 @@ function Filter({
   setSelectAbilityOption,
   abilityOptions,
   setAbilityOptions,
-  setSortType
+  setSortType,
 }) {
   // handler for Type drop-down
   const handleTypeChange = (selectTypeOption) => {
     setSelectTypeOption(selectTypeOption);
     if (setSelectTypeOption) {
-      console.log(`Selected: ${selectTypeOption.label}`);
+      // console.log(`Selected: ${selectTypeOption.label}`);
     }
   };
   // handler for Abilities drop-down
@@ -24,7 +24,7 @@ function Filter({
     setSelectAbilityOption(selectAbilityOption);
 
     if (setSelectAbilityOption) {
-      console.log(`Selected: ${selectAbilityOption.label}`);
+      // console.log(`Selected: ${selectAbilityOption.label}`);
     }
   };
 
@@ -154,10 +154,10 @@ function Filter({
         onChange={handleAbilityChange}
         options={abilityOptions}
       />
-      <button onClick={()=>setSortType(SortTypes.ABC)}>A-Z</button>
-      <button onClick={()=>setSortType(SortTypes.HEIGHT)}>Height</button>
-      <button onClick={()=>setSortType(SortTypes.WEIGHT)}>Weight</button>
-      <button onClick={()=>setSortType(SortTypes.DEX_NO)}>Dex No.</button>
+      <button onClick={() => setSortType(SortTypes.ABC)}>A-Z</button>
+      <button onClick={() => setSortType(SortTypes.HEIGHT)}>Height</button>
+      <button onClick={() => setSortType(SortTypes.WEIGHT)}>Weight</button>
+      <button onClick={() => setSortType(SortTypes.DEX_NO)}>Dex No.</button>
     </div>
   );
 }

@@ -17,7 +17,7 @@ function PokeApp() {
 
   const handleNameSearch = (e) => {
     const searchBarValue = e.target.value;
-    setUserDidSearch(true);
+    // setUserDidSearch(true);
     setPokemonName(searchBarValue);
   };
 
@@ -25,7 +25,11 @@ function PokeApp() {
     try {
       // call fetch api function
       const pokemonData = await fetchPokemon(pokemonName);
-      setFetchedData(pokemonData);
+      if (!pokemonData.length) {
+        setFetchedData([pokemonData]);
+      } else {
+        setFetchedData(pokemonData);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -55,7 +59,6 @@ function PokeApp() {
     try {
       const data = await fetchSpecies(nameOrId);
       setModalData(data);
-      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -71,16 +74,21 @@ function PokeApp() {
       <Header
         handleNameSearch={handleNameSearch}
         getSearchBarDataApi={getSearchBarDataApi}
+        setUserDidSearch={setUserDidSearch}
+        setPokemonName={setPokemonName}
       />
 
-      <PokeList
-        fetchedData={fetchedData}
-        allPokemons={allPokemons}
-        userDidSearch={userDidSearch}
-        setUserDidSearch={setUserDidSearch}
-        modalData={modalData}
-        getPokemonModalAboutContent={getPokemonModalAboutContent}
-      />
+      {fetchedData.length && (
+        <PokeList
+          fetchedData={fetchedData}
+          allPokemons={allPokemons}
+          userDidSearch={userDidSearch}
+          setUserDidSearch={setUserDidSearch}
+          modalData={modalData}
+          // pass function to trigger pokemon-species endpoint for onClick in pokecard
+          getPokemonModalAboutContent={getPokemonModalAboutContent}
+        />
+      )}
     </div>
   );
 }

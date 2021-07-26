@@ -25,7 +25,7 @@ const PokeCard = ({
     // pokemon modal content
     triggerModalData();
   }, []);
-
+  // console.log(`modalData in PokeCard`, modalData);
   return (
     <div className="card">
       <ul>
