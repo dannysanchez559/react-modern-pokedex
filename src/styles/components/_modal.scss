@@ -1,0 +1,108 @@
+$overlay: rgba(0, 0, 0, 0.15) !important;
+$md-bg: #f9cf30;
+
+/* modal styling */
+.ReactModal__Overlay {
+  z-index: 1;
+  background: $overlay;
+}
+
+.modalWindow {
+  z-index: 100;
+  box-sizing: border-box;
+  width: 975px;
+  height: 650px;
+  background-color: #f9cf30;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.backgroundModalWrapper {
+  z-index: 1;
+  width: 975px;
+  height: 650px;
+  border-radius: 25px;
+  background: url("../../img/pokeballBG.svg") no-repeat;
+  background-position: 98% 2%;
+}
+
+.modalDetailsTop {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+}
+
+.spriteWrapper {
+  border: 2px solid red;
+}
+
+.spriteWrapper img {
+  height: 250px;
+  width: auto;
+}
+
+.modalCloseButton {
+  background-size: contain;
+  z-index: 2;
+}
+
+.modalCloseButton button {
+  background: transparent;
+  border: none;
+  opacity: 0.7;
+}
+
+.modalCloseButton button img {
+  width: 35px;
+  height: 35px;
+}
+
+.modalDetailsBottom {
+  box-sizing: border-box;
+  height: 60%;
+  width: 100%;
+  background-color: white;
+  border-radius: 25px;
+  position: absolute;
+}
+
+// contains pokemon name and speaker
+.nameContainer {
+  border: 2px solid green;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* speaker img */
+.nameContainer img {
+  width: 30px;
+  height: 30px;
+  border: 1px solid red;
+}
+
+/* speaker button */
+.nameContainer button {
+  background: transparent;
+  border: none;
+}
+
+.modalPokeName {
+  margin: 10px;
+  text-transform: uppercase;
+}
+
+.modalTabBar {
+  border: 2px solid green;
+  padding: 10px;
+  margin: 10px;
+  text-transform: uppercase;
+}
+

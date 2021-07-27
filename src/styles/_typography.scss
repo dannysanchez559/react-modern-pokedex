@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&family=Raleway:wght@500;700&family=Rubik&display=swap");
+
+// 1 rem = 16px
+
+// Google fonts
+$raleway: "Raleway", sans-serif;
+$rubik: "Rubik", sans-serif;
+$nunito: "Nunito", sans-serif; // 800 for bold, 600 for semibold
+$reg: 1.2rem;
+$med: 1.25rem;
+$big: 1.3rem;
+
+// colors
+$purple1: #a29bcb;
+$purple2: #494089;
+$dexNo-color: rgba(255, 255, 255, 0.7);
+$type-tag-color: #303030;
+
+// header links
+.nav-link {
+  font-size: $reg;
+  font-family: $nunito;
+  font-weight: bold;
+}
+
+.searchbar-input {
+  font-size: $reg;
+}
+
+.searchbar-input::placeholder {
+  font-family: $nunito;
+  font-weight: 600;
+  color: $purple1;
+}
+
+// filter
+.filterBar {
+  color: $purple2;
+  font-family: $rubik;
+  font-size: $reg;
+
+  button {
+    font-size: $reg;
+  }
+}
+
+// card
+.dexNo {
+  font-family: $rubik;
+  font-size: $med;
+  color: $dexNo-color;
+}
+
+.card-name {
+  font-family: $rubik;
+  font-size: $med;
+}
+
+.type-tag {
+  color: $type-tag-color;
+  font-size: $reg;
+}
+
+// modal
+.modalPokeName {
+  font-size: $med;
+}
