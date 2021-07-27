@@ -13,8 +13,7 @@ const PokeCard = ({ name, dexNo, typeTags, sprite }) => {
         <li>
           <img src={sprite} alt={`${name} sprite`} className="sprite" />
         </li>
-        <li>{name}</li>
-        <li>{dexNo}</li>
+        <li className="card-name"><span>{name.toUpperCase()}</span><span> #{dexNo}</span></li>
         <li>{typeTags}</li>
         <li>
           <button onClick={() => setModalIsOpen(true)}>Open</button>

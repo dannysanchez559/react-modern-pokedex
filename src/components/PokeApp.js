@@ -7,6 +7,7 @@ import {
   fetchSpecies,
 } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
+import "../styles/main.scss";
 
 function PokeApp() {
   const [pokemonName, setPokemonName] = useState("");

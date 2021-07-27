@@ -153,17 +153,14 @@ const PokeList = ({
   const generateSortedCards = (pokemonList) => {
     const sortedCards = pokemonList.map((pokeObj) => {
       const { id, name, sprites, types } = pokeObj;
-
+      // make type tags for card
       const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
         return (
           <span
+            className="type-tag"
             style={{
               backgroundColor: getTypeColors[typeName],
-              color: "#303030",
-              fontSize: "22px",
-              borderRadius: "4px",
-              padding: "4px",
             }}
             key={i}>
             {typeName}
