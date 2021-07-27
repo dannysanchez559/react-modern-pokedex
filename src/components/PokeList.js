@@ -11,9 +11,12 @@ const PokeList = ({
   setUserDidSearch,
   fetchedData,
   allPokemons,
+  modalData,
+  getPokemonModalAboutContent,
 }) => {
-  const { id, name, sprites, types } = fetchedData;
-  // 2 state variables(strings) to keep track of value of user's drop-down selection
+  const { id, name, sprites, types, height, weight, abilities } =
+    fetchedData[0];
+
   const [selectTypeOption, setSelectTypeOption] = useState("");
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
   // abilityOptions: array of sorted ability names for drop-down
@@ -128,7 +131,6 @@ const PokeList = ({
     setFilteredPokemons(allPokemonsFiltered);
   };
 
-
   useEffect(() => {
     sortTypeCheck();
   }, [sortType, filterType, reverse, selectTypeOption, selectAbilityOption]);
@@ -179,12 +181,17 @@ const PokeList = ({
           sprite={sprite}
           key={id}
           typeTags={typeTags}
+          modalData={modalData}
+          getPokemonModalAboutContent={getPokemonModalAboutContent}
+          height={height}
+          weight={weight}
+          abilities={abilities}
         />
       );
     });
     return sortedCards;
   };
-
+  // console.log(`modal in PokeList`, modalData);
   return (
     <div className="pokeList">
       {!userDidSearch ? (
@@ -201,15 +208,23 @@ const PokeList = ({
           />
           <div className="card-container">
             {/* By default, display all Pokemons, else show  filtered/sorted cards */}
-            {generateSortedCards(
-              userDidSort ? filteredPokemons : allPokemons
-            )}
+            {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
           </div>
         </>
-      ) : fetchedData.length < 1 ? (
+      ) : !fetchedData.length ? (
         <h1>Please search pokemon.</h1>
       ) : (
-        <PokeCard dexNo={id} name={name} sprite={sprite} typeTags={typeTags} />
+        <PokeCard
+          dexNo={id}
+          name={name}
+          sprite={sprite}
+          typeTags={typeTags}
+          modalData={modalData}
+          getPokemonModalAboutContent={getPokemonModalAboutContent}
+          height={height}
+          weight={weight}
+          abilities={abilities}
+        />
       )}
     </div>
   );

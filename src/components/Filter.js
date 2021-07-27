@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import Select from "react-select";
 import { fetchAllAbilities } from "../util/fetchPokemonData";
-import allTypes  from "../util/allTypes";
+import allTypes from "../util/allTypes";
 import SortTypes from "../util/SortTypes";
-import FilterTypes from '../util/FilterTypes';
+import FilterTypes from "../util/FilterTypes";
 import dropDownStyles from "../styles/dropDownStyles";
 
 function Filter({
@@ -64,25 +64,33 @@ function Filter({
 
   return (
     <div className="filterBar">
-        <Select
-          className="filterDropDown"
-          onChange={handleTypeChange}
-          options={[{value: '', label: 'None'},...allTypes]}
-          placeholder="TYPE"
-          styles={dropDownStyles}
-        />
+      <Select
+        className="filterDropDown"
+        onChange={handleTypeChange}
+        options={[{ value: "", label: "None" }, ...allTypes]}
+        placeholder="TYPE"
+        styles={dropDownStyles}
+      />
 
       <Select
         placeholder="ABILITY"
         className="filterDropDown"
         onChange={handleAbilityChange}
-        options={[{value: '', label: 'None'},...abilityOptions]}
+        options={[{ value: "", label: "None" }, ...abilityOptions]}
         styles={dropDownStyles}
       />
-      <button onClick={() => setSortType(SortTypes.ABC)}>A-Z <img src="toggle.png" alt="toggle icon" /></button>
-      <button onClick={() => setSortType(SortTypes.HEIGHT)}>HEIGHT <img src="toggle.png" alt="toggle icon" /></button>
-      <button onClick={() => setSortType(SortTypes.WEIGHT)}>WEIGHT <img src="toggle.png" alt="toggle icon" /></button>
-      <button onClick={() => setSortType(SortTypes.DEX_NO)}>DEX NO. <img src="toggle.png" alt="toggle icon" /></button>
+      <button onClick={() => setSortType(SortTypes.ABC)}>
+        A-Z <img src="toggle.png" alt="toggle icon" />
+      </button>
+      <button onClick={() => setSortType(SortTypes.HEIGHT)}>
+        HEIGHT <img src="toggle.png" alt="toggle icon" />
+      </button>
+      <button onClick={() => setSortType(SortTypes.WEIGHT)}>
+        WEIGHT <img src="toggle.png" alt="toggle icon" />
+      </button>
+      <button onClick={() => setSortType(SortTypes.DEX_NO)}>
+        DEX NO. <img src="toggle.png" alt="toggle icon" />
+      </button>
     </div>
   );
 }
