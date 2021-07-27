@@ -45,12 +45,7 @@ export default function BasicTabs({ modalData, height, weight, abilities }) {
   const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] =
     React.useState(0);
 
-  // console.log(`height, weight, abilites, ${height}, ${weight}, ${abilities}`);
-  // console.log(`modalData in TaBar`, modalData);
   // create function that updates setAboutTextIsEnglish state to true
-  // when flavor_text_entries[i]["language"].name === "en"
-  // props.modalData["flavor_text_entries"]["0"]["flavor_text"];
-
   const findEnglishText = (pathName) => {
     let found = false;
     let i = 0;
@@ -138,8 +133,8 @@ export default function BasicTabs({ modalData, height, weight, abilities }) {
             </div>
 
             <div className="weightRowContainer">
-              <p className="aboutSpecsLabel">{weight}</p>
-              <p className="weightValue">weight value goes in here</p>
+              <p className="aboutSpecsLabel">Weight</p>
+              <p className="weightValue">{weight}</p>
             </div>
 
             <div className="abilitiesRowContainer">
