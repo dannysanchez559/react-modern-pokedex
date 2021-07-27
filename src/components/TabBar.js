@@ -78,8 +78,6 @@ export default function BasicTabs({ modalData, height, weight, abilities }) {
         i++;
       }
     }
-
-    // console.log(`found!: i: ${i}, text: ${pathNameEntries[i].genus}`);
   };
 
   React.useEffect(() => {

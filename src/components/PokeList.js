@@ -4,6 +4,7 @@ import Filter from "./Filter";
 import getTypeColors from "../util/getTypeColor";
 import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
+import FilterTypes from "../util/FilterTypes";
 
 const PokeList = ({
   userDidSearch,
@@ -22,7 +23,8 @@ const PokeList = ({
   const [abilityOptions, setAbilityOptions] = useState([]);
   // Set sort type; by default, sort by Dex number
   const [sortType, setSortType] = useState(SortTypes.DEX_NO);
-  // stores sorted/filtered Pokemon array returned by sortAndFilter()
+  const [filterType, setFilterType] = useState(null);
+  // stores sorted/filtered Pokemon array returned by sortAndFilter() in useEffect
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [userDidSort, setUserDidSort] = useState(false);
   // Boolean for checking if user wants reverse sorted results
@@ -39,6 +41,24 @@ const PokeList = ({
     setUserDidSort(true);
   };
 
+  // Filter for pokemon by selected type, returns pokemon obj that has type
+  const filteredByType = (pokemonList, selectedType) => {
+    return pokemonList.filter((pokemon) => {
+      for (const typeObj of pokemon.types) {
+        if (typeObj.type.name === selectedType) return true;
+      }
+      return false;
+    });
+  };
+
+  const filteredByAbil = (pokemonList, selectedAbility) => {
+    return pokemonList.filter((pokemon) => {
+      for (const abiliObj of pokemon.abilities) {
+        if (abiliObj.ability.name === selectedAbility) return true;
+      }
+      return false;
+    });
+  };
   // arrays of Pokemon objects sorted by keys: name, weight, height, dex no
   const sortByName = (pokemonList) => {
     return pokemonList.sort((a, b) => {
@@ -74,8 +94,23 @@ const PokeList = ({
     });
   };
 
-  const sortAndFilter = () => {
+  // Makes copy of allPokemons array, determines sort type, and calls filtered pokemons array to state variable
+  const sortTypeCheck = () => {
     let allPokemonsFiltered = [...allPokemons];
+
+    if (selectTypeOption !== "") {
+      allPokemonsFiltered = filteredByType(
+        allPokemonsFiltered,
+        selectTypeOption
+      );
+    }
+    if (selectAbilityOption !== "") {
+      allPokemonsFiltered = filteredByAbil(
+        allPokemonsFiltered,
+        selectAbilityOption
+      );
+    }
+
     switch (sortType) {
       case SortTypes.DEX_NO:
         allPokemonsFiltered = sortByDexNumber(allPokemonsFiltered);
@@ -92,12 +127,13 @@ const PokeList = ({
       default:
         console.error(`Invalid sort type: ${sortType}`);
     }
+
     setFilteredPokemons(allPokemonsFiltered);
   };
 
   useEffect(() => {
-    sortAndFilter();
-  }, [sortType, reverse]);
+    sortTypeCheck();
+  }, [sortType, filterType, reverse, selectTypeOption, selectAbilityOption]);
 
   // generate tags, check for tags and types
   let typeTags, sprite;
@@ -119,7 +155,8 @@ const PokeList = ({
   const generateSortedCards = (pokemonList) => {
     const sortedCards = pokemonList.map((pokeObj) => {
       const { id, name, sprites, types } = pokeObj;
-      let typeTags = types.map((typeObj, i) => {
+
+      const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
         return (
           <span
@@ -135,8 +172,8 @@ const PokeList = ({
           </span>
         );
       });
-      let sprite = sprites["other"]["official-artwork"]["front_default"];
 
+      const sprite = sprites["other"]["official-artwork"]["front_default"];
       return (
         <PokeCard
           dexNo={id}
@@ -167,8 +204,10 @@ const PokeList = ({
             abilityOptions={abilityOptions}
             setAbilityOptions={setAbilityOptions}
             setSortType={setSortTypeFlags}
+            setFilterType={setFilterType}
           />
           <div className="card-container">
+            {/* By default, display all Pokemons, else show  filtered/sorted cards */}
             {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
           </div>
         </>

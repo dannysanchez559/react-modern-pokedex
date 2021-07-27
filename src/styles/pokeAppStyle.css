@@ -9,45 +9,95 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
+  background-color: #a29bcb;
 }
 
 .pokeApp {
-  background-color: #a29bcb;
-  margin: 0 auto;
-  border: 2px solid green;
+  padding: 2%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
 }
 
 .header {
-  border: 2px solid red;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  padding: 0 50px 0 50px;
+  width: auto;
 }
 
+.logo {
+  height: 15%;
+  width: 15%;
+}
+/* contains nav-ul and searchBarContainer*/
 nav {
-  border: 1px solid black;
+  margin: 20px 0 20px 0;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+/* contains all the nav links */
+.nav-ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: rgb(255, 251, 251);
+  border-radius: 20px;
+  padding: 20px;
+  width: 30%;
+  height: 80px;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+.nav-icon {
+  padding-right: 10px;
+  height: 20%;
+  width: auto;
 }
 
 .searchBarContainer {
-  background-color: white;
-  height: 50px;
-}
-
-.search-container {
-  order: 1;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   flex-wrap: wrap;
-  margin: 50px 130px;
+  justify-content: space-between;
+  border-radius: 20px;
+  background-color: white;
+  width: 400px;
+  height: 80px;
+  padding: 10px;
+}
+
+.searchbar-input {
+  font-size: 1.5rem;
+  border-radius: 20px;
+  border: none;
   width: auto;
-  border: 2px solid white;
+  padding-left: 20px;
+}
+
+/* remove default outline when cursor is in input field */
+.searchbar-input:focus {
+  outline: none;
+}
+
+.searchBarButton {
+  width: 60px;
+  border-radius: 20px;
+  background-color: white;
+  border: none;
 }
 
 .pokeList {
@@ -60,21 +110,33 @@ nav {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 100vw;
-  border: 2px solid black;
+  padding: 0 50px 0 50px;
+  font-size: 1.25rem;
+}
+
+.filterBar button {
+  font-size: 1.25rem;
+  padding: 6px 20px;
+  border-radius: 20px;
+  outline: none;
+  border: 1px solid #ccc;
+  color: #494089;
+  display: flex;
+  align-items: center;
 }
 
 .filterDropDown {
   width: 150px;
+  padding: 0 8px 0 8px;
 }
 
 .card-container {
+  border: 5px solid orange;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-  border: 3px dashed blue;
-  margin: 20px 50px;
+  border: 1px dashed blue;
 }
 
 .card {

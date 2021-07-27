@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import Select from "react-select";
 import { fetchAllAbilities } from "../util/fetchPokemonData";
+import allTypes from "../util/allTypes";
 import SortTypes from "../util/SortTypes";
+import FilterTypes from "../util/FilterTypes";
+import dropDownStyles from "../styles/dropDownStyles";
 
 function Filter({
   selectTypeOption,
@@ -11,21 +14,17 @@ function Filter({
   abilityOptions,
   setAbilityOptions,
   setSortType,
+  setFilterType,
 }) {
   // handler for Type drop-down
   const handleTypeChange = (selectTypeOption) => {
-    setSelectTypeOption(selectTypeOption);
-    if (setSelectTypeOption) {
-      // console.log(`Selected: ${selectTypeOption.label}`);
-    }
+    setFilterType(FilterTypes.TYPE);
+    setSelectTypeOption(selectTypeOption.value);
   };
   // handler for Abilities drop-down
   const handleAbilityChange = (selectAbilityOption) => {
-    setSelectAbilityOption(selectAbilityOption);
-
-    if (setSelectAbilityOption) {
-      // console.log(`Selected: ${selectAbilityOption.label}`);
-    }
+    setFilterType(FilterTypes.ABILITY);
+    setSelectAbilityOption(selectAbilityOption.value);
   };
 
   // get all Abilities and save data to hook
@@ -63,101 +62,35 @@ function Filter({
     getAllAbilities();
   }, []);
 
-  // array of options for Type drop-down
-  const allTypes = [
-    {
-      value: "fire",
-      label: "Fire",
-    },
-    {
-      value: "grass",
-      label: "Grass",
-    },
-    {
-      value: "water",
-      label: "Water",
-    },
-    {
-      value: "normal",
-      label: "Normal",
-    },
-    {
-      value: "dark",
-      label: "Dark",
-    },
-    {
-      value: "electric",
-      label: "Electric",
-    },
-    {
-      value: "ice",
-      label: "Ice",
-    },
-    {
-      value: "psychic",
-      label: "Psychic",
-    },
-    {
-      value: "ground",
-      label: "Ground",
-    },
-    {
-      value: "rock",
-      label: "Rock",
-    },
-    {
-      value: "bug",
-      label: "Bug",
-    },
-    {
-      value: "fighting",
-      label: "Fighting",
-    },
-    {
-      value: "poison",
-      label: "Poison",
-    },
-    {
-      value: "ghost",
-      label: "Ghost",
-    },
-    {
-      value: "fairy",
-      label: "Fairy",
-    },
-    {
-      value: "dragon",
-      label: "Dragon",
-    },
-    {
-      value: "steel",
-      label: "Steel",
-    },
-    {
-      value: "flying",
-      label: "Flying",
-    },
-  ];
   return (
     <div className="filterBar">
-      <div>
-        <Select
-          className="filterDropDown"
-          onChange={handleTypeChange}
-          options={allTypes}
-          placeholder="Select Type"
-        />
-      </div>
       <Select
-        placeholder="Select Ability"
+        className="filterDropDown"
+        onChange={handleTypeChange}
+        options={[{ value: "", label: "None" }, ...allTypes]}
+        placeholder="TYPE"
+        styles={dropDownStyles}
+      />
+
+      <Select
+        placeholder="ABILITY"
         className="filterDropDown"
         onChange={handleAbilityChange}
-        options={abilityOptions}
+        options={[{ value: "", label: "None" }, ...abilityOptions]}
+        styles={dropDownStyles}
       />
-      <button onClick={() => setSortType(SortTypes.ABC)}>A-Z</button>
-      <button onClick={() => setSortType(SortTypes.HEIGHT)}>Height</button>
-      <button onClick={() => setSortType(SortTypes.WEIGHT)}>Weight</button>
-      <button onClick={() => setSortType(SortTypes.DEX_NO)}>Dex No.</button>
+      <button onClick={() => setSortType(SortTypes.ABC)}>
+        A-Z <img src="toggle.png" alt="toggle icon" />
+      </button>
+      <button onClick={() => setSortType(SortTypes.HEIGHT)}>
+        HEIGHT <img src="toggle.png" alt="toggle icon" />
+      </button>
+      <button onClick={() => setSortType(SortTypes.WEIGHT)}>
+        WEIGHT <img src="toggle.png" alt="toggle icon" />
+      </button>
+      <button onClick={() => setSortType(SortTypes.DEX_NO)}>
+        DEX NO. <img src="toggle.png" alt="toggle icon" />
+      </button>
     </div>
   );
 }
