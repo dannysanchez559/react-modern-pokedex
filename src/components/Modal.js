@@ -15,6 +15,7 @@ export const Modal = ({
   getPokemonModalAboutContent,
   height,
   weight,
+  moveSet,
   abilities,
 }) => {
   const [cryUrlIsValid, setCryUrlIsValid] = useState(true);
@@ -69,6 +70,7 @@ export const Modal = ({
             height={height}
             weight={weight}
             abilities={abilities}
+            moveSet={moveSet}
           />
         </div>
       </div>

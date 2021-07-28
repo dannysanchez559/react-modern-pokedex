@@ -4,6 +4,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Moves from "./Moves";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -37,14 +38,13 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs({ modalData, height, weight, abilities }) {
+export default function BasicTabs({ modalData, height, weight, abilities, moveSet }) {
   const [value, setValue] = React.useState(0);
   const [isAboutTextEnglish, setIsAboutTextEnglish] = React.useState(true);
   const [englishAboutTextIndex, setEnglishAboutTextIndex] = React.useState(0);
   const [isSpeciesTextEnglish, setIsSpeciesTextEnglish] = React.useState(true);
   const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] =
     React.useState(0);
-
   // create function that updates setAboutTextIsEnglish state to true
   const findEnglishText = (pathName) => {
     let found = false;
@@ -156,7 +156,7 @@ export default function BasicTabs({ modalData, height, weight, abilities }) {
 
         {/****** MOVES TAB ******/}
         <TabPanel value={value} index={3}>
-          Item Four
+          <Moves moveSet={moveSet}/>
         </TabPanel>
       </div>
     </Box>
