@@ -1,14 +1,7 @@
 import React from "react";
 
 const Moves = ({ moveSet }) => {
-  // map over moveSet [{}]
-  const moveStyles = {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      flexWrap: 'wrap'
-  }
-
+  // function for finding English flavor text; returns a string
   const getEngFlavorText = (texts) => {
     for (let i = 0; i < texts.length; i += 1) {
       const textObj = texts[i];
@@ -31,7 +24,7 @@ const Moves = ({ moveSet }) => {
       </ul>
     );
   });
-  return <div className="moves-panel" style={moveStyles}>{moveInfo}</div>;
+  return <div className="moves-panel">{moveInfo}</div>;
 };
 
 export default Moves;
