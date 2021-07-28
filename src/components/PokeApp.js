@@ -15,6 +15,7 @@ function PokeApp() {
   const [allPokemons, setAllPokemon] = useState([]);
   const [userDidSearch, setUserDidSearch] = useState(false);
   const [modalData, setModalData] = useState([]);
+  const [movesData, setMovesData] = useState({});
 
   const handleNameSearch = (e) => {
     const searchBarValue = e.target.value;
@@ -39,7 +40,7 @@ function PokeApp() {
   const getAllPokemon = async (pokeUrls) => {
     try {
       const data = await fetchAllPokemons();
-      // need data["next"] & data["previous"]
+      // need data["next"] & data["previous"] for pagination
       // loop over results and fetch
       const pokemonObjs = data["results"].map((obj) => {
         const name = obj["name"];

@@ -2,6 +2,7 @@ const baseUrl = `https://pokeapi.co/api/v2/pokemon/`;
 const abiliUrl = `https://pokeapi.co/api/v2/ability/?offset=0&limit=327`;
 const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/`;
 
+
 // the following function can accept either pokemon name or Id and search individual pokemon
 export const fetchPokemon = async (nameOrId) => {
   try {
@@ -45,3 +46,18 @@ export const fetchAllAbilities = async () => {
     console.error(error);
   }
 };
+
+// pokemon/:id endpoint provides "moves" array(of objects, with key: "move" { "name", "url" })
+export const fetchMove = async (moveUrl)=> {
+
+  try {
+    return await fetch(moveUrl)
+      .then((response) => response.json())
+      .then((data) => data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+
