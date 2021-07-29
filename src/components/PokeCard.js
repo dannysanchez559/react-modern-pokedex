@@ -25,14 +25,17 @@ const PokeCard = ({
     // pokemon modal content
     triggerModalData();
   }, []);
-  // console.log(`modalData in PokeCard`, modalData);
+
   return (
     <div className="card">
       <ul>
         <li>
           <img src={sprite} alt={`${name} sprite`} className="sprite" />
         </li>
-        <li className="card-name"><span>{name.toUpperCase()}</span><span> #{dexNo}</span></li>
+        <li className="card-name">
+          <span>{name.toUpperCase()}</span>
+          <span> #{dexNo}</span>
+        </li>
         <li>{typeTags}</li>
         <li>
           <button
