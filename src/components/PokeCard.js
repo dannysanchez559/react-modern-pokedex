@@ -12,6 +12,8 @@ const PokeCard = ({
   height,
   weight,
   abilities,
+  stats,
+  types,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -62,6 +64,8 @@ const PokeCard = ({
           height={height}
           weight={weight}
           abilities={abilities}
+          stats={stats}
+          types={types}
         />
       </Modal>
     </div>

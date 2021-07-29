@@ -4,6 +4,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import BaseStats from "./BaseStats2";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -37,7 +38,14 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs({ modalData, height, weight, abilities }) {
+export default function BasicTabs({
+  modalData,
+  height,
+  weight,
+  abilities,
+  stats,
+  types,
+}) {
   const [value, setValue] = React.useState(0);
   const [isAboutTextEnglish, setIsAboutTextEnglish] = React.useState(true);
   const [englishAboutTextIndex, setEnglishAboutTextIndex] = React.useState(0);
@@ -146,7 +154,7 @@ export default function BasicTabs({ modalData, height, weight, abilities }) {
 
         {/****** BASE STATS TAB ******/}
         <TabPanel value={value} index={1}>
-          Item Two
+          <BaseStats stats={stats} types={types} />
         </TabPanel>
 
         {/****** EVOLUTION TAB ******/}
