@@ -5,11 +5,10 @@ import {
   fetchPokemon,
   fetchAllPokemons,
   fetchSpecies,
-  fetchMove
+  fetchMove,
 } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 import "../styles/main.scss";
-
 
 function PokeApp() {
   const [pokemonName, setPokemonName] = useState("");
@@ -72,35 +71,33 @@ function PokeApp() {
   const getPokemonMoveset = async (moves, n) => {
     const moveSet = [];
     // loop over a pokemon's moves array N=4 times
-    for(let i = 0; i < n; i+=1){
+    for (let i = 0; i < n; i += 1) {
       const moveObj = moves[i];
       const moveUrl = moveObj.move.url;
       try {
         const moveData = await fetchMove(moveUrl);
-        if(moveData){
+        if (moveData) {
           moveSet.push(moveData);
         }
-      } catch(error){
+      } catch (error) {
         console.error(error);
       }
-
     }
     // return a moveSet array
     return moveSet;
-  }
+  };
 
   const getMovesByPokemon = async (dexNo) => {
-    const moves = allPokemons.map((poke,i)=>{
+    const moves = allPokemons.map((poke, i) => {
       const moves = poke.moves;
       // get 4 moves from all moves a pokemon can learn
       const fourMoves = getPokemonMoveset(moves, 4);
       return fourMoves;
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     // get all data: pagination/scroll, pokemon urls array
-    getMovesByPokemon(1);
     getAllPokemon();
   }, []);
 
