@@ -5,6 +5,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import BaseStats from "./BaseStats";
+import EvolutionTab from "./EvolutionTab";
 import Moves from "./Moves";
 
 function TabPanel(props) {
@@ -160,7 +161,7 @@ export default function BasicTabs({
 
         {/****** EVOLUTION TAB ******/}
         <TabPanel value={value} index={2}>
-          Item Three
+          <EvolutionTab evolutionChainUrl={modalData["evolution_chain"].url} />
         </TabPanel>
 
         {/****** MOVES TAB ******/}
