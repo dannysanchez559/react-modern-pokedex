@@ -12,11 +12,12 @@ const Moves = ({ moveSet }) => {
   };
 
   const moveInfo = moveSet.map((moveObj) => {
-    const { accuracy, name, power, pp, flavor_text_entries } = moveObj;
+    const { accuracy, name, power, pp, flavor_text_entries, type } = moveObj;
     // call function to loop through flavor_text_entries and find "en"
     return (
-      <ul>
+      <ul key={name}>
         <li>{name.toUpperCase()}</li>
+        <li>{type.name}</li>
         <li>{getEngFlavorText(flavor_text_entries)}</li>
         <li>Accuracy: {accuracy}</li>
         <li>Power: {power}</li>
