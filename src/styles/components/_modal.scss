@@ -88,7 +88,7 @@ $md-bg: #f9cf30;
   border: 1px solid red;
 }
 
-/* speaker button */
+// speaker button
 .nameContainer button {
   background: transparent;
   border: none;
@@ -106,3 +106,15 @@ $md-bg: #f9cf30;
   text-transform: uppercase;
 }
 
+// moves panel
+.moves-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.moves-panel ul {
+  list-style: none;
+  line-height: 2;
+}

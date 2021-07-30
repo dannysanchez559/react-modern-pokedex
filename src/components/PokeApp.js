@@ -5,6 +5,7 @@ import {
   fetchPokemon,
   fetchAllPokemons,
   fetchSpecies,
+  fetchMove,
 } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 import "../styles/main.scss";
@@ -15,6 +16,7 @@ function PokeApp() {
   const [allPokemons, setAllPokemon] = useState([]);
   const [userDidSearch, setUserDidSearch] = useState(false);
   const [modalData, setModalData] = useState([]);
+  const [movesData, setMovesData] = useState({});
 
   const handleNameSearch = (e) => {
     const searchBarValue = e.target.value;
@@ -39,7 +41,7 @@ function PokeApp() {
   const getAllPokemon = async (pokeUrls) => {
     try {
       const data = await fetchAllPokemons();
-      // need data["next"] & data["previous"]
+      // need data["next"] & data["previous"] for pagination
       // loop over results and fetch
       const pokemonObjs = data["results"].map((obj) => {
         const name = obj["name"];
@@ -63,6 +65,35 @@ function PokeApp() {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  // get data for n number of moves for each Pokemon
+  const getPokemonMoveset = async (moves, n) => {
+    const moveSet = [];
+    // loop over a pokemon's moves array N=4 times
+    for (let i = 0; i < n; i += 1) {
+      const moveObj = moves[i];
+      const moveUrl = moveObj.move.url;
+      try {
+        const moveData = await fetchMove(moveUrl);
+        if (moveData) {
+          moveSet.push(moveData);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    // return a moveSet array
+    return moveSet;
+  };
+
+  const getMovesByPokemon = async (dexNo) => {
+    const moves = allPokemons.map((poke, i) => {
+      const moves = poke.moves;
+      // get 4 moves from all moves a pokemon can learn
+      const fourMoves = getPokemonMoveset(moves, 4);
+      return fourMoves;
+    });
   };
 
   useEffect(() => {
