@@ -4,6 +4,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import EvolutionTab from "./EvolutionTab";
 import Moves from "./Moves";
 
 function TabPanel(props) {
@@ -38,7 +39,13 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs({ modalData, height, weight, abilities, moveSet }) {
+export default function BasicTabs({
+  modalData,
+  height,
+  weight,
+  abilities,
+  moveSet,
+}) {
   const [value, setValue] = React.useState(0);
   const [isAboutTextEnglish, setIsAboutTextEnglish] = React.useState(true);
   const [englishAboutTextIndex, setEnglishAboutTextIndex] = React.useState(0);
@@ -151,12 +158,12 @@ export default function BasicTabs({ modalData, height, weight, abilities, moveSe
 
         {/****** EVOLUTION TAB ******/}
         <TabPanel value={value} index={2}>
-          Item Three
+          <EvolutionTab evolutionChainUrl={modalData["evolution_chain"].url} />
         </TabPanel>
 
         {/****** MOVES TAB ******/}
         <TabPanel value={value} index={3}>
-          <Moves moveSet={moveSet}/>
+          <Moves moveSet={moveSet} />
         </TabPanel>
       </div>
     </Box>
