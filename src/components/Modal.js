@@ -15,6 +15,7 @@ export const Modal = ({
   getPokemonModalAboutContent,
   height,
   weight,
+  moveSet,
   abilities,
   stats,
   types,
@@ -73,6 +74,7 @@ export const Modal = ({
             abilities={abilities}
             stats={stats}
             types={types}
+            moveSet={moveSet}
           />
         </div>
       </div>

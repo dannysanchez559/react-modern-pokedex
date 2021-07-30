@@ -1,0 +1,86 @@
+$btn-height: 40px;
+$nav-ele-padding: 20px;
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 50px 0 50px;
+  width: auto;
+  margin-bottom: 20px;
+}
+
+.logo {
+  height: 15%;
+  width: 15%;
+}
+/* contains nav-ul and searchBarContainer*/
+nav {
+  height: 15%;
+  margin: 10px 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* contains all the nav links */
+.nav-ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: rgb(255, 250, 250);
+  border-radius: 20px;
+  padding: $nav-ele-padding;
+  width: 40%;
+  height: 70px;
+  list-style: none;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+.nav-icon {
+  padding-right: $nav-ele-padding;
+  height: auto;
+  width: auto;
+}
+
+.searchBarContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-radius: 20px;
+  background-color: white;
+  width: 350px;
+  height: 70px;
+  // padding: $nav-ele-padding;
+}
+
+.searchbar-input {
+  border-radius: 20px;
+  border: none;
+  width: auto;
+  padding-left: $nav-ele-padding;
+}
+
+/* remove default outline when cursor is in input field */
+.searchbar-input:focus {
+  outline: none;
+}
+
+.searchBarButton {
+  height: $btn-height;
+  width: auto;
+  // border-radius: 20px;
+  background-color: white;
+  border: none;
+}
+
