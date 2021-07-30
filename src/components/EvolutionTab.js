@@ -6,18 +6,14 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
   const [evolutionNameStrings, setEvolutionNameStrings] = useState([]);
   const [spriteUrls, setSpriteUrls] = useState([]);
 
-  let evolutionNamesList = [];
-  let chain = {};
 
   // Function to fetch chain object, save to state hook
   const fetchChain = async () => {
     try {
       const chainData = await fetch(evolutionChainUrl)
         .then((response) => response.json())
-        .then((data) => {
-          chain = data.chain;
-        });
-      evolutionNamesList = getEvolutionNames(chain);
+        .then((data) => data.chain);
+      const evolutionNamesList = getEvolutionNames(chainData);
       setEvolutionNamesObjects(evolutionNamesList);
     } catch (error) {
       console.error(error);
@@ -28,7 +24,6 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
   const getEvolutionNames = (chainObj) => {
     let evoChain = [];
     let evoData = chainObj;
-
     if (chainObj) {
       do {
         let numberOfEvolutions = evoData["evolves_to"].length;
@@ -50,7 +45,7 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
     }
   };
 
-  /** 
+  /**
   @argument evolutionNamesObjects: array of objects with key('species_name') and value - pokemon name string
   1. Map through array(argument) and destructure Pokemon species name from nameObj
   2. Species name is pushed into tempArray, which is then store in state as evolutionNameStrings
@@ -58,13 +53,10 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
 
   // get name strings of evolutions and save to hook
   const getNameStrings = (namesObjArray) => {
-    let tempArray = [];
     const nameList = namesObjArray.map((nameObj) => {
-      const { species_name } = nameObj;
-
-      tempArray.push(nameObj.species_name);
+      return nameObj.species_name;
     });
-    setEvolutionNameStrings(tempArray);
+    setEvolutionNameStrings(nameList);
   };
 
   // fetch array of name strings, and return array of promises, then promise.all to get sprites
@@ -92,6 +84,7 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
 
   useEffect(() => {
     fetchChain();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

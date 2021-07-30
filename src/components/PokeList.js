@@ -4,7 +4,6 @@ import Filter from "./Filter";
 import getTypeColors from "../util/getTypeColor";
 import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
-import FilterTypes from "../util/FilterTypes";
 
 const PokeList = ({
   userDidSearch,
@@ -14,8 +13,16 @@ const PokeList = ({
   modalData,
   getPokemonModalAboutContent,
 }) => {
-  const { id, name, sprites, types, height, weight, abilities, stats } =
-    fetchedData[0];
+  const {
+    id,
+    name,
+    sprites,
+    types,
+    height,
+    weight,
+    abilities,
+    stats,
+  } = fetchedData[0];
 
   const [selectTypeOption, setSelectTypeOption] = useState("");
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
@@ -133,6 +140,7 @@ const PokeList = ({
 
   useEffect(() => {
     sortTypeCheck();
+    // eslint-disable-next-line
   }, [sortType, filterType, reverse, selectTypeOption, selectAbilityOption]);
 
   // generate tags, check for tags and types

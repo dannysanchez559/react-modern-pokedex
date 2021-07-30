@@ -1,4 +1,3 @@
-import { defaults } from "chart.js";
 import React from "react";
 import getTypeColors from "../util/getTypeColor";
 import { Bar } from "react-chartjs-2";

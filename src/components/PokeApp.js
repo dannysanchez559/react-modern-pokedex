@@ -5,22 +5,24 @@ import {
   fetchPokemon,
   fetchAllPokemons,
   fetchSpecies,
-  fetchMove,
 } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 import "../styles/main.scss";
 
 function PokeApp() {
+  // Store search bar input value: could be dex number or pokemon name
   const [pokemonName, setPokemonName] = useState("");
+  // fetchedData is a single Pokemon object the user searched for
   const [fetchedData, setFetchedData] = useState([]);
   const [allPokemons, setAllPokemon] = useState([]);
+  // Hook below is used for conditional rendering 1 Pokemon card user searched, and search on keypress
   const [userDidSearch, setUserDidSearch] = useState(false);
   const [modalData, setModalData] = useState([]);
-  const [movesData, setMovesData] = useState({});
 
+  // search bar onChange function for searching pokemon & conditional rendering1
   const handleNameSearch = (e) => {
     const searchBarValue = e.target.value;
-    // setUserDidSearch(true);
+    setUserDidSearch(true);
     setPokemonName(searchBarValue);
   };
 
@@ -65,35 +67,6 @@ function PokeApp() {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  // get data for n number of moves for each Pokemon
-  const getPokemonMoveset = async (moves, n) => {
-    const moveSet = [];
-    // loop over a pokemon's moves array N=4 times
-    for (let i = 0; i < n; i += 1) {
-      const moveObj = moves[i];
-      const moveUrl = moveObj.move.url;
-      try {
-        const moveData = await fetchMove(moveUrl);
-        if (moveData) {
-          moveSet.push(moveData);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    // return a moveSet array
-    return moveSet;
-  };
-
-  const getMovesByPokemon = async (dexNo) => {
-    const moves = allPokemons.map((poke, i) => {
-      const moves = poke.moves;
-      // get 4 moves from all moves a pokemon can learn
-      const fourMoves = getPokemonMoveset(moves, 4);
-      return fourMoves;
-    });
   };
 
   useEffect(() => {

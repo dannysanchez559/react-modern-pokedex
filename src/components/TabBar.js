@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -7,6 +6,7 @@ import Box from "@material-ui/core/Box";
 import BaseStats from "./BaseStats";
 import EvolutionTab from "./EvolutionTab";
 import Moves from "./Moves";
+import PokemonDetails from "./PokemonDetails";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -27,12 +27,6 @@ function TabPanel(props) {
   );
 }
 
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -49,6 +43,7 @@ export default function BasicTabs({
   stats,
   types,
 }) {
+  // State
   const [value, setValue] = React.useState(0);
   const [isAboutTextEnglish, setIsAboutTextEnglish] = React.useState(true);
   const [englishAboutTextIndex, setEnglishAboutTextIndex] = React.useState(0);
@@ -94,6 +89,7 @@ export default function BasicTabs({
     // checkAboutTextLanguage();
     findEnglishText("flavor_text_entries");
     findEnglishText("genera");
+    // eslint-disable-next-line
   }, []);
 
   const handleChange = (event, newValue) => {
@@ -117,41 +113,15 @@ export default function BasicTabs({
       <div className="modalTabContent">
         {/****** ABOUT TAB ******/}
         <TabPanel value={value} index={0}>
-          <div className="aboutLeftContainer">
-            {isAboutTextEnglish
-              ? modalData["flavor_text_entries"][englishAboutTextIndex][
-                  "flavor_text"
-                ]
-              : "Information not found"}
-          </div>
-
-          <div className="aboutRightContainer">
-            <div className="speciesRowContainer">
-              <p className="aboutSpecsLabel">Species</p>
-              <p className="speciesValue">
-                {isSpeciesTextEnglish
-                  ? modalData["genera"][englishSpeciesTextIndex]["genus"]
-                  : "Information not found"}
-              </p>
-            </div>
-
-            <div className="heightRowContainer">
-              <p className="aboutSpecsLabel">Height</p>
-              <p className="heightValue">{height}</p>
-            </div>
-
-            <div className="weightRowContainer">
-              <p className="aboutSpecsLabel">Weight</p>
-              <p className="weightValue">{weight}</p>
-            </div>
-
-            <div className="abilitiesRowContainer">
-              <p className="aboutSpecsLabel">Abilities</p>
-              <p className="abilitiesValue">
-                {abilities.map((index) => index["ability"].name + " ")}
-              </p>
-            </div>
-          </div>
+          <PokemonDetails isAboutTextEnglish={isAboutTextEnglish}
+            modalData={modalData}
+            englishAboutTextIndex={englishAboutTextIndex}
+            englishSpeciesTextIndex={englishSpeciesTextIndex}
+            isSpeciesTextEnglish={isSpeciesTextEnglish}
+            height={height}
+            weight={weight}
+            abilities={abilities}
+          />
         </TabPanel>
 
         {/****** BASE STATS TAB ******/}

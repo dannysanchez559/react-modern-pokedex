@@ -50,8 +50,9 @@ const PokeCard = ({
   };
 
   useEffect(() => {
-    // pokemon modal content
+    // get pokemon modal content
     triggerModalData();
+    // eslint-disable-next-line
   }, []);
 
   return (
