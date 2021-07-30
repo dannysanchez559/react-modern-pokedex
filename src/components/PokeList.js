@@ -14,7 +14,7 @@ const PokeList = ({
   modalData,
   getPokemonModalAboutContent,
 }) => {
-  const { id, name, sprites, types, height, weight, abilities } =
+  const { id, name, sprites, types, height, weight, abilities, stats } =
     fetchedData[0];
 
   const [selectTypeOption, setSelectTypeOption] = useState("");
@@ -183,6 +183,8 @@ const PokeList = ({
           height={height}
           weight={weight}
           abilities={abilities}
+          stats={stats}
+          types={types}
         />
       );
     });
@@ -202,6 +204,7 @@ const PokeList = ({
             setAbilityOptions={setAbilityOptions}
             setSortType={setSortTypeFlags}
             setFilterType={setFilterType}
+            types={types}
           />
           <div className="card-container">
             {/* By default, display all Pokemons, else show  filtered/sorted cards */}
@@ -221,6 +224,8 @@ const PokeList = ({
           height={height}
           weight={weight}
           abilities={abilities}
+          stats={stats}
+          types={types}
         />
       )}
     </div>

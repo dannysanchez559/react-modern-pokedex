@@ -17,6 +17,8 @@ export const Modal = ({
   weight,
   moveSet,
   abilities,
+  stats,
+  types,
 }) => {
   const [cryUrlIsValid, setCryUrlIsValid] = useState(true);
   const speakerRef = useRef();
@@ -70,6 +72,8 @@ export const Modal = ({
             height={height}
             weight={weight}
             abilities={abilities}
+            stats={stats}
+            types={types}
             moveSet={moveSet}
           />
         </div>

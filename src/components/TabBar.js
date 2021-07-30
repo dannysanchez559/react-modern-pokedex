@@ -4,6 +4,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import BaseStats from "./BaseStats";
 import EvolutionTab from "./EvolutionTab";
 import Moves from "./Moves";
 
@@ -45,6 +46,8 @@ export default function BasicTabs({
   weight,
   abilities,
   moveSet,
+  stats,
+  types,
 }) {
   const [value, setValue] = React.useState(0);
   const [isAboutTextEnglish, setIsAboutTextEnglish] = React.useState(true);
@@ -153,7 +156,7 @@ export default function BasicTabs({
 
         {/****** BASE STATS TAB ******/}
         <TabPanel value={value} index={1}>
-          Item Two
+          <BaseStats stats={stats} types={types} />
         </TabPanel>
 
         {/****** EVOLUTION TAB ******/}
