@@ -5,6 +5,7 @@ import getTypeColors from "../util/getTypeColor";
 import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
 import FilterTypes from "../util/FilterTypes";
+import { sliderClasses } from "@material-ui/core";
 
 const PokeList = ({
   userDidSearch,
@@ -135,18 +136,28 @@ const PokeList = ({
     sortTypeCheck();
   }, [sortType, filterType, reverse, selectTypeOption, selectAbilityOption]);
 
+  const capitalizeType = (typeString) => {
+    const capitalize = typeString[0].toUpperCase() + typeString.slice(1);
+    return capitalize;
+  };
+
   // generate tags, check for tags and types
   let typeTags, sprite;
   if (types && sprites) {
     sprite = sprites["other"]["official-artwork"]["front_default"];
     typeTags = types.map((obj, i) => {
       const typeName = obj["type"]["name"];
+      const capitalizedTypeName = capitalizeType(typeName);
+      console.log(`capitalized Type Name `, capitalizedTypeName);
       return (
         <span
           className="type-tag"
-          style={{ backgroundColor: getTypeColors[typeName] }}
+          style={{
+            backgroundColor: getTypeColors[typeName],
+            // textTransform: "uppercase",
+          }}
           key={i}>
-          {obj["type"]["name"]}{" "}
+          {capitalizedTypeName}
         </span>
       );
     });
@@ -158,6 +169,7 @@ const PokeList = ({
       // make type tags for card
       const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
+
         return (
           <span
             className="type-tag"
@@ -165,7 +177,7 @@ const PokeList = ({
               backgroundColor: getTypeColors[typeName],
             }}
             key={i}>
-            {typeName}
+            {capitalizeType(typeName)}
           </span>
         );
       });

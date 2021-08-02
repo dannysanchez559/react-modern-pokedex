@@ -106,7 +106,8 @@ export default function BasicTabs({
         <Tabs
           value={value}
           onChange={handleChange}
-          aria-label="pokemon-modal-tabs">
+          aria-label="pokemon-modal-tabs"
+          variant="fullWidth">
           <Tab label="About" {...a11yProps(0)} />
           <Tab label="Base Stats" {...a11yProps(1)} />
           <Tab label="Evolutions" {...a11yProps(2)} />

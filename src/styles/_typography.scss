@@ -45,7 +45,7 @@ $type-tag-color: #303030;
 // card
 .dexNo {
   font-family: $rubik;
-  font-size: $med;
+  font-size: 3rem;
   color: $dexNo-color;
 }
 
@@ -55,11 +55,16 @@ $type-tag-color: #303030;
 }
 
 .type-tag {
-  color: $type-tag-color;
-  font-size: $reg;
+  color: white;
+  font-size: 1.1rem;
+  margin: 0 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 // modal
 .modalPokeName {
-  font-size: $med;
+  font-size: 1.7rem;
+  letter-spacing: 1.5px;
+  font-family: $rubik;
 }
