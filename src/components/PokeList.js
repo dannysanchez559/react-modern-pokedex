@@ -147,7 +147,6 @@ const PokeList = ({
     typeTags = types.map((obj, i) => {
       const typeName = obj["type"]["name"];
       const capitalizedTypeName = capitalizeType(typeName);
-      console.log(`capitalized Type Name `, capitalizedTypeName);
       return (
         <span
           className="type-tag"

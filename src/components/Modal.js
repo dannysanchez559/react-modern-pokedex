@@ -66,7 +66,7 @@ export const Modal = ({
             <div className="nameSpeakerContainer">
               <h1 className="modalPokeName">{name}</h1>
               <button onClick={playPokemonCry} ref={speakerButtonRef}>
-                <img src={crySpeaker} ref={speakerRef} />
+                <img src={crySpeaker} ref={speakerRef} alt="speaker" />
               </button>
             </div>
             <span className="type-tag">{typeTags}</span>
