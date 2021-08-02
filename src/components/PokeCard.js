@@ -76,7 +76,7 @@ const PokeCard = ({
       <Modal
         className="modalWindow"
         isOpen={modalIsOpen}
-        moveSet={moveSet}
+        // moveSet={moveSet}
         onRequestClose={() => {
           return setModalIsOpen(false);
         }}>
