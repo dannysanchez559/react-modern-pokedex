@@ -56,7 +56,10 @@ const PokeCard = ({
   }, []);
 
   return (
-    <div className="card">
+    <>
+    <div className="card"  onClick={() => {
+              setModalIsOpen(true);
+            }}>
       <ul>
         <li>
           <img src={sprite} alt={`${name} sprite`} className="sprite" />
@@ -66,22 +69,15 @@ const PokeCard = ({
           <span> #{dexNo}</span>
         </li>
         <li>{typeTags}</li>
-        <li>
-          <button
-            onClick={() => {
-              setModalIsOpen(true);
-              triggerModalData();
-            }}>
-            Open
-          </button>
-        </li>
       </ul>
-      <Modal
+    </div>
+    <Modal
+        onAfterOpen={triggerModalData}
         className="modalWindow"
         isOpen={modalIsOpen}
         moveSet={moveSet}
         onRequestClose={() => {
-          return setModalIsOpen(false);
+          setModalIsOpen(false);
         }}>
         <CustomModal
           setIsOpen={setModalIsOpen}
@@ -99,8 +95,10 @@ const PokeCard = ({
           moveSet={moveSet}
         />
       </Modal>
-    </div>
+      </>
   );
 };
 
 export default PokeCard;
+
+

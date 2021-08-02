@@ -1,7 +1,6 @@
 import * as React from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import BaseStats from "./BaseStats";
 import EvolutionTab from "./EvolutionTab";
@@ -18,11 +17,7 @@ function TabPanel(props) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}>
-      {value === index && (
-        <Box sx={{ div: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 }
@@ -48,8 +43,9 @@ export default function BasicTabs({
   const [isAboutTextEnglish, setIsAboutTextEnglish] = React.useState(true);
   const [englishAboutTextIndex, setEnglishAboutTextIndex] = React.useState(0);
   const [isSpeciesTextEnglish, setIsSpeciesTextEnglish] = React.useState(true);
-  const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] =
-    React.useState(0);
+  const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] = React.useState(
+    0
+  );
   // create function that updates setAboutTextIsEnglish state to true
   const findEnglishText = (pathName) => {
     let found = false;
@@ -86,7 +82,6 @@ export default function BasicTabs({
   };
 
   React.useEffect(() => {
-    // checkAboutTextLanguage();
     findEnglishText("flavor_text_entries");
     findEnglishText("genera");
     // eslint-disable-next-line
@@ -113,7 +108,8 @@ export default function BasicTabs({
       <div className="modalTabContent">
         {/****** ABOUT TAB ******/}
         <TabPanel value={value} index={0}>
-          <PokemonDetails isAboutTextEnglish={isAboutTextEnglish}
+          <PokemonDetails
+            isAboutTextEnglish={isAboutTextEnglish}
             modalData={modalData}
             englishAboutTextIndex={englishAboutTextIndex}
             englishSpeciesTextIndex={englishSpeciesTextIndex}
