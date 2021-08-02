@@ -153,7 +153,6 @@ const PokeList = ({
           className="type-tag"
           style={{
             backgroundColor: getTypeColors[typeName],
-            // textTransform: "uppercase",
           }}
           key={i}>
           {capitalizedTypeName}
