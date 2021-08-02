@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { fetchPokemon } from "../util/fetchPokemonData";
+import evolutionArrowImg from "../img/evolution-arrow.png";
 
 const EvolutionTab = ({ evolutionChainUrl }) => {
   const [evolutionNamesObjects, setEvolutionNamesObjects] = useState([]);
   const [evolutionNameStrings, setEvolutionNameStrings] = useState([]);
   const [spriteUrls, setSpriteUrls] = useState([]);
 
-  let evolutionNamesList = [];
-  let chain = {};
 
   // Function to fetch chain object, save to state hook
   const fetchChain = async () => {
     try {
       const chainData = await fetch(evolutionChainUrl)
         .then((response) => response.json())
-        .then((data) => {
-          chain = data.chain;
-        });
-      evolutionNamesList = getEvolutionNames(chain);
+        .then((data) => data.chain);
+      const evolutionNamesList = getEvolutionNames(chainData);
       setEvolutionNamesObjects(evolutionNamesList);
     } catch (error) {
       console.error(error);
@@ -28,7 +25,6 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
   const getEvolutionNames = (chainObj) => {
     let evoChain = [];
     let evoData = chainObj;
-
     if (chainObj) {
       do {
         let numberOfEvolutions = evoData["evolves_to"].length;
@@ -50,7 +46,7 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
     }
   };
 
-  /** 
+  /**
   @argument evolutionNamesObjects: array of objects with key('species_name') and value - pokemon name string
   1. Map through array(argument) and destructure Pokemon species name from nameObj
   2. Species name is pushed into tempArray, which is then store in state as evolutionNameStrings
@@ -58,13 +54,10 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
 
   // get name strings of evolutions and save to hook
   const getNameStrings = (namesObjArray) => {
-    let tempArray = [];
     const nameList = namesObjArray.map((nameObj) => {
-      const { species_name } = nameObj;
-
-      tempArray.push(nameObj.species_name);
+      return nameObj.species_name;
     });
-    setEvolutionNameStrings(tempArray);
+    setEvolutionNameStrings(nameList);
   };
 
   // fetch array of name strings, and return array of promises, then promise.all to get sprites
@@ -92,6 +85,7 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
 
   useEffect(() => {
     fetchChain();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -102,7 +96,7 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
     getImgUrlFromStrings(evolutionNameStrings);
   }, [evolutionNameStrings]);
 
-  const images = spriteUrls.map((urlObj) => (
+  const spritesList = spriteUrls.map((urlObj) => (
     <img
       src={urlObj.url}
       alt={`${urlObj.name}sprite`}
@@ -111,7 +105,25 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
     />
   ));
 
-  return <>{images}</>;
+  const evolutionImg = () => {
+    return (<img className="evolutionImg" src={evolutionArrowImg}></img>)
+  }
+
+  // return spritesList with evolution arrows added in between each image
+  const spritesWithEvolutionArrows = () => {
+    const organizedArray = [];
+
+    for (let index = 0; index < spritesList.length; index++) {
+      organizedArray.push(spritesList[index]);
+      // if sprite is the last in list, then just return sprite without arrow
+      if (index !== spritesList.length - 1) {
+        organizedArray.push(evolutionImg());
+      }
+    }
+    return organizedArray;
+  }
+
+  return <div className="spriteContainer">{spritesWithEvolutionArrows()}</div>;
 };
 
 export default EvolutionTab;

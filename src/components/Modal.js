@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import PokemonDetails from "./PokemonDetails";
+import React, { useRef } from "react";
 import closeButton from "../img/closeButton.png";
 import crySpeaker from "../img/speaker.png";
 import speakerOff from "../img/speakerOff.png";
@@ -21,7 +20,6 @@ export const Modal = ({
   stats,
   types,
 }) => {
-  const [cryUrlIsValid, setCryUrlIsValid] = useState(true);
   const speakerRef = useRef();
   const speakerButtonRef = useRef();
 
@@ -53,11 +51,12 @@ export const Modal = ({
             <img src={sprite} alt={`${name} sprite`} />
           </div>
           <div className="modalCloseButton">
+            {/* close button */}
             <button
               onClick={() => {
                 setIsOpen(false);
               }}>
-              <img src={closeButton} />
+              <img src={closeButton} alt="close modal button" />
             </button>
           </div>
         </div>

@@ -60,6 +60,7 @@ function Filter({
   useEffect(() => {
     // fetch all abilities
     getAllAbilities();
+    // eslint-disable-next-line
   }, []);
 
   return (

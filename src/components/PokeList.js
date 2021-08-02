@@ -4,8 +4,6 @@ import Filter from "./Filter";
 import getTypeColors from "../util/getTypeColor";
 import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
-import FilterTypes from "../util/FilterTypes";
-import { sliderClasses } from "@material-ui/core";
 
 const PokeList = ({
   userDidSearch,
@@ -134,6 +132,7 @@ const PokeList = ({
 
   useEffect(() => {
     sortTypeCheck();
+    // eslint-disable-next-line
   }, [sortType, filterType, reverse, selectTypeOption, selectAbilityOption]);
 
   const capitalizeType = (typeString) => {
