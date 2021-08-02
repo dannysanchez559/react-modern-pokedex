@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -19,20 +18,10 @@ function TabPanel(props) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}>
-      {value === index && (
-        <Box sx={{ div: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 }
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
 
 function a11yProps(index) {
   return {
@@ -55,8 +44,9 @@ export default function BasicTabs({
   const [isAboutTextEnglish, setIsAboutTextEnglish] = React.useState(true);
   const [englishAboutTextIndex, setEnglishAboutTextIndex] = React.useState(0);
   const [isSpeciesTextEnglish, setIsSpeciesTextEnglish] = React.useState(true);
-  const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] =
-    React.useState(0);
+  const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] = React.useState(
+    0
+  );
   // create function that updates setAboutTextIsEnglish state to true
   const findEnglishText = (pathName) => {
     let found = false;
@@ -119,7 +109,8 @@ export default function BasicTabs({
       <div className="modalTabContent">
         {/****** ABOUT TAB ******/}
         <TabPanel value={value} index={0}>
-          <PokemonDetails isAboutTextEnglish={isAboutTextEnglish}
+          <PokemonDetails
+            isAboutTextEnglish={isAboutTextEnglish}
             modalData={modalData}
             englishAboutTextIndex={englishAboutTextIndex}
             englishSpeciesTextIndex={englishSpeciesTextIndex}
