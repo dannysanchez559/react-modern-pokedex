@@ -13,16 +13,8 @@ const PokeList = ({
   modalData,
   getPokemonModalAboutContent,
 }) => {
-  const {
-    id,
-    name,
-    sprites,
-    types,
-    height,
-    weight,
-    abilities,
-    stats,
-  } = fetchedData[0];
+  const { id, name, sprites, types, height, weight, abilities, stats } =
+    fetchedData[0];
 
   const [selectTypeOption, setSelectTypeOption] = useState("");
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
@@ -143,18 +135,26 @@ const PokeList = ({
     // eslint-disable-next-line
   }, [sortType, filterType, reverse, selectTypeOption, selectAbilityOption]);
 
+  const capitalizeType = (typeString) => {
+    const capitalize = typeString[0].toUpperCase() + typeString.slice(1);
+    return capitalize;
+  };
+
   // generate tags, check for tags and types
   let typeTags, sprite;
   if (types && sprites) {
     sprite = sprites["other"]["official-artwork"]["front_default"];
     typeTags = types.map((obj, i) => {
       const typeName = obj["type"]["name"];
+      const capitalizedTypeName = capitalizeType(typeName);
       return (
         <span
           className="type-tag"
-          style={{ backgroundColor: getTypeColors[typeName] }}
+          style={{
+            backgroundColor: getTypeColors[typeName],
+          }}
           key={i}>
-          {obj["type"]["name"]}{" "}
+          {capitalizedTypeName}
         </span>
       );
     });
@@ -166,6 +166,7 @@ const PokeList = ({
       // make type tags for card
       const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
+
         return (
           <span
             className="type-tag"
@@ -173,7 +174,7 @@ const PokeList = ({
               backgroundColor: getTypeColors[typeName],
             }}
             key={i}>
-            {typeName}
+            {capitalizeType(typeName)}
           </span>
         );
       });

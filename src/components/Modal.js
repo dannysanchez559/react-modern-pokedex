@@ -1,8 +1,9 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import closeButton from "../img/closeButton.png";
 import crySpeaker from "../img/speaker.png";
 import speakerOff from "../img/speakerOff.png";
 import TabBar from "./TabBar";
+import getTypeColors from "../util/getTypeColor";
 
 export const Modal = ({
   setIsOpen,
@@ -19,7 +20,6 @@ export const Modal = ({
   stats,
   types,
 }) => {
-
   const speakerRef = useRef();
   const speakerButtonRef = useRef();
 
@@ -38,33 +38,38 @@ export const Modal = ({
     cry.play();
   };
 
+  const typeColor = types[0]["type"].name;
+
   return (
     <>
-      <div className="backgroundModalWrapper">
+      <div
+        className="backgroundModalWrapper"
+        style={{ backgroundColor: getTypeColors[typeColor] }}>
         <div className="modalDetailsTop">
           <div className="dexNo">{dexNo}</div>
-
           <div className="spriteWrapper">
             <img src={sprite} alt={`${name} sprite`} />
           </div>
-
           <div className="modalCloseButton">
-          {/* close button */}
+            {/* close button */}
             <button
               onClick={() => {
                 setIsOpen(false);
               }}>
-              <img src={closeButton} alt="close modal button"/>
+              <img src={closeButton} alt="close modal button" />
             </button>
           </div>
         </div>
+
         <div className="modalDetailsBottom">
           <div className="nameContainer">
-            <h1 className="modalPokeName">{name}</h1>
-            <button onClick={playPokemonCry} ref={speakerButtonRef}>
-              <img src={crySpeaker} ref={speakerRef} alt="speaker"/>
-            </button>
-            <span>{typeTags}</span>
+            <div className="nameSpeakerContainer">
+              <h1 className="modalPokeName">{name}</h1>
+              <button onClick={playPokemonCry} ref={speakerButtonRef}>
+                <img src={crySpeaker} ref={speakerRef} alt="speaker" />
+              </button>
+            </div>
+            <span className="type-tag">{typeTags}</span>
           </div>
 
           <TabBar
