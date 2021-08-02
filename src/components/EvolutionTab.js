@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchPokemon } from "../util/fetchPokemonData";
+import evolutionArrowImg from "../img/evolution-arrow.png";
 
 const EvolutionTab = ({ evolutionChainUrl }) => {
   const [evolutionNamesObjects, setEvolutionNamesObjects] = useState([]);
@@ -95,7 +96,7 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
     getImgUrlFromStrings(evolutionNameStrings);
   }, [evolutionNameStrings]);
 
-  const images = spriteUrls.map((urlObj) => (
+  const spritesList = spriteUrls.map((urlObj) => (
     <img
       src={urlObj.url}
       alt={`${urlObj.name}sprite`}
@@ -104,7 +105,25 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
     />
   ));
 
-  return <>{images}</>;
+  const evolutionImg = () => {
+    return (<img className="evolutionImg" src={evolutionArrowImg}></img>)
+  }
+
+  // return spritesList with evolution arrows added in between each image
+  const spritesWithEvolutionArrows = () => {
+    const organizedArray = [];
+
+    for (let index = 0; index < spritesList.length; index++) {
+      organizedArray.push(spritesList[index]);
+      // if sprite is the last in list, then just return sprite without arrow
+      if (index !== spritesList.length - 1) {
+        organizedArray.push(evolutionImg());
+      }
+    }
+    return organizedArray;
+  }
+
+  return <div className="spriteContainer">{spritesWithEvolutionArrows()}</div>;
 };
 
 export default EvolutionTab;

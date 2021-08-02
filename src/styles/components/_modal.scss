@@ -106,6 +106,28 @@ $md-bg: #f9cf30;
   text-transform: uppercase;
 }
 
+// evolution panel
+
+.spriteContainer {
+  display: flex;
+  margin: 25px auto;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  
+}
+
+.evolution-sprites {
+  width: 175px;
+  height: 175px;
+  border: 1px dashed green;
+}
+
+.evolutionImg {
+  width: 45px;
+  height: 45px;
+}
+
 // moves panel
 .moves-panel {
   display: flex;
