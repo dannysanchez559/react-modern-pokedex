@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -26,6 +27,12 @@ function TabPanel(props) {
     </div>
   );
 }
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
 
 function a11yProps(index) {
   return {
@@ -86,7 +93,6 @@ export default function BasicTabs({
   };
 
   React.useEffect(() => {
-    // checkAboutTextLanguage();
     findEnglishText("flavor_text_entries");
     findEnglishText("genera");
     // eslint-disable-next-line

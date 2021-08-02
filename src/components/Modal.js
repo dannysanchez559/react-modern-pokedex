@@ -49,6 +49,7 @@ export const Modal = ({
           </div>
 
           <div className="modalCloseButton">
+          {/* close button */}
             <button
               onClick={() => {
                 setIsOpen(false);
