@@ -1,5 +1,5 @@
 $btn-height: 40px;
-$nav-ele-padding: 5px;
+$nav-ele-padding: 20px;
 
 .header {
   display: flex;
@@ -25,7 +25,6 @@ nav {
 
 /* contains all the nav links */
 .nav-ul {
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -33,27 +32,17 @@ nav {
   flex-wrap: wrap;
   background-color: rgb(255, 250, 250);
   border-radius: 20px;
-  padding: 20px 35px;
-  width: 520px;
-  height: 75px;
+  padding: $nav-ele-padding;
+  width: 40%;
+  height: 70px;
   list-style: none;
 }
 
 .nav-link {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: space-between;
   text-decoration: none;
-  padding-bottom: 20px;
-  border-bottom: 4px solid transparent;
-  border-radius: 2px;
-}
-
-.nav-link:hover {
-  border-bottom: 4px solid #382E76;
-  border-radius: 2px;
-  align-items: center;
-  z-index: 5;
 }
 
 .nav-icon {
@@ -66,14 +55,12 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  align-content: center;
   flex-wrap: wrap;
   justify-content: space-between;
   border-radius: 20px;
   background-color: white;
   width: 350px;
   height: 70px;
-  padding: 18px 20px;
 }
 
 .searchbar-input {
@@ -81,11 +68,6 @@ nav {
   border: none;
   width: auto;
   padding-left: $nav-ele-padding;
-}
-
-.searchBarContainer img {
-  width: 40px;
-  height: 40px;
 }
 
 /* remove default outline when cursor is in input field */
@@ -98,9 +80,5 @@ nav {
   width: auto;
   background-color: white;
   border: none;
-}
-
-.searchBarButton:hover {
-  cursor: pointer;
 }
 

@@ -4,7 +4,7 @@
 $raleway: "Raleway", sans-serif;
 $rubik: "Rubik", sans-serif;
 $nunito: "Nunito", sans-serif; // 800 for bold, 600 for semibold
-$reg: 1.1rem;
+$reg: 1.2rem;
 $med: 1.25rem;
 $big: 1.3rem;
 
@@ -45,7 +45,7 @@ $type-tag-color: #303030;
 // card
 .dexNo {
   font-family: $rubik;
-  font-size: 3rem;
+  font-size: $med;
   color: $dexNo-color;
 }
 
@@ -55,16 +55,11 @@ $type-tag-color: #303030;
 }
 
 .type-tag {
-  color: white;
-  font-size: 1.1rem;
-  margin: 0 8px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  color: $type-tag-color;
+  font-size: $reg;
 }
 
 // modal
 .modalPokeName {
-  font-size: 1.7rem;
-  letter-spacing: 1.5px;
-  font-family: $rubik;
+  font-size: $med;
 }

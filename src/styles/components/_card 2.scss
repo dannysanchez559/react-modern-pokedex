@@ -1,0 +1,42 @@
+/* Poke Card styling */
+$card-bg: rgb(247, 247, 247);
+$card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 350px;
+  height: 250px;
+  background-color: $card-bg;
+  border-radius: 40px;
+  margin: 25px;
+  box-shadow: $card-shadow;
+}
+
+.card ul {
+  list-style: none;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.sprite {
+  width: 160px;
+  height: auto;
+  border: 1px dashed green;
+}
+
+.type-tag {
+  border-radius: 15px;
+  padding: 3px 15px;
+  margin: 4px;
+}
