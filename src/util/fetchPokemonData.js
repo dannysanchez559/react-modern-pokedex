@@ -1,55 +1,78 @@
-const baseUrl = `https://pokeapi.co/api/v2/pokemon/`;
-const abiliUrl = `https://pokeapi.co/api/v2/ability/?offset=0&limit=327`;
-const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/`;
+// import
+const Pokedex = require("pokeapi-js-wrapper");
 
-
-// the following function can accept either pokemon name or Id and search individual pokemon
-export const fetchPokemon = async (nameOrId) => {
-  try {
-    const nameUrl = `${baseUrl}${nameOrId}`;
-    return await fetch(nameUrl)
-      .then((response) => response.json())
-      .then((data) => data);
-  } catch (error) {
-    console.error(error);
-  }
+const interval = {
+  offset: 0,
+  limit: 50,
+  // Remove line above and uncomment the line below after adding lazy loading
+  // limit: 1119
 };
 
-// make function for getting flavor text and pokemon color using speciesUrl
-export const fetchSpecies = async (nameOrId) => {
-  try {
-    return await fetch(`${speciesUrl}${nameOrId}`)
-      .then((response) => response.json())
-      .then((data) => data);
-  } catch (error) {
-    console.error(error);
-  }
+const customOptions = {
+  protocol: "https",
+  // hostName
+  versionPath: "/api/v2/",
+  cache: true,
+  timeout: 5 * 1000, // 5s
+  cacheImages: true,
 };
 
+const P = new Pokedex.Pokedex(customOptions);
+
+// returns array of all pokemon objects within the interval
 export const fetchAllPokemons = async () => {
   try {
-    return await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`)
-      .then((response) => response.json())
-      .then((data) => data);
+    const pokeObjList = await P.getPokemonsList(interval).then(
+      (data) => data.results
+    );
+    return pokeObjList;
   } catch (error) {
     console.error(error);
   }
 };
+
+// arg: string; returns pokemon object
+export const fetchPokemon = async (name) => {
+  try {
+    const pokeObject = await P.getPokemonByName(name).then((data) => data);
+    return pokeObject;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+Arg: string
+make function for getting flavor text and pokemon color using speciesUrl
+ */
+export const fetchSpecies = async (name) => {
+  try {
+    const speciesObject = await P.getPokemonSpeciesByName(name)
+      .then(data => data);
+    return speciesObject;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
 // fetchAllAbilities for ability filter
 export const fetchAllAbilities = async () => {
   try {
-    return await fetch(abiliUrl)
-      .then((response) => response.json())
-      .then((data) => data["results"]);
+    const abilitiesList = await P.getAbilitiesList({
+      offset: 0,
+      limit: 327,
+    }).then((data) => data.results);
+
+    return abilitiesList;
   } catch (error) {
     console.error(error);
   }
 };
 
-// pokemon/:id endpoint provides "moves" array(of objects, with key: "move" { "name", "url" })
-export const fetchMove = async (moveUrl)=> {
-
+// Will map through pokemon.moves array in PokeCard
+//fetchMove arg: each url of pokemon object.moves(array)
+export const fetchMove = async (moveUrl) => {
   try {
     return await fetch(moveUrl)
       .then((response) => response.json())
@@ -57,7 +80,4 @@ export const fetchMove = async (moveUrl)=> {
   } catch (error) {
     console.error(error);
   }
-}
-
-
-
+};
