@@ -38,9 +38,11 @@ const PokeCard = ({
 
   const getMovesByPokemon = async (id) => {
     const pokemon = await fetchPokemon(id);
-    const moves = pokemon.moves;
-    const someMoves = await getMoveset(moves, 4);
-    setMoveSet(someMoves);
+    if (pokemon.moves) {
+      const moves = pokemon.moves;
+      const someMoves = await getMoveset(moves, 4);
+      setMoveSet(someMoves);
+    }
   };
 
   // get modal content: pokemon species info and moveset
@@ -57,21 +59,23 @@ const PokeCard = ({
 
   return (
     <>
-    <div className="card"  onClick={() => {
-              setModalIsOpen(true);
-            }}>
-      <ul>
-        <li>
-          <img src={sprite} alt={`${name} sprite`} className="sprite" />
-        </li>
-        <li className="card-name">
-          <span>{name.toUpperCase()}</span>
-          <span> #{dexNo}</span>
-        </li>
-        <li>{typeTags}</li>
-      </ul>
-    </div>
-    <Modal
+      <div
+        className="card"
+        onClick={() => {
+          setModalIsOpen(true);
+        }}>
+        <ul>
+          <li>
+            <img src={sprite} alt={`${name} sprite`} className="sprite" />
+          </li>
+          <li className="card-name">
+            <span>{name.toUpperCase()}</span>
+            <span> #{dexNo}</span>
+          </li>
+          <li>{typeTags}</li>
+        </ul>
+      </div>
+      <Modal
         onAfterOpen={triggerModalData}
         className="modalWindow"
         isOpen={modalIsOpen}
@@ -94,10 +98,8 @@ const PokeCard = ({
           moveSet={moveSet}
         />
       </Modal>
-      </>
+    </>
   );
 };
 
 export default PokeCard;
-
-

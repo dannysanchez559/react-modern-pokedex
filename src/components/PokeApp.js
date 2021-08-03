@@ -4,7 +4,7 @@ import Header from "./Header";
 import {
   fetchPokemon,
   fetchAllPokemons,
-  fetchSpecies,
+  fetchSpecies
 } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 import "../styles/main.scss";
@@ -42,10 +42,11 @@ function PokeApp() {
 
   const getAllPokemon = async (pokeUrls) => {
     try {
-      const data = await fetchAllPokemons();
+      const pokeList = await fetchAllPokemons();
+
       // need data["next"] & data["previous"] for pagination
       // loop over results and fetch
-      const pokemonObjs = data["results"].map((obj) => {
+      const pokemonObjs = pokeList.map((obj) => {
         const name = obj["name"];
         return fetchPokemon(name);
       });
@@ -99,3 +100,4 @@ function PokeApp() {
 }
 
 export default PokeApp;
+
