@@ -10,11 +10,8 @@ const PokemonDetails = ({
   weight,
   abilities,
 }) => {
-
-
-
   return (
-    <div>
+    <div className="aboutWrapper">
       <div className="aboutLeftContainer">
         {isAboutTextEnglish
           ? modalData["flavor_text_entries"][englishAboutTextIndex][
@@ -24,29 +21,22 @@ const PokemonDetails = ({
       </div>
 
       <div className="aboutRightContainer">
-        <div className="speciesRowContainer">
+        <div className="categoryContainer">
           <p className="aboutSpecsLabel">Species</p>
-          <p className="speciesValue">
+          <p className="aboutSpecsLabel">Height</p>
+          <p className="aboutSpecsLabel">Weight</p>
+          <p className="aboutSpecsLabel">Abilities</p>
+        </div>
+        <div className="valueContainer">
+          <p className="aboutTabValue">
             {isSpeciesTextEnglish
               ? modalData["genera"][englishSpeciesTextIndex]["genus"]
               : "Information not found"}
           </p>
-        </div>
-
-        <div className="heightRowContainer">
-          <p className="aboutSpecsLabel">Height</p>
-          <p className="heightValue">{height}</p>
-        </div>
-
-        <div className="weightRowContainer">
-          <p className="aboutSpecsLabel">Weight</p>
-          <p className="weightValue">{weight}</p>
-        </div>
-
-        <div className="abilitiesRowContainer">
-          <p className="aboutSpecsLabel">Abilities</p>
-          <p className="abilitiesValue">
-            {abilities.map((index) => index["ability"].name + " ")}
+          <p className="aboutTabValue">{height}</p>
+          <p className="aboutTabValue">{weight}</p>
+          <p className="aboutTabValue">
+            {abilities.map((index) => index["ability"].name).join(", ")}
           </p>
         </div>
       </div>

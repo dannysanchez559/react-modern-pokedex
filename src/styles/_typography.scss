@@ -68,3 +68,21 @@ $type-tag-color: #303030;
   letter-spacing: 1.5px;
   font-family: $rubik;
 }
+
+//modal about tab
+.aboutLeftContainer {
+  font-family: $raleway;
+  line-height: 27px;
+  font-size: $reg;
+}
+
+.aboutSpecsLabel {
+  font-weight: 700;
+  font-family: $raleway;
+  letter-spacing: 0.7px;
+}
+
+.aboutTabValue {
+  font-family: $raleway;
+  text-transform: capitalize;
+}
