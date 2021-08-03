@@ -11,10 +11,7 @@ const BaseStats = ({ stats, types }) => {
 
   return (
     <>
-      <div className="header">
-        <div className="links"></div>
-      </div>
-      <div>
+      <div className="graph-container">
         <Bar
           data={{
             labels: [
@@ -33,7 +30,7 @@ const BaseStats = ({ stats, types }) => {
                 borderRadius: 50,
                 borderSkipped: false,
                 borderWidth: 1,
-                barThickness: 14,
+                barThickness: 16,
               },
             ],
           }}
@@ -41,7 +38,7 @@ const BaseStats = ({ stats, types }) => {
           width={600}
           options={{
             layout: {
-              padding: 15,
+              padding: 10,
             },
             indexAxis: "y",
             elements: {

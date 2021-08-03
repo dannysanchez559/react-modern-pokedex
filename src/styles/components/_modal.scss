@@ -12,7 +12,6 @@ $md-bg: #f9cf30;
   box-sizing: border-box;
   width: 975px;
   height: 650px;
-  background-color: #f9cf30;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -39,11 +38,11 @@ $md-bg: #f9cf30;
 }
 
 .spriteWrapper {
-  border: 2px solid red;
+  margin: -25px 0;
 }
 
 .spriteWrapper img {
-  height: 250px;
+  height: 300px;
   width: auto;
 }
 
@@ -61,6 +60,7 @@ $md-bg: #f9cf30;
 .modalCloseButton button img {
   width: 35px;
   height: 35px;
+  cursor: pointer;
 }
 
 .modalDetailsBottom {
@@ -70,28 +70,34 @@ $md-bg: #f9cf30;
   background-color: white;
   border-radius: 25px;
   position: absolute;
+  box-shadow: 0px 10px 15px #555;
 }
 
 // contains pokemon name and speaker
 .nameContainer {
-  border: 2px solid green;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 /* speaker img */
 .nameContainer img {
   width: 30px;
   height: 30px;
-  border: 1px solid red;
+}
+
+.nameSpeakerContainer {
+  display: flex;
+  justify-content: center;
 }
 
 // speaker button
 .nameContainer button {
   background: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .modalPokeName {
@@ -100,10 +106,8 @@ $md-bg: #f9cf30;
 }
 
 .modalTabBar {
-  border: 2px solid green;
   padding: 10px;
   margin: 10px;
-  text-transform: uppercase;
 }
 
 // evolution panel
@@ -114,7 +118,6 @@ $md-bg: #f9cf30;
   align-content: center;
   align-items: center;
   justify-content: space-evenly;
-  
 }
 
 .evolution-sprites {
@@ -139,4 +142,11 @@ $md-bg: #f9cf30;
 .moves-panel ul {
   list-style: none;
   line-height: 2;
+}
+
+// base stats tab
+.graph-container {
+  width: 90%;
+  height: 100%;
+  margin: 25px auto 0 auto;
 }
