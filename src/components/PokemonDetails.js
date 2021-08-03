@@ -12,7 +12,6 @@ const PokemonDetails = ({
 }) => {
 
 
-
   return (
     <div>
       <div className="aboutLeftContainer">
