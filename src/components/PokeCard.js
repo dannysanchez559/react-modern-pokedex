@@ -57,21 +57,21 @@ const PokeCard = ({
 
   return (
     <>
-    <div className="card"  onClick={() => {
-              setModalIsOpen(true);
-            }}>
-      <ul>
-        <li>
-          <img src={sprite} alt={`${name} sprite`} className="sprite" />
-        </li>
-        <li className="card-name">
-          <span>{name.toUpperCase()}</span>
-          <span> #{dexNo}</span>
-        </li>
-        <li>{typeTags}</li>
-      </ul>
-    </div>
-    <Modal
+      <div className="card" onClick={() => {
+        setModalIsOpen(true);
+      }}>
+        <ul>
+          <li>
+            <img src={sprite} alt={`${name} sprite`} className="sprite" />
+          </li>
+          <li className="cardname-dexNo">
+            <span>{`${name.toUpperCase()}  #${dexNo}`}</span>
+          </li>
+
+          <li className="type-container">{typeTags}</li>
+        </ul>
+      </div>
+      <Modal
         onAfterOpen={triggerModalData}
         className="modalWindow"
         isOpen={modalIsOpen}
@@ -94,7 +94,7 @@ const PokeCard = ({
           moveSet={moveSet}
         />
       </Modal>
-      </>
+    </>
   );
 };
 

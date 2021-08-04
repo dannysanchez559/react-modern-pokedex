@@ -4,15 +4,13 @@
 $raleway: "Raleway", sans-serif;
 $rubik: "Rubik", sans-serif;
 $nunito: "Nunito", sans-serif; // 800 for bold, 600 for semibold
-$reg: 1.1rem;
+$reg: 1rem;
 $med: 1.25rem;
 $big: 1.3rem;
 
 // colors
 $purple1: #a29bcb;
 $purple2: #494089;
-$dexNo-color: rgba(255, 255, 255, 0.7);
-$type-tag-color: #303030;
 
 // header links
 .nav-link {
@@ -21,8 +19,13 @@ $type-tag-color: #303030;
   font-weight: bold;
 }
 
+.nav-link:active {
+  color: $purple1;
+}
+
 .searchbar-input {
-  font-size: $reg;
+  font-size: $big;
+  font-weight: 600;
 }
 
 .searchbar-input::placeholder {
@@ -43,23 +46,18 @@ $type-tag-color: #303030;
 }
 
 // card
-.dexNo {
-  font-family: $rubik;
-  font-size: 3rem;
-  color: $dexNo-color;
-}
 
-.card-name {
-  font-family: $rubik;
-  font-size: $med;
+.cardname-dexNo {
+  font-size: $reg;
+  font-family: $nunito;
 }
 
 .type-tag {
+  font-family: $rubik;
   color: white;
-  font-size: 1.1rem;
-  margin: 0 8px;
+  font-size: 0.9em;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 // modal
