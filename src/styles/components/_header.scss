@@ -8,6 +8,7 @@ $nav-ele-padding: 5px;
   padding: 0 50px 0 50px;
   width: auto;
   margin-bottom: 20px;
+  z-index: 2;
 }
 
 .logo {
@@ -44,7 +45,7 @@ nav {
   flex-direction: row;
   align-items: center;
   text-decoration: none;
-  padding-bottom: 20px;
+  padding-bottom: 21px;
   border-bottom: 4px solid transparent;
   border-radius: 2px;
 }
@@ -58,8 +59,8 @@ nav {
 
 .nav-icon {
   padding-right: $nav-ele-padding;
-  height: auto;
-  width: auto;
+  height: 30px;
+  width: 35px;
 }
 
 .searchBarContainer {

@@ -76,6 +76,7 @@ function PokeApp() {
 
   return (
     <div className="pokeApp">
+      <div className="backgroundContainer"></div>
       <Header
         handleNameSearch={handleNameSearch}
         getSearchBarDataApi={getSearchBarDataApi}
