@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect} from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
@@ -6,21 +6,7 @@ import BaseStats from "./BaseStats";
 import EvolutionTab from "./EvolutionTab";
 import Moves from "./Moves";
 import PokemonDetails from "./PokemonDetails";
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}>
-      {value === index && <Box>{children}</Box>}
-    </div>
-  );
-}
+import TabPanel from './TabPanel';
 
 function a11yProps(index) {
   return {
@@ -81,7 +67,7 @@ export default function BasicTabs({
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     findEnglishText("flavor_text_entries");
     findEnglishText("genera");
     // eslint-disable-next-line
@@ -99,6 +85,7 @@ export default function BasicTabs({
           onChange={handleChange}
           aria-label="pokemon-modal-tabs"
           variant="fullWidth">
+          {/* TAB TITLES */}
           <Tab label="About" {...a11yProps(0)} />
           <Tab label="Base Stats" {...a11yProps(1)} />
           <Tab label="Evolutions" {...a11yProps(2)} />
@@ -125,7 +112,6 @@ export default function BasicTabs({
         <TabPanel value={value} index={1}>
           <BaseStats stats={stats} types={types} />
         </TabPanel>
-
         {/****** EVOLUTION TAB ******/}
         <TabPanel value={value} index={2}>
           <EvolutionTab evolutionChainUrl={modalData["evolution_chain"].url} />

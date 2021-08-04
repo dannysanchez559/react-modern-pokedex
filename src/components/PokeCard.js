@@ -38,11 +38,15 @@ const PokeCard = ({
 
   const getMovesByPokemon = async (id) => {
     const pokemon = await fetchPokemon(id);
-    if (pokemon.moves) {
+    try {
       const moves = pokemon.moves;
       const someMoves = await getMoveset(moves, 4);
       setMoveSet(someMoves);
     }
+    catch(error){
+      console.error(error);
+    }
+
   };
 
   // get modal content: pokemon species info and moveset

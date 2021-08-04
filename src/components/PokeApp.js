@@ -4,10 +4,11 @@ import Header from "./Header";
 import {
   fetchPokemon,
   fetchAllPokemons,
-  fetchSpecies
+  fetchSpecies,
 } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 import "../styles/main.scss";
+import Loader from './Loader';
 
 function PokeApp() {
   // Store search bar input value: could be dex number or pokemon name
@@ -18,7 +19,7 @@ function PokeApp() {
   // Hook below is used for conditional rendering 1 Pokemon card user searched, and search on keypress
   const [userDidSearch, setUserDidSearch] = useState(false);
   const [modalData, setModalData] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   // search bar onChange function for searching pokemon & conditional rendering1
   const handleNameSearch = (e) => {
     const searchBarValue = e.target.value;
@@ -71,9 +72,16 @@ function PokeApp() {
   };
 
   useEffect(() => {
-    // get all data: pagination/scroll, pokemon urls array
-    getAllPokemon();
-  }, []);
+    if(isLoading) {
+      setTimeout(()=>{
+         setIsLoading(false);
+      }, 3000);
+    } // end if block
+  }, [isLoading]);
+
+   useEffect(()=>{
+     getAllPokemon();
+  },[]);
 
   return (
     <div className="pokeApp">
@@ -83,21 +91,22 @@ function PokeApp() {
         setUserDidSearch={setUserDidSearch}
         setPokemonName={setPokemonName}
       />
-
-      {fetchedData.length && (
+      {isLoading === false && fetchedData.length>0 ? (
         <PokeList
           fetchedData={fetchedData}
           allPokemons={allPokemons}
           userDidSearch={userDidSearch}
           setUserDidSearch={setUserDidSearch}
           modalData={modalData}
+          isLoading={isLoading}
           // pass function to trigger pokemon-species endpoint for onClick in pokecard
           getPokemonModalAboutContent={getPokemonModalAboutContent}
         />
-      )}
+      ) :
+       <Loader/>
+      }
     </div>
   );
 }
 
 export default PokeApp;
-

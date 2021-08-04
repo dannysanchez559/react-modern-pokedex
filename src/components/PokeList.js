@@ -4,6 +4,9 @@ import Filter from "./Filter";
 import getTypeColors from "../util/getTypeColor";
 import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
+import Loader from './Loader';
+import LazyLoad from 'react-lazyload';
+import Searched from './Searched';
 
 const PokeList = ({
   userDidSearch,
@@ -13,7 +16,7 @@ const PokeList = ({
   modalData,
   getPokemonModalAboutContent,
 }) => {
-  const { id, name, sprites, types, height, weight, abilities, stats } =
+  const { types, height, weight, abilities, stats } =
     fetchedData[0];
 
   const [selectTypeOption, setSelectTypeOption] = useState("");
@@ -140,28 +143,10 @@ const PokeList = ({
     return capitalize;
   };
 
-  // generate tags, check for tags and types
-  let typeTags, sprite;
-  if (types && sprites) {
-    sprite = sprites["other"]["official-artwork"]["front_default"];
-    typeTags = types.map((obj, i) => {
-      const typeName = obj["type"]["name"];
-      const capitalizedTypeName = capitalizeType(typeName);
-      return (
-        <span
-          className="type-tag"
-          style={{
-            backgroundColor: getTypeColors[typeName],
-          }}
-          key={i}>
-          {capitalizedTypeName}
-        </span>
-      );
-    });
-  }
 
+  // create list of all PokeCards
   const generateSortedCards = (pokemonList) => {
-    const sortedCards = pokemonList.map((pokeObj) => {
+    return pokemonList.map((pokeObj) => {
       const { id, name, sprites, types } = pokeObj;
       // make type tags for card
       const typeTags = types.map((typeObj, i) => {
@@ -178,14 +163,15 @@ const PokeList = ({
           </span>
         );
       });
-
       const sprite = sprites["other"]["official-artwork"]["front_default"];
+      // return PokeCards for home page
       return (
-        <PokeCard
+       <LazyLoad key={id} placeholder={<Loader/>}>
+         <PokeCard
           dexNo={id}
+          key={id}
           name={name}
           sprite={sprite}
-          key={id}
           typeTags={typeTags}
           modalData={modalData}
           getPokemonModalAboutContent={getPokemonModalAboutContent}
@@ -195,11 +181,11 @@ const PokeList = ({
           stats={stats}
           types={types}
         />
+       </LazyLoad>
       );
     });
-    return sortedCards;
   };
-  // console.log(`modal in PokeList`, modalData);
+
   return (
     <div className="pokeList">
       {!userDidSearch ? (
@@ -215,28 +201,14 @@ const PokeList = ({
             setFilterType={setFilterType}
             types={types}
           />
+          {/* end Filter */}
           <div className="card-container">
-            {/* By default, display all Pokemons, else show  filtered/sorted cards */}
+            {/* By default, display all Pokemons, else show  filtered/sorted cards. */}
             {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
           </div>
         </>
-      ) : !fetchedData.length ? (
-        <h1>Please search pokemon.</h1>
-      ) : (
-        <PokeCard
-          dexNo={id}
-          name={name}
-          sprite={sprite}
-          typeTags={typeTags}
-          modalData={modalData}
-          getPokemonModalAboutContent={getPokemonModalAboutContent}
-          height={height}
-          weight={weight}
-          abilities={abilities}
-          stats={stats}
-          types={types}
-        />
-      )}
+        // end react fragment
+      ) :<Searched fetchedData={fetchedData} getPokemonModalAboutContent={getPokemonModalAboutContent} capitalizeType={capitalizeType} modalData={modalData}/> }
     </div>
   );
 };

@@ -19,6 +19,7 @@ export const Modal = ({
   abilities,
   stats,
   types,
+  isLoading,
 }) => {
   const speakerRef = useRef();
   const speakerButtonRef = useRef();

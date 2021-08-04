@@ -4,7 +4,6 @@ const Pokedex = require("pokeapi-js-wrapper");
 const interval = {
   offset: 0,
   limit: 50,
-  // Remove line above and uncomment the line below after adding lazy loading
   // limit: 1119
 };
 
