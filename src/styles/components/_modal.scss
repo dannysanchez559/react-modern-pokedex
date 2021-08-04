@@ -144,6 +144,21 @@ $md-bg: #f9cf30;
   line-height: 2;
 }
 
+.movesGraphContainer {
+  width: 25%;
+  height: 200px;
+  margin: 25px 0px;
+
+}
+
+.movesGraphContainer:first-child {
+  margin-left: 70px;
+}
+
+.movesGraphContainer:last-child {
+  margin-right: 70px;
+}
+
 // base stats tab
 .graph-container {
   width: 90%;
