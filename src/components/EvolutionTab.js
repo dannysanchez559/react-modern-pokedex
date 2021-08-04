@@ -7,7 +7,6 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
   const [evolutionNameStrings, setEvolutionNameStrings] = useState([]);
   const [spriteUrls, setSpriteUrls] = useState([]);
 
-
   // Function to fetch chain object, save to state hook
   const fetchChain = async () => {
     try {
@@ -106,8 +105,13 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
   ));
 
   const evolutionImg = () => {
-    return (<img className="evolutionImg" src={evolutionArrowImg}></img>)
-  }
+    return (
+      <img
+        className="evolutionImg"
+        src={evolutionArrowImg}
+        alt="next evolution arrow"></img>
+    );
+  };
 
   // return spritesList with evolution arrows added in between each image
   const spritesWithEvolutionArrows = () => {
@@ -121,7 +125,7 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
       }
     }
     return organizedArray;
-  }
+  };
 
   return <div className="spriteContainer">{spritesWithEvolutionArrows()}</div>;
 };
