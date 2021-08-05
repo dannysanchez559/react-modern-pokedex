@@ -1,4 +1,5 @@
 import React from "react";
+import Loader from './Loader';
 
 const PokemonDetails = ({
   isAboutTextEnglish,
@@ -11,12 +12,13 @@ const PokemonDetails = ({
   abilities,
 }) => {
 
-
   return (
-    <div>
+    <>
+      {!modalData ? <Loader/> :
+     (<div>
       <div className="aboutLeftContainer">
         {isAboutTextEnglish
-          ? modalData["flavor_text_entries"][englishAboutTextIndex][
+          ? modalData["flavor_text_entries"]?.[englishAboutTextIndex]?.[
               "flavor_text"
             ]
           : "Information not found"}
@@ -27,7 +29,7 @@ const PokemonDetails = ({
           <p className="aboutSpecsLabel">Species</p>
           <p className="speciesValue">
             {isSpeciesTextEnglish
-              ? modalData["genera"][englishSpeciesTextIndex]["genus"]
+              ? modalData["genera"]?.[englishSpeciesTextIndex]?.["genus"]
               : "Information not found"}
           </p>
         </div>
@@ -49,7 +51,9 @@ const PokemonDetails = ({
           </p>
         </div>
       </div>
-    </div>
+    </div>)
+}
+    </>
   );
 };
 

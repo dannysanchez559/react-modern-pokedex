@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
@@ -16,6 +16,8 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs({
+  genera,
+  flavorText,
   modalData,
   height,
   weight,
@@ -25,55 +27,59 @@ export default function BasicTabs({
   types,
 }) {
   // State
-  const [value, setValue] = React.useState(0);
-  const [isAboutTextEnglish, setIsAboutTextEnglish] = React.useState(true);
-  const [englishAboutTextIndex, setEnglishAboutTextIndex] = React.useState(0);
-  const [isSpeciesTextEnglish, setIsSpeciesTextEnglish] = React.useState(true);
-  const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] = React.useState(
-    0
-  );
+  const [value, setValue] = useState(0);
+  const [isAboutTextEnglish, setIsAboutTextEnglish] = useState(true);
+  const [englishAboutTextIndex, setEnglishAboutTextIndex] = useState(0);
+  const [isSpeciesTextEnglish, setIsSpeciesTextEnglish] = useState(true);
+  const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] = useState(0);
   // create function that updates setAboutTextIsEnglish state to true
-  const findEnglishText = (pathName) => {
-    let found = false;
-    let i = 0;
-    const pathNameEntries = modalData[pathName];
 
-    if (pathName === "flavor_text_entries") {
-      setIsAboutTextEnglish(found);
-      while (found === false) {
-        setEnglishAboutTextIndex(i);
+  //console.log(`array is array`, Array.isArray(flavor_text_entries)) *** true
 
-        if (pathNameEntries[i]["language"].name === "en") {
-          found = true;
-          setIsAboutTextEnglish(found);
-          setEnglishAboutTextIndex(i);
-        }
-        i++;
-      }
-    }
-    if (pathName === "genera") {
-      setIsSpeciesTextEnglish(found);
 
-      while (found === false) {
-        setEnglishSpeciesTextIndex(i);
+  // const findEnglishText = (pathName) => {
+  //   let found = false;
+  //   let i = 0;
+  //   const pathNameEntries = modalData[pathName];
 
-        if (pathNameEntries[i]["language"].name === "en") {
-          found = true;
-          setIsSpeciesTextEnglish(found);
-          setEnglishSpeciesTextIndex(i);
-        }
-        i++;
-      }
-    }
-  };
+  //   if (pathName === "flavor_text_entries") {
+  //     setIsAboutTextEnglish(found);
+  //     while (found === false) {
+  //       setEnglishAboutTextIndex(i);
 
-  useEffect(() => {
-    findEnglishText("flavor_text_entries");
-    findEnglishText("genera");
-    // eslint-disable-next-line
-  }, []);
+  //       if (pathNameEntries?.[i]?.["language"]?.name === "en") {
+  //         found = true;
+  //         setIsAboutTextEnglish(found);
+  //         setEnglishAboutTextIndex(i);
+  //       }
+  //       i++;
+  //     }
+  //   }
+  //   if (pathName === "genera") {
+  //     setIsSpeciesTextEnglish(found);
 
+  //     while (found === false) {
+  //       setEnglishSpeciesTextIndex(i);
+
+  //       if (pathNameEntries?.[i]?.["language"]?.name === "en") {
+  //         found = true;
+  //         setIsSpeciesTextEnglish(found);
+  //         setEnglishSpeciesTextIndex(i);
+  //       }
+  //       i++;
+  //     }
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const flavorText = findEnglishText("flavor_text_entries")
+  //   const generaText = findEnglishText("genera");
+  //   // eslint-disable-next-line
+  // }, []);
+
+  //
   const handleChange = (event, newValue) => {
+    console.log(`newValue`,newValue)
     setValue(newValue);
   };
 
@@ -97,11 +103,13 @@ export default function BasicTabs({
         {/****** ABOUT TAB ******/}
         <TabPanel value={value} index={0}>
           <PokemonDetails
-            isAboutTextEnglish={isAboutTextEnglish}
-            modalData={modalData}
-            englishAboutTextIndex={englishAboutTextIndex}
-            englishSpeciesTextIndex={englishSpeciesTextIndex}
-            isSpeciesTextEnglish={isSpeciesTextEnglish}
+            // isAboutTextEnglish={isAboutTextEnglish}
+            // modalData={modalData}
+            // englishAboutTextIndex={englishAboutTextIndex}
+            // englishSpeciesTextIndex={englishSpeciesTextIndex}
+            // isSpeciesTextEnglish={isSpeciesTextEnglish}
+            genera={genera}
+            flavorText={flavorText}
             height={height}
             weight={weight}
             abilities={abilities}
@@ -114,7 +122,7 @@ export default function BasicTabs({
         </TabPanel>
         {/****** EVOLUTION TAB ******/}
         <TabPanel value={value} index={2}>
-          <EvolutionTab evolutionChainUrl={modalData["evolution_chain"].url} />
+          <EvolutionTab evolutionChainUrl={modalData["evolution_chain"]?.url} />
         </TabPanel>
 
         {/****** MOVES TAB ******/}

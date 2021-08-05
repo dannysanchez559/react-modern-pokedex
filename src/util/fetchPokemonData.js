@@ -3,7 +3,7 @@ const Pokedex = require("pokeapi-js-wrapper");
 
 const interval = {
   offset: 0,
-  limit: 50,
+  limit: 25,
   // limit: 1119
 };
 

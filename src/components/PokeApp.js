@@ -55,7 +55,8 @@ function PokeApp() {
       Promise.all(pokemonObjs).then((data) => {
         setAllPokemon(data);
         setFetchedData(data);
-      });
+      }).then(setIsLoading(false));
+
     } catch (error) {
       console.error(error);
     }
@@ -71,14 +72,6 @@ function PokeApp() {
     }
   };
 
-  useEffect(() => {
-    if(isLoading) {
-      setTimeout(()=>{
-         setIsLoading(false);
-      }, 3000);
-    } // end if block
-  }, [isLoading]);
-
    useEffect(()=>{
      getAllPokemon();
   },[]);
@@ -91,7 +84,7 @@ function PokeApp() {
         setUserDidSearch={setUserDidSearch}
         setPokemonName={setPokemonName}
       />
-      {isLoading === false && fetchedData.length>0 ? (
+      {isLoading === false && fetchedData.length> 0 ? (
         <PokeList
           fetchedData={fetchedData}
           allPokemons={allPokemons}

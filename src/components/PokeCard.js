@@ -18,8 +18,11 @@ const PokeCard = ({
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [moveSet, setMoveSet] = useState([]);
-
+  const [generaString, setGeneraString] = useState('');
+  const [flavorText, setFlavorText] = useState('');
   Modal.setAppElement("#root");
+  // arrays to loop through to get English text
+  const { flavor_text_entries, genera} = modalData;
 
   // get modal moveset
   const getMoveset = async (movesArray, n) => {
@@ -49,25 +52,39 @@ const PokeCard = ({
 
   };
 
+
+
+  // takes in array, target key to return, and target language
+  const findDescriptionByLanguage = (array, targetKey, lang) => {
+    if(array && Array.isArray(array)) {
+      const englishObject =  array.find(obj => obj["language"].name===lang);
+       // returns English text string
+       return englishObject[`${targetKey}`];
+    }
+  }
+
   // get modal content: pokemon species info and moveset
   const triggerModalData = () => {
     getMovesByPokemon(dexNo);
     getPokemonModalAboutContent(dexNo);
+    const generaText = findDescriptionByLanguage(genera, 'genus', 'en');
+    const description = findDescriptionByLanguage(flavor_text_entries, 'flavor_text', 'en');
+    setGeneraString(generaText);
+    setFlavorText(description);
   };
 
-  useEffect(() => {
-    // get pokemon modal content
-    triggerModalData();
-    // eslint-disable-next-line
-  }, []);
+  const prepareModal = ()=> {
+     triggerModalData();
+     setModalIsOpen(true);
+  }
+
 
   return (
     <>
       <div
         className="card"
-        onClick={() => {
-          setModalIsOpen(true);
-        }}>
+        // Open modal
+        onClick={prepareModal}>
         <ul>
           <li>
             <img src={sprite} alt={`${name} sprite`} className="sprite" />
@@ -79,6 +96,7 @@ const PokeCard = ({
           <li>{typeTags}</li>
         </ul>
       </div>
+      {/* material ui modal */}
       <Modal
         onAfterOpen={triggerModalData}
         className="modalWindow"
@@ -86,7 +104,10 @@ const PokeCard = ({
         onRequestClose={() => {
           setModalIsOpen(false);
         }}>
+        {/* modal content */}
         <CustomModal
+          genera={generaString}
+          flavorText={flavorText}
           setIsOpen={setModalIsOpen}
           name={name}
           dexNo={dexNo}
