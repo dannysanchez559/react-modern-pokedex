@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Modal as CustomModal } from "./Modal";
 import Modal from "react-modal";
-import { fetchPokemon, fetchMove } from "../util/fetchPokemonData";
+import { fetchPokemon, fetchMove, fetchSpecies } from "../util/fetchPokemonData";
 
 const PokeCard = ({
   name,
   dexNo,
   typeTags,
   sprite,
-  modalData,
-  getPokemonModalAboutContent,
   height,
   weight,
   abilities,
@@ -20,10 +18,12 @@ const PokeCard = ({
   const [moveSet, setMoveSet] = useState([]);
   const [generaString, setGeneraString] = useState('');
   const [flavorText, setFlavorText] = useState('');
+
   Modal.setAppElement("#root");
   // arrays to loop through to get English text
-  const { flavor_text_entries, genera} = modalData;
 
+  // console.log(`text entries`, flavor_text_entries)
+  // console.log(`genera`, genera)
   // get modal moveset
   const getMoveset = async (movesArray, n) => {
     const nMoves = [];
@@ -44,17 +44,27 @@ const PokeCard = ({
     try {
       const moves = pokemon.moves;
       const someMoves = await getMoveset(moves, 4);
-      setMoveSet(someMoves);
+      return someMoves;
     }
     catch(error){
       console.error(error);
     }
+  };
 
+  const getPokemonModalAboutContent = async (nameOrId) => {
+    // fetch call to pokemon-species url in here
+    try {
+      const data = await fetchSpecies(nameOrId);
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
 
   // takes in array, target key to return, and target language
   const findDescriptionByLanguage = (array, targetKey, lang) => {
+    // console.log(`array`, array)
     if(array && Array.isArray(array)) {
       const englishObject =  array.find(obj => obj["language"].name===lang);
        // returns English text string
@@ -63,11 +73,13 @@ const PokeCard = ({
   }
 
   // get modal content: pokemon species info and moveset
-  const triggerModalData = () => {
-    getMovesByPokemon(dexNo);
-    getPokemonModalAboutContent(dexNo);
+  const triggerModalData = async() => {
+    const moves = await getMovesByPokemon(dexNo);
+    const aboutTabContent = await getPokemonModalAboutContent(dexNo);
+    const { flavor_text_entries, genera } = aboutTabContent;
     const generaText = findDescriptionByLanguage(genera, 'genus', 'en');
     const description = findDescriptionByLanguage(flavor_text_entries, 'flavor_text', 'en');
+    setMoveSet(moves);
     setGeneraString(generaText);
     setFlavorText(description);
   };

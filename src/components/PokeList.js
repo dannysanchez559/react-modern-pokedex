@@ -13,8 +13,6 @@ const PokeList = ({
   setUserDidSearch,
   fetchedData,
   allPokemons,
-  modalData,
-  getPokemonModalAboutContent,
 }) => {
   const { types, height, weight, abilities, stats } =
     fetchedData[0];
@@ -173,8 +171,6 @@ const PokeList = ({
           name={name}
           sprite={sprite}
           typeTags={typeTags}
-          modalData={modalData}
-          getPokemonModalAboutContent={getPokemonModalAboutContent}
           height={height}
           weight={weight}
           abilities={abilities}
@@ -208,7 +204,7 @@ const PokeList = ({
           </div>
         </>
         // end react fragment
-      ) :<Searched fetchedData={fetchedData} getPokemonModalAboutContent={getPokemonModalAboutContent} capitalizeType={capitalizeType} modalData={modalData}/> }
+      ) :<Searched fetchedData={fetchedData} capitalizeType={capitalizeType}/> }
     </div>
   );
 };

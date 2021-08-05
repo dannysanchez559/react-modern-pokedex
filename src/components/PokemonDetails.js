@@ -13,8 +13,8 @@ const PokemonDetails = ({
   weight,
   abilities,
 }) => {
-  console.log(`genera`, genera)
-  console.log(`flavor text`, flavorText)
+  // console.log(`genera`, genera)
+  // console.log(`flavor text`, flavorText)
   return (
     <div className="aboutWrapper">
       <div className="aboutLeftContainer">

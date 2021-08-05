@@ -34,52 +34,7 @@ export default function BasicTabs({
   const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] = useState(0);
   // create function that updates setAboutTextIsEnglish state to true
 
-  //console.log(`array is array`, Array.isArray(flavor_text_entries)) *** true
-
-
-  // const findEnglishText = (pathName) => {
-  //   let found = false;
-  //   let i = 0;
-  //   const pathNameEntries = modalData[pathName];
-
-  //   if (pathName === "flavor_text_entries") {
-  //     setIsAboutTextEnglish(found);
-  //     while (found === false) {
-  //       setEnglishAboutTextIndex(i);
-
-  //       if (pathNameEntries?.[i]?.["language"]?.name === "en") {
-  //         found = true;
-  //         setIsAboutTextEnglish(found);
-  //         setEnglishAboutTextIndex(i);
-  //       }
-  //       i++;
-  //     }
-  //   }
-  //   if (pathName === "genera") {
-  //     setIsSpeciesTextEnglish(found);
-
-  //     while (found === false) {
-  //       setEnglishSpeciesTextIndex(i);
-
-  //       if (pathNameEntries?.[i]?.["language"]?.name === "en") {
-  //         found = true;
-  //         setIsSpeciesTextEnglish(found);
-  //         setEnglishSpeciesTextIndex(i);
-  //       }
-  //       i++;
-  //     }
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const flavorText = findEnglishText("flavor_text_entries")
-  //   const generaText = findEnglishText("genera");
-  //   // eslint-disable-next-line
-  // }, []);
-
-  //
   const handleChange = (event, newValue) => {
-    console.log(`newValue`,newValue)
     setValue(newValue);
   };
 

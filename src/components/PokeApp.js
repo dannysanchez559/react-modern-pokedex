@@ -18,7 +18,7 @@ function PokeApp() {
   const [allPokemons, setAllPokemon] = useState([]);
   // Hook below is used for conditional rendering 1 Pokemon card user searched, and search on keypress
   const [userDidSearch, setUserDidSearch] = useState(false);
-  const [modalData, setModalData] = useState([]);
+
   const [isLoading, setIsLoading] = useState(true);
   // search bar onChange function for searching pokemon & conditional rendering1
   const handleNameSearch = (e) => {
@@ -62,15 +62,6 @@ function PokeApp() {
     }
   };
 
-  const getPokemonModalAboutContent = async (nameOrId) => {
-    // fetch call to pokemon-species url in here
-    try {
-      const data = await fetchSpecies(nameOrId);
-      setModalData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
    useEffect(()=>{
      getAllPokemon();
@@ -90,10 +81,7 @@ function PokeApp() {
           allPokemons={allPokemons}
           userDidSearch={userDidSearch}
           setUserDidSearch={setUserDidSearch}
-          modalData={modalData}
           isLoading={isLoading}
-          // pass function to trigger pokemon-species endpoint for onClick in pokecard
-          getPokemonModalAboutContent={getPokemonModalAboutContent}
         />
       ) :
        <Loader/>
