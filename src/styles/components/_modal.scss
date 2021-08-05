@@ -150,3 +150,40 @@ $md-bg: #f9cf30;
   height: 100%;
   margin: 25px auto 0 auto;
 }
+
+// about tab
+.aboutWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 200px;
+  margin-top: 25px;
+}
+
+.aboutLeftContainer {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutRightContainer {
+  display: flex;
+  height: 150px;
+}
+
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.valueContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.aboutSpecsLabel {
+  margin-right: 15px;
+}

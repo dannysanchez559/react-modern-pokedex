@@ -53,7 +53,6 @@ const PokeCard = ({
   };
 
 
-
   // takes in array, target key to return, and target language
   const findDescriptionByLanguage = (array, targetKey, lang) => {
     if(array && Array.isArray(array)) {
@@ -96,7 +95,7 @@ const PokeCard = ({
           <li>{typeTags}</li>
         </ul>
       </div>
-      {/* material ui modal */}
+      {/* react modal */}
       <Modal
         onAfterOpen={triggerModalData}
         className="modalWindow"

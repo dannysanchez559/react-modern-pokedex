@@ -2,59 +2,52 @@ import React from "react";
 import Loader from './Loader';
 
 const PokemonDetails = ({
-  isAboutTextEnglish,
+  genera,
+  flavorText,
+  // isAboutTextEnglish,
   modalData,
-  englishAboutTextIndex,
-  englishSpeciesTextIndex,
-  isSpeciesTextEnglish,
+  // englishAboutTextIndex,
+  // englishSpeciesTextIndex,
+  // isSpeciesTextEnglish,
   height,
   weight,
   abilities,
 }) => {
-
+  console.log(`genera`, genera)
+  console.log(`flavor text`, flavorText)
   return (
-    <>
-      {!modalData ? <Loader/> :
-     (<div>
+    <div className="aboutWrapper">
       <div className="aboutLeftContainer">
-        {isAboutTextEnglish
+        {/* {isAboutTextEnglish
           ? modalData["flavor_text_entries"]?.[englishAboutTextIndex]?.[
               "flavor_text"
             ]
-          : "Information not found"}
+          : "Information not found"} */}
+          {!flavorText ? "Info not found." : flavorText}
       </div>
 
       <div className="aboutRightContainer">
-        <div className="speciesRowContainer">
+        <div className="categoryContainer">
           <p className="aboutSpecsLabel">Species</p>
-          <p className="speciesValue">
-            {isSpeciesTextEnglish
-              ? modalData["genera"]?.[englishSpeciesTextIndex]?.["genus"]
-              : "Information not found"}
-          </p>
-        </div>
-
-        <div className="heightRowContainer">
           <p className="aboutSpecsLabel">Height</p>
-          <p className="heightValue">{height}</p>
-        </div>
-
-        <div className="weightRowContainer">
           <p className="aboutSpecsLabel">Weight</p>
-          <p className="weightValue">{weight}</p>
-        </div>
-
-        <div className="abilitiesRowContainer">
           <p className="aboutSpecsLabel">Abilities</p>
-          <p className="abilitiesValue">
-            {abilities.map((index) => index["ability"].name + " ")}
+        </div>
+        <div className="valueContainer">
+          <p className="aboutTabValue">
+            {!genera ? "Info not found." : genera}
+            {/* {isSpeciesTextEnglish
+              ? modalData["genera"]?.[englishSpeciesTextIndex]?.["genus"]
+              : "Information not found"} */}
+          </p>
+          <p className="aboutTabValue">{height}</p>
+          <p className="aboutTabValue">{weight}</p>
+          <p className="aboutTabValue">
+            {abilities.map((index) => index["ability"].name).join(", ")}
           </p>
         </div>
       </div>
     </div>)
-}
-    </>
-  );
 };
 
 export default PokemonDetails;
