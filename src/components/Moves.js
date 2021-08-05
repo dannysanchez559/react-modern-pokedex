@@ -13,12 +13,25 @@ const Moves = ({ moveSet }) => {
   };
 
   const moveInfo = moveSet.map((moveObj) => {
-    const { accuracy, name, power, pp, flavor_text_entries, type } = moveObj;
+    let { accuracy, name, power, pp, flavor_text_entries, type } = moveObj;
+
+    // if movetype has a null value, return 0
+    {
+      accuracy = accuracy ? accuracy : 0;
+    }
+    {
+      power = power ? power : 0;
+    }
+    {
+      pp = pp ? pp : 0;
+    }
+
     // call function to loop through flavor_text_entries and find "en"
     return (
       <>
         <div className="movesGraphContainer">
           <Bar
+            key={name}
             className="movesGraph"
             data={{
               labels: ["Power", "Accuracy", "PP"],
@@ -30,7 +43,7 @@ const Moves = ({ moveSet }) => {
                   borderRadius: 50,
                   borderSkipped: false,
                   borderWidth: 1,
-                  barThickness: 8,
+                  barThickness: 9,
                   minBarLength: 5,
                 },
               ],
@@ -77,6 +90,7 @@ const Moves = ({ moveSet }) => {
                     name.toUpperCase(),
                     // getEngFlavorText(flavor_text_entries),
                   ],
+                  color: "#111",
                 },
                 subtitle: {
                   display: true,
@@ -87,6 +101,7 @@ const Moves = ({ moveSet }) => {
                   backgroundColor: "rgb(0,0,0,0.6",
                   titleColor: "#fff",
                   bodyColor: "#fff",
+                  displayColors: false,
                 },
               },
             }}
