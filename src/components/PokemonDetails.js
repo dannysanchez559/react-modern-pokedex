@@ -4,25 +4,14 @@ import Loader from './Loader';
 const PokemonDetails = ({
   genera,
   flavorText,
-  // isAboutTextEnglish,
-  modalData,
-  // englishAboutTextIndex,
-  // englishSpeciesTextIndex,
-  // isSpeciesTextEnglish,
   height,
   weight,
   abilities,
 }) => {
-  // console.log(`genera`, genera)
-  // console.log(`flavor text`, flavorText)
+
   return (
     <div className="aboutWrapper">
       <div className="aboutLeftContainer">
-        {/* {isAboutTextEnglish
-          ? modalData["flavor_text_entries"]?.[englishAboutTextIndex]?.[
-              "flavor_text"
-            ]
-          : "Information not found"} */}
           {!flavorText ? "Info not found." : flavorText}
       </div>
 
@@ -36,9 +25,6 @@ const PokemonDetails = ({
         <div className="valueContainer">
           <p className="aboutTabValue">
             {!genera ? "Info not found." : genera}
-            {/* {isSpeciesTextEnglish
-              ? modalData["genera"]?.[englishSpeciesTextIndex]?.["genus"]
-              : "Information not found"} */}
           </p>
           <p className="aboutTabValue">{height}</p>
           <p className="aboutTabValue">{weight}</p>

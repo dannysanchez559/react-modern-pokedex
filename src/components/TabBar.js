@@ -16,6 +16,7 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs({
+  dexNo,
   genera,
   flavorText,
   modalData,
@@ -58,11 +59,6 @@ export default function BasicTabs({
         {/****** ABOUT TAB ******/}
         <TabPanel value={value} index={0}>
           <PokemonDetails
-            // isAboutTextEnglish={isAboutTextEnglish}
-            // modalData={modalData}
-            // englishAboutTextIndex={englishAboutTextIndex}
-            // englishSpeciesTextIndex={englishSpeciesTextIndex}
-            // isSpeciesTextEnglish={isSpeciesTextEnglish}
             genera={genera}
             flavorText={flavorText}
             height={height}
@@ -82,7 +78,7 @@ export default function BasicTabs({
 
         {/****** MOVES TAB ******/}
         <TabPanel value={value} index={3}>
-          <Moves moveSet={moveSet} />
+          <Moves dexNo={dexNo} />
         </TabPanel>
       </div>
     </Box>

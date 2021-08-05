@@ -76,6 +76,7 @@ export const Modal = ({
           </div>
 
           <TabBar
+            dexNo={dexNo}
             genera={genera}
             flavorText={flavorText}
             modalData={modalData}

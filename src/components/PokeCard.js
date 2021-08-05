@@ -15,41 +15,11 @@ const PokeCard = ({
   types,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [moveSet, setMoveSet] = useState([]);
   const [generaString, setGeneraString] = useState('');
   const [flavorText, setFlavorText] = useState('');
+  const [modalData, setModalData] = useState({});
 
   Modal.setAppElement("#root");
-  // arrays to loop through to get English text
-
-  // console.log(`text entries`, flavor_text_entries)
-  // console.log(`genera`, genera)
-  // get modal moveset
-  const getMoveset = async (movesArray, n) => {
-    const nMoves = [];
-    for (let i = 0; i < n; i += 1) {
-      const moveUrl = movesArray[i].move.url;
-      try {
-        const moveData = await fetchMove(moveUrl);
-        if (moveData) nMoves.push(moveData);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    return nMoves;
-  };
-
-  const getMovesByPokemon = async (id) => {
-    const pokemon = await fetchPokemon(id);
-    try {
-      const moves = pokemon.moves;
-      const someMoves = await getMoveset(moves, 4);
-      return someMoves;
-    }
-    catch(error){
-      console.error(error);
-    }
-  };
 
   const getPokemonModalAboutContent = async (nameOrId) => {
     // fetch call to pokemon-species url in here
@@ -64,7 +34,6 @@ const PokeCard = ({
 
   // takes in array, target key to return, and target language
   const findDescriptionByLanguage = (array, targetKey, lang) => {
-    // console.log(`array`, array)
     if(array && Array.isArray(array)) {
       const englishObject =  array.find(obj => obj["language"].name===lang);
        // returns English text string
@@ -74,14 +43,13 @@ const PokeCard = ({
 
   // get modal content: pokemon species info and moveset
   const triggerModalData = async() => {
-    const moves = await getMovesByPokemon(dexNo);
-    const aboutTabContent = await getPokemonModalAboutContent(dexNo);
-    const { flavor_text_entries, genera } = aboutTabContent;
+    const modalContent = await getPokemonModalAboutContent(dexNo);
+    const { flavor_text_entries, genera } = modalContent;
     const generaText = findDescriptionByLanguage(genera, 'genus', 'en');
     const description = findDescriptionByLanguage(flavor_text_entries, 'flavor_text', 'en');
-    setMoveSet(moves);
     setGeneraString(generaText);
     setFlavorText(description);
+    setModalData(modalContent);
   };
 
   const prepareModal = ()=> {
@@ -124,14 +92,13 @@ const PokeCard = ({
           dexNo={dexNo}
           sprite={sprite}
           typeTags={typeTags}
-          modalData={modalData}
           getPokemonModalAboutContent={getPokemonModalAboutContent}
           height={height}
           weight={weight}
           abilities={abilities}
           stats={stats}
           types={types}
-          moveSet={moveSet}
+          modalData={modalData}
         />
       </Modal>
     </>
