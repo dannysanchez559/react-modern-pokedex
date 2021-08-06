@@ -144,9 +144,83 @@ $md-bg: #f9cf30;
   line-height: 2;
 }
 
+.movesGraphContainer {
+  width: 25%;
+  height: 200px;
+  margin: 35px 0px;
+}
+
+.movesGraphContainer:first-child {
+  margin-left: 80px;
+}
+
+.movesGraphContainer:last-child {
+  margin-right: 80px;
+
+}
+
+.moveDescription {
+  margin-bottom: 8px;
+  color: #818181;
+}
+
+.graphTitleContent {
+  height: 80px;
+}
+
+.iconTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 0 8px;
+}
+
+.iconTitleContainer img {
+  margin-right: 12px;
+  height: 30px;
+  width: auto;
+}
+
 // base stats tab
 .graph-container {
   width: 90%;
   height: 100%;
   margin: 25px auto 0 auto;
+}
+
+// about tab
+.aboutWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 200px;
+  margin-top: 25px;
+}
+
+.aboutLeftContainer {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutRightContainer {
+  display: flex;
+  height: 150px;
+}
+
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.valueContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.aboutSpecsLabel {
+  margin-right: 15px;
 }

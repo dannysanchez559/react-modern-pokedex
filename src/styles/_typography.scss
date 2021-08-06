@@ -1,10 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&family=Raleway:wght@500;700&family=Rubik&display=swap");
 
 // Google fonts
-$raleway: "Raleway", sans-serif;
-$rubik: "Rubik", sans-serif;
-$nunito: "Nunito", sans-serif; // 800 for bold, 600 for semibold
-$reg: 1rem;
+$raleway: "Raleway",
+sans-serif;
+$rubik: "Rubik",
+sans-serif;
+$nunito: "Nunito",
+sans-serif; // 800 for bold, 600 for semibold
+$reg: 1.2rem;
 $med: 1.25rem;
 $big: 1.3rem;
 
@@ -65,4 +68,32 @@ $purple2: #494089;
   font-size: 1.7rem;
   letter-spacing: 1.5px;
   font-family: $rubik;
+}
+
+//modal about tab
+.aboutLeftContainer {
+  font-family: $raleway;
+  line-height: 27px;
+  font-size: $reg;
+}
+
+.aboutSpecsLabel {
+  font-weight: 700;
+  font-family: $raleway;
+  letter-spacing: 0.7px;
+}
+
+.aboutTabValue {
+  font-family: $raleway;
+  text-transform: capitalize;
+}
+
+//modal moves tab
+.graphTitleContent {
+  font-family: $raleway;
+}
+
+.iconTitleContainer {
+  font-size: $med;
+  font-weight: 600;
 }

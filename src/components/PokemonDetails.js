@@ -1,57 +1,39 @@
 import React from "react";
+import Loader from './Loader';
 
 const PokemonDetails = ({
-  isAboutTextEnglish,
-  modalData,
-  englishAboutTextIndex,
-  englishSpeciesTextIndex,
-  isSpeciesTextEnglish,
+  genera,
+  flavorText,
   height,
   weight,
   abilities,
 }) => {
 
-
-
   return (
-    <div>
+    <div className="aboutWrapper">
       <div className="aboutLeftContainer">
-        {isAboutTextEnglish
-          ? modalData["flavor_text_entries"][englishAboutTextIndex][
-              "flavor_text"
-            ]
-          : "Information not found"}
+          {!flavorText ? <Loader/> : flavorText}
       </div>
 
       <div className="aboutRightContainer">
-        <div className="speciesRowContainer">
+        <div className="categoryContainer">
           <p className="aboutSpecsLabel">Species</p>
-          <p className="speciesValue">
-            {isSpeciesTextEnglish
-              ? modalData["genera"][englishSpeciesTextIndex]["genus"]
-              : "Information not found"}
-          </p>
-        </div>
-
-        <div className="heightRowContainer">
           <p className="aboutSpecsLabel">Height</p>
-          <p className="heightValue">{height}</p>
-        </div>
-
-        <div className="weightRowContainer">
           <p className="aboutSpecsLabel">Weight</p>
-          <p className="weightValue">{weight}</p>
-        </div>
-
-        <div className="abilitiesRowContainer">
           <p className="aboutSpecsLabel">Abilities</p>
-          <p className="abilitiesValue">
-            {abilities.map((index) => index["ability"].name + " ")}
+        </div>
+        <div className="valueContainer">
+          <div className="aboutTabValue">
+            {!genera ? <Loader/> : genera}
+          </div>
+          <p className="aboutTabValue">{height}</p>
+          <p className="aboutTabValue">{weight}</p>
+          <p className="aboutTabValue">
+            {abilities.map((index) => index["ability"].name).join(", ")}
           </p>
         </div>
       </div>
-    </div>
-  );
+    </div>)
 };
 
 export default PokemonDetails;
