@@ -104,9 +104,10 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
     />
   ));
 
-  const evolutionImg = () => {
+  const evolutionImg = (index) => {
     return (
       <img
+        key={index}
         className="evolutionImg"
         src={evolutionArrowImg}
         alt="next evolution arrow"></img>
@@ -121,7 +122,7 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
       organizedArray.push(spritesList[index]);
       // if sprite is the last in list, then just return sprite without arrow
       if (index !== spritesList.length - 1) {
-        organizedArray.push(evolutionImg());
+        organizedArray.push(evolutionImg(index));
       }
     }
     return organizedArray;

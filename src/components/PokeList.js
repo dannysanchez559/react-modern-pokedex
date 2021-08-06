@@ -4,7 +4,8 @@ import Filter from "./Filter";
 import getTypeColors from "../util/getTypeColor";
 import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
-import Searched from './Searched';
+import Searched from "./Searched";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const PokeList = ({
   userDidSearch,
@@ -138,7 +139,6 @@ const PokeList = ({
     return capitalize;
   };
 
-
   // create list of all PokeCards
   const generateSortedCards = (pokemonList) => {
     return pokemonList.map((pokeObj) => {
@@ -161,7 +161,7 @@ const PokeList = ({
       const sprite = sprites["other"]["official-artwork"]["front_default"];
       // return PokeCards for home page
       return (
-         <PokeCard
+        <PokeCard
           dexNo={id}
           key={id}
           name={name}
@@ -193,13 +193,22 @@ const PokeList = ({
             types={types}
           />
           {/* end Filter */}
-          <div className="card-container">
+          <InfiniteScroll
+            className="card-container"
+            dataLength={allPokemons.length}
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }>
             {/* By default, display all Pokemons, else show  filtered/sorted cards. */}
             {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
-          </div>
+          </InfiniteScroll>
         </>
+      ) : (
         // end react fragment
-      ) :<Searched fetchedData={fetchedData} capitalizeType={capitalizeType}/> }
+        <Searched fetchedData={fetchedData} capitalizeType={capitalizeType} />
+      )}
     </div>
   );
 };
