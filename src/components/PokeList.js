@@ -199,7 +199,7 @@ const PokeList = ({
     });
     return sortedCards;
   };
-  // console.log(`modal in PokeList`, modalData);
+
   return (
     <div className="pokeList">
       {!userDidSearch ? (

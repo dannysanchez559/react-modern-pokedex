@@ -144,6 +144,43 @@ $md-bg: #f9cf30;
   line-height: 2;
 }
 
+.movesGraphContainer {
+  width: 25%;
+  height: 200px;
+  margin: 35px 0px;
+}
+
+.movesGraphContainer:first-child {
+  margin-left: 80px;
+}
+
+.movesGraphContainer:last-child {
+  margin-right: 80px;
+
+}
+
+.moveDescription {
+  margin-bottom: 8px;
+  color: #818181;
+}
+
+.graphTitleContent {
+  height: 80px;
+}
+
+.iconTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin: 0 0 8px;
+}
+
+.iconTitleContainer img {
+  margin-right: 12px;
+  height: 30px;
+  width: auto;
+}
+
 // base stats tab
 .graph-container {
   width: 90%;

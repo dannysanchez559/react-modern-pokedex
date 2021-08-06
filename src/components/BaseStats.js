@@ -13,6 +13,7 @@ const BaseStats = ({ stats, types }) => {
     <>
       <div className="graph-container">
         <Bar
+          placeholder={"hi"}
           data={{
             labels: [
               "HP",
@@ -71,7 +72,11 @@ const BaseStats = ({ stats, types }) => {
                 text: "",
               },
               tooltip: {
-                enabled: false,
+                enabled: true,
+                backgroundColor: "rgb(0,0,0,0.6",
+                titleColor: "#fff",
+                bodyColor: "#fff",
+                displayColors: false,
               },
             },
           }}

@@ -40,7 +40,7 @@ const PokeCard = ({
     const pokemon = await fetchPokemon(id);
     if (pokemon.moves) {
       const moves = pokemon.moves;
-      const someMoves = await getMoveset(moves, 4);
+      const someMoves = await getMoveset(moves, 3);
       setMoveSet(someMoves);
     }
   };
