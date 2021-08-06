@@ -4,7 +4,6 @@ import Header from "./Header";
 import {
   fetchPokemon,
   fetchAllPokemons,
-  fetchSpecies,
 } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 import "../styles/main.scss";

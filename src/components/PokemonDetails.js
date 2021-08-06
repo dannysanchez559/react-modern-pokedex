@@ -12,7 +12,7 @@ const PokemonDetails = ({
   return (
     <div className="aboutWrapper">
       <div className="aboutLeftContainer">
-          {!flavorText ? "Info not found." : flavorText}
+          {!flavorText ? <Loader/> : flavorText}
       </div>
 
       <div className="aboutRightContainer">
@@ -24,7 +24,7 @@ const PokemonDetails = ({
         </div>
         <div className="valueContainer">
           <p className="aboutTabValue">
-            {!genera ? "Info not found." : genera}
+            {!genera ? <Loader/> : genera}
           </p>
           <p className="aboutTabValue">{height}</p>
           <p className="aboutTabValue">{weight}</p>

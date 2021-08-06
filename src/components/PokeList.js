@@ -4,8 +4,6 @@ import Filter from "./Filter";
 import getTypeColors from "../util/getTypeColor";
 import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
-import Loader from './Loader';
-import LazyLoad from 'react-lazyload';
 import Searched from './Searched';
 
 const PokeList = ({
@@ -14,8 +12,7 @@ const PokeList = ({
   fetchedData,
   allPokemons,
 }) => {
-  const { types, height, weight, abilities, stats } =
-    fetchedData[0];
+  const { types, height, weight } = fetchedData[0];
 
   const [selectTypeOption, setSelectTypeOption] = useState("");
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
@@ -145,7 +142,7 @@ const PokeList = ({
   // create list of all PokeCards
   const generateSortedCards = (pokemonList) => {
     return pokemonList.map((pokeObj) => {
-      const { id, name, sprites, types } = pokeObj;
+      const { id, name, sprites, types, stats, abilities } = pokeObj;
       // make type tags for card
       const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
@@ -164,7 +161,6 @@ const PokeList = ({
       const sprite = sprites["other"]["official-artwork"]["front_default"];
       // return PokeCards for home page
       return (
-       <LazyLoad key={id} placeholder={<Loader/>}>
          <PokeCard
           dexNo={id}
           key={id}
@@ -177,7 +173,6 @@ const PokeList = ({
           stats={stats}
           types={types}
         />
-       </LazyLoad>
       );
     });
   };

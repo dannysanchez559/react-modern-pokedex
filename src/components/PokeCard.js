@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal as CustomModal } from "./Modal";
 import Modal from "react-modal";
-import { fetchPokemon, fetchMove, fetchSpecies } from "../util/fetchPokemonData";
+import { fetchSpecies } from "../util/fetchPokemonData";
 
 const PokeCard = ({
   name,

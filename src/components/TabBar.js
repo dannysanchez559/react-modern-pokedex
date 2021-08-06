@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
@@ -29,12 +29,7 @@ export default function BasicTabs({
 }) {
   // State
   const [value, setValue] = useState(0);
-  const [isAboutTextEnglish, setIsAboutTextEnglish] = useState(true);
-  const [englishAboutTextIndex, setEnglishAboutTextIndex] = useState(0);
-  const [isSpeciesTextEnglish, setIsSpeciesTextEnglish] = useState(true);
-  const [englishSpeciesTextIndex, setEnglishSpeciesTextIndex] = useState(0);
-  // create function that updates setAboutTextIsEnglish state to true
-
+  // for tab changing
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

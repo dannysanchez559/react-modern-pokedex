@@ -42,12 +42,14 @@ const Moves = ({ dexNo }) => {
 
   useEffect(()=>{
     getMovesByPokemon(dexNo);
-  },[])
+    // eslint-disable-next-line
+  },[dexNo]);
+
 
   const moveInfo = () => {
      return moveSet.map((moveObj) => {
       const { accuracy, name, power, pp, flavor_text_entries, type } = moveObj;
-      // call function to loop through flavor_text_entries and find "en"
+
       return (
         <ul key={name}>
           <li>{name.toUpperCase()}</li>
