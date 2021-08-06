@@ -3,7 +3,7 @@ const Pokedex = require("pokeapi-js-wrapper");
 
 const interval = {
   offset: 0,
-  limit: 50,
+  limit: 5,
   // Remove line above and uncomment the line below after adding lazy loading
   // limit: 1119
 };
@@ -23,7 +23,8 @@ const P = new Pokedex.Pokedex(customOptions);
 export const fetchAllPokemons = async () => {
   try {
     const pokeObjList = await P.getPokemonsList(interval).then(
-      (data) => data.results);
+      (data) => data.results
+    );
     return pokeObjList;
   } catch (error) {
     console.error(error);
@@ -46,14 +47,14 @@ make function for getting flavor text and pokemon color using speciesUrl
  */
 export const fetchSpecies = async (name) => {
   try {
-    const speciesObject = await P.getPokemonSpeciesByName(name)
-      .then(data => data);
+    const speciesObject = await P.getPokemonSpeciesByName(name).then(
+      (data) => data
+    );
     return speciesObject;
   } catch (error) {
     console.error(error);
   }
 };
-
 
 // fetchAllAbilities for ability filter
 export const fetchAllAbilities = async () => {

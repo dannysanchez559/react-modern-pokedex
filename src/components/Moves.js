@@ -1,7 +1,51 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+// import bug from "../img/typeIcons/bug.png";
+// import normal from "../img/typeIcons/normal.png";
+// import flying as Flying from '../img/typeIcons/images';
+// import solution from stackoverflow
+import {
+  Bug,
+  Dark,
+  Dragon,
+  Electric,
+  Fairy,
+  Fighting,
+  Fire,
+  Flying,
+  Ghost,
+  Ground,
+  Grass,
+  Ice,
+  Normal,
+  Poison,
+  Psychic,
+  Rock,
+  Water,
+  Steel,
+} from "../img/typeIcons/images";
 
 const Moves = ({ moveSet }) => {
+  const imageUrls = {
+    bug: Bug,
+    dark: Dark,
+    dragon: Dragon,
+    electric: Electric,
+    fairy: Fairy,
+    fighting: Fighting,
+    fire: Fire,
+    flying: Flying,
+    ghost: Ghost,
+    ground: Ground,
+    grass: Grass,
+    ice: Ice,
+    normal: Normal,
+    poison: Poison,
+    psychic: Psychic,
+    rock: Rock,
+    water: Water,
+    steel: Steel,
+  };
   // function for finding English flavor text; returns a string
   const getEngFlavorText = (texts) => {
     for (let i = 0; i < texts.length; i += 1) {
@@ -11,9 +55,12 @@ const Moves = ({ moveSet }) => {
       }
     }
   };
+  console.log(`normal type check`, typeof Normal);
 
   const moveInfo = moveSet.map((moveObj) => {
     let { accuracy, name, power, pp, flavor_text_entries, type } = moveObj;
+    // call function to loop through flavor_text_entries and find "en"
+    const typeName = type.name;
 
     // if movetype has a null value, return 0
     {
@@ -25,13 +72,18 @@ const Moves = ({ moveSet }) => {
     {
       pp = pp ? pp : 0;
     }
+    const typeIcon = imageUrls[`${typeName}`];
 
-    // call function to loop through flavor_text_entries and find "en"
+    console.log(`typeicon url`, typeIcon);
     return (
       <>
         <div className="movesGraphContainer">
+          <div>
+            <p>{`${name.toUpperCase()}`}</p>{" "}
+            <p>{getEngFlavorText(flavor_text_entries)}</p>
+            <img src={`${typeIcon}`} alt="type icon" />
+          </div>
           <Bar
-            key={name}
             className="movesGraph"
             data={{
               labels: ["Power", "Accuracy", "PP"],
@@ -52,7 +104,9 @@ const Moves = ({ moveSet }) => {
             width={100}
             options={{
               layout: {
-                padding: 5,
+                padding: {
+                  bottom: 100,
+                },
               },
               indexAxis: "y",
               elements: {
@@ -84,18 +138,27 @@ const Moves = ({ moveSet }) => {
                 legend: {
                   display: false,
                 },
-                title: {
-                  display: true,
-                  text: [
-                    name.toUpperCase(),
-                    // getEngFlavorText(flavor_text_entries),
-                  ],
-                  color: "#111",
-                },
-                subtitle: {
-                  display: true,
-                  text: getEngFlavorText(flavor_text_entries),
-                },
+                // title: {
+                //   display: true,
+                //   text: name.toUpperCase(),
+                //   // getEngFlavorText(flavor_text_entries),
+                //   color: "#111",
+                //   align: "start",
+                //   font: {
+                //     size: 18,
+                //   },
+                // },
+                // subtitle: {
+                //   display: true,
+                //   text: getEngFlavorText(flavor_text_entries),
+                //   align: "start",
+                //   padding: {
+                //     bottom: 15,
+                //   },
+                //   font: {
+                //     size: 14,
+                //   },
+                // },
                 tooltip: {
                   enabled: true,
                   backgroundColor: "rgb(0,0,0,0.6",
