@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
+import {fetchMove, fetchPokemon} from '../util/fetchPokemonData';
 import { Bar } from "react-chartjs-2";
-
 import {
   Bug,
   Dark,
@@ -22,7 +22,35 @@ import {
   Steel,
 } from "../img/typeIcons/images";
 
-const Moves = ({ moveSet }) => {
+const Moves = ({ dexNo }) => {
+  const [moveSet, setMoveSet] = useState([]);
+
+  const getMoveset = async (movesArray, n) => {
+    const nMoves = [];
+    for (let i = 0; i < n; i += 1) {
+      const moveUrl = movesArray[i].move.url;
+      try {
+        const moveData = await fetchMove(moveUrl);
+        if (moveData) nMoves.push(moveData);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    return nMoves;
+  };
+
+  const getMovesByPokemon = async (id) => {
+    const pokemon = await fetchPokemon(id);
+    try {
+      const moves = pokemon.moves;
+      const someMoves = await getMoveset(moves, 4);
+
+      setMoveSet(someMoves);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const imageUrls = {
     bug: Bug,
     dark: Dark,
@@ -53,6 +81,11 @@ const Moves = ({ moveSet }) => {
     }
   };
 
+  useEffect(()=>{
+    getMovesByPokemon(dexNo);
+    // eslint-disable-next-line
+  },[dexNo]);
+
   const movePower = (accuracy, power, pp) => {
     accuracy = accuracy ? accuracy : 0;
     power = power ? power : 0;
@@ -61,16 +94,16 @@ const Moves = ({ moveSet }) => {
   };
 
   const moveInfo = moveSet.map((moveObj) => {
-    let { accuracy, name, power, pp, flavor_text_entries, type } = moveObj;
-    // call function to loop through flavor_text_entries and find "en"
+    const { accuracy, name, power, pp, flavor_text_entries, type } = moveObj;
     const typeName = type.name;
+    // returns [accuracy, power, pp] with 0s intead of null values.
     const result = movePower(accuracy, power, pp);
 
     //get movetype icon
     const typeIcon = imageUrls[`${typeName}`];
 
     return (
-      <>
+      <React.Fragment key={name} >
         <div className="movesGraphContainer">
           <div className="graphTitleContent">
             <div className="iconTitleContainer">
@@ -148,7 +181,7 @@ const Moves = ({ moveSet }) => {
             }}
           />{" "}
         </div>{" "}
-      </>
+      </React.Fragment>
     );
   });
   return <div className="moves-panel"> {moveInfo} </div>;

@@ -4,17 +4,16 @@ import Filter from "./Filter";
 import getTypeColors from "../util/getTypeColor";
 import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
+import Searched from "./Searched";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const PokeList = ({
   userDidSearch,
   setUserDidSearch,
   fetchedData,
   allPokemons,
-  modalData,
-  getPokemonModalAboutContent,
 }) => {
-  const { id, name, sprites, types, height, weight, abilities, stats } =
-    fetchedData[0];
+  const { types, height, weight } = fetchedData[0];
 
   const [selectTypeOption, setSelectTypeOption] = useState("");
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
@@ -140,29 +139,10 @@ const PokeList = ({
     return capitalize;
   };
 
-  // generate tags, check for tags and types
-  let typeTags, sprite;
-  if (types && sprites) {
-    sprite = sprites["other"]["official-artwork"]["front_default"];
-    typeTags = types.map((obj, i) => {
-      const typeName = obj["type"]["name"];
-      const capitalizedTypeName = capitalizeType(typeName);
-      return (
-        <span
-          className="type-tag"
-          style={{
-            backgroundColor: getTypeColors[typeName],
-          }}
-          key={i}>
-          {capitalizedTypeName}
-        </span>
-      );
-    });
-  }
-
+  // create list of all PokeCards
   const generateSortedCards = (pokemonList) => {
-    const sortedCards = pokemonList.map((pokeObj) => {
-      const { id, name, sprites, types } = pokeObj;
+    return pokemonList.map((pokeObj) => {
+      const { id, name, sprites, types, stats, abilities } = pokeObj;
       // make type tags for card
       const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
@@ -178,17 +158,15 @@ const PokeList = ({
           </span>
         );
       });
-
       const sprite = sprites["other"]["official-artwork"]["front_default"];
+      // return PokeCards for home page
       return (
         <PokeCard
           dexNo={id}
+          key={id}
           name={name}
           sprite={sprite}
-          key={id}
           typeTags={typeTags}
-          modalData={modalData}
-          getPokemonModalAboutContent={getPokemonModalAboutContent}
           height={height}
           weight={weight}
           abilities={abilities}
@@ -197,7 +175,6 @@ const PokeList = ({
         />
       );
     });
-    return sortedCards;
   };
 
   return (
@@ -215,27 +192,22 @@ const PokeList = ({
             setFilterType={setFilterType}
             types={types}
           />
-          <div className="card-container">
-            {/* By default, display all Pokemons, else show  filtered/sorted cards */}
+          {/* end Filter */}
+          <InfiniteScroll
+            className="card-container"
+            dataLength={allPokemons.length}
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }>
+            {/* By default, display all Pokemons, else show  filtered/sorted cards. */}
             {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
-          </div>
+          </InfiniteScroll>
         </>
-      ) : !fetchedData.length ? (
-        <h1>Please search pokemon.</h1>
       ) : (
-        <PokeCard
-          dexNo={id}
-          name={name}
-          sprite={sprite}
-          typeTags={typeTags}
-          modalData={modalData}
-          getPokemonModalAboutContent={getPokemonModalAboutContent}
-          height={height}
-          weight={weight}
-          abilities={abilities}
-          stats={stats}
-          types={types}
-        />
+        // end react fragment
+        <Searched fetchedData={fetchedData} capitalizeType={capitalizeType} />
       )}
     </div>
   );

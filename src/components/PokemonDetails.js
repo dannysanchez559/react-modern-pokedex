@@ -1,23 +1,18 @@
 import React from "react";
+import Loader from './Loader';
 
 const PokemonDetails = ({
-  isAboutTextEnglish,
-  modalData,
-  englishAboutTextIndex,
-  englishSpeciesTextIndex,
-  isSpeciesTextEnglish,
+  genera,
+  flavorText,
   height,
   weight,
   abilities,
 }) => {
+
   return (
     <div className="aboutWrapper">
       <div className="aboutLeftContainer">
-        {isAboutTextEnglish
-          ? modalData["flavor_text_entries"][englishAboutTextIndex][
-              "flavor_text"
-            ]
-          : "Information not found"}
+          {!flavorText ? <Loader/> : flavorText}
       </div>
 
       <div className="aboutRightContainer">
@@ -28,11 +23,9 @@ const PokemonDetails = ({
           <p className="aboutSpecsLabel">Abilities</p>
         </div>
         <div className="valueContainer">
-          <p className="aboutTabValue">
-            {isSpeciesTextEnglish
-              ? modalData["genera"][englishSpeciesTextIndex]["genus"]
-              : "Information not found"}
-          </p>
+          <div className="aboutTabValue">
+            {!genera ? <Loader/> : genera}
+          </div>
           <p className="aboutTabValue">{height}</p>
           <p className="aboutTabValue">{weight}</p>
           <p className="aboutTabValue">
@@ -40,8 +33,7 @@ const PokemonDetails = ({
           </p>
         </div>
       </div>
-    </div>
-  );
+    </div>)
 };
 
 export default PokemonDetails;

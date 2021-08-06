@@ -6,6 +6,8 @@ import TabBar from "./TabBar";
 import getTypeColors from "../util/getTypeColor";
 
 export const Modal = ({
+  genera,
+  flavorText,
   setIsOpen,
   name,
   dexNo,
@@ -19,6 +21,7 @@ export const Modal = ({
   abilities,
   stats,
   types,
+  isLoading,
 }) => {
   const speakerRef = useRef();
   const speakerButtonRef = useRef();
@@ -73,6 +76,9 @@ export const Modal = ({
           </div>
 
           <TabBar
+            dexNo={dexNo}
+            genera={genera}
+            flavorText={flavorText}
             modalData={modalData}
             height={height}
             weight={weight}
