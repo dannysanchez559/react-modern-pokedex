@@ -23,9 +23,9 @@ const PokemonDetails = ({
           <p className="aboutSpecsLabel">Abilities</p>
         </div>
         <div className="valueContainer">
-          <p className="aboutTabValue">
+          <div className="aboutTabValue">
             {!genera ? <Loader/> : genera}
-          </p>
+          </div>
           <p className="aboutTabValue">{height}</p>
           <p className="aboutTabValue">{weight}</p>
           <p className="aboutTabValue">
