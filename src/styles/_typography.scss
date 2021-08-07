@@ -1,13 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&family=Raleway:wght@500;700&family=Rubik&display=swap");
 
 // Google fonts
-$raleway: "Raleway",
-sans-serif;
-$rubik: "Rubik",
-sans-serif;
-$nunito: "Nunito",
-sans-serif; // 800 for bold, 600 for semibold
-$reg: 1.2rem;
+$raleway: "Raleway", sans-serif;
+$rubik: "Rubik", sans-serif;
+$nunito: "Nunito", sans-serif; // 800 for bold, 600 for semibold
+$small: 0.9rem;
+$reg: 1rem;
 $med: 1.25rem;
 $big: 1.3rem;
 
@@ -49,7 +47,6 @@ $purple2: #494089;
 }
 
 // card
-
 .cardname-dexNo {
   font-size: $reg;
   font-family: $nunito;
@@ -58,15 +55,20 @@ $purple2: #494089;
 .type-tag {
   font-family: $rubik;
   color: white;
-  font-size: 0.9em;
+  font-size: $small;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
 
 // modal
+.modalDexNo {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .modalPokeName {
   font-size: 1.7rem;
-  letter-spacing: 1.5px;
   font-family: $rubik;
 }
 
@@ -97,3 +99,18 @@ $purple2: #494089;
   font-size: $med;
   font-weight: 600;
 }
+// tab slider bar
+.MuiTab-root {
+  font-family: $raleway!important;
+  font-size: $big !important;
+  font-weight: 900;
+  text-transform: none !important;
+}
+
+// selected tab
+.MuiTab-root.Mui-selected {
+  color: #000 !important;
+  font-weight: 900 !important;
+}
+
+
