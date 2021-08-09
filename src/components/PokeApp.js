@@ -15,7 +15,7 @@ function PokeApp() {
   // fetchedData is a single Pokemon object the user searched for
   const [fetchedData, setFetchedData] = useState([]);
   const [allPokemons, setAllPokemon] = useState([]);
-  const [queryParams, setQueryParams]=useState({offset: 0, limit: 6});
+  const [queryParams, setQueryParams]=useState({offset: 0, limit: 12});
   // Hook below is used for conditional rendering 1 Pokemon card user searched, and search on keypress
   const [userDidSearch, setUserDidSearch] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +55,7 @@ function PokeApp() {
          setFetchedData([...allPokemons, ...data]);
       }).then(setIsLoading(false));
 
-     setQueryParams({offset: queryParams.offset + 6, limit: queryParams.limit});
+     setQueryParams({offset: queryParams.offset + 13, limit: queryParams.limit});
      setIsLoading(false);
    } catch(error) {
      console.error(error);
