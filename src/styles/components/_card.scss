@@ -16,7 +16,30 @@ $card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
   border-radius: 40px;
   margin: 25px;
   box-shadow: $card-shadow;
+  position: relative;
+  top: 0;
+  cursor: pointer;
+
+  &:hover {
+    transition: all .4s ease;
+    top: -5px;
+    box-shadow: 0 12px 17px 0 rgba(75, 75, 75, .5), 0 6px 20px 0 rgba(75, 75, 75, .5);
+  
+  }
 }
+
+.card:hover .sprite {
+  transition: all .4s ease-out;
+  width: 200px;
+  height: auto;
+  align-items: center;
+}
+
+.card:hover span {
+  transition: all .2s ease-out;
+  opacity: 0;
+}
+
 
 .card ul {
   list-style: none;
