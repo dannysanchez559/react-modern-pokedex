@@ -23,8 +23,7 @@ $card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
   &:hover {
     transition: all .4s ease;
     top: -5px;
-    box-shadow: 0 12px 17px 0 rgba(75, 75, 75, .5), 0 6px 20px 0 rgba(75, 75, 75, .5);
-  
+    box-shadow: 0 12px 17px 0 rgba(75, 75, 75, .6), 0 6px 20px 0 rgba(75, 75, 75, .6);
   }
 }
 
@@ -32,11 +31,15 @@ $card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
   transition: all .4s ease-out;
   width: 200px;
   height: auto;
-  align-items: center;
 }
 
-.card:hover span {
-  transition: all .2s ease-out;
+.card:hover .card-name {
+  transition: all .4s ease-out;
+  letter-spacing: 4px;
+}
+
+.card:hover .typeTags {
+  transition: all .3s ease-out;
   opacity: 0;
 }
 
@@ -55,7 +58,6 @@ $card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
 .sprite {
   width: 160px;
   height: auto;
-  border: 1px dashed green;
 }
 
 .type-tag {

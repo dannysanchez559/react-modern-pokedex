@@ -83,7 +83,7 @@ const PokeCard = ({
             <span>{name.toUpperCase()}</span>
             <span> #{dexNo}</span>
           </li>
-          <li>{typeTags}</li>
+          <li className="typeTags">{typeTags}</li>
         </ul>
       </div>
       {/* react modal */}
