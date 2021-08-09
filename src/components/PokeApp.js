@@ -63,7 +63,7 @@ function PokeApp() {
   }
 
    useEffect(()=>{
-    getMorePokemon();
+    getMorePokemons();
    // eslint-disable-next-line
    },[]);
 
