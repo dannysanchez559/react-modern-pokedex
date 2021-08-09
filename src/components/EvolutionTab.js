@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchPokemon } from "../util/fetchPokemonData";
 import evolutionArrowImg from "../img/evolution-arrow.png";
 
-const EvolutionTab = ({ evolutionChainUrl }) => {
+const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
   const [evolutionNamesObjects, setEvolutionNamesObjects] = useState([]);
   const [evolutionNameStrings, setEvolutionNameStrings] = useState([]);
   const [spriteUrls, setSpriteUrls] = useState([]);
@@ -128,7 +128,29 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
     return organizedArray;
   };
 
-  return <div className="spriteContainer">{spritesWithEvolutionArrows()}</div>;
+  // bool to set if scrollbar will be displayed (sprites > 3 to turn on)
+  const needsScrollBar = spritesList.length > 3;
+
+  return (
+    <>
+      {/* display srites div with scroll bar styling, or without*/}
+      {
+        needsScrollBar ?
+          (<div
+            style={{
+              overflowX: "scroll",
+              // custom scrollbar (firefox only)
+              scrollbarColor: `${pokemonColor} rgba(235, 232, 232, 0.4)`,
+
+              // ** unknown solution for safari and chrome **
+            }}
+            className="spriteContainer" > {spritesWithEvolutionArrows()}</div>)
+          :
+          (<div className="spriteContainer" > {spritesWithEvolutionArrows()}</div>)
+      }
+
+    </>
+  )
 };
 
 export default EvolutionTab;

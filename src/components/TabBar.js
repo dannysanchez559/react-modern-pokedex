@@ -73,7 +73,10 @@ export default function BasicTabs({
         </TabPanel>
         {/****** EVOLUTION TAB ******/}
         <TabPanel value={value} index={2}>
-          <EvolutionTab evolutionChainUrl={modalData["evolution_chain"]?.url} />
+          <EvolutionTab
+            evolutionChainUrl={modalData["evolution_chain"]?.url}
+            pokemonColor={pokemonColor}
+          />
         </TabPanel>
 
         {/****** MOVES TAB ******/}

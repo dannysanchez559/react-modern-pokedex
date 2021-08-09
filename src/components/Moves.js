@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from "react";
-import {fetchMove, fetchPokemon} from '../util/fetchPokemonData';
+import React, { useState, useEffect } from "react";
+import { fetchMove, fetchPokemon } from '../util/fetchPokemonData';
 import { Bar } from "react-chartjs-2";
 import {
   Bug,
@@ -43,7 +43,7 @@ const Moves = ({ dexNo }) => {
     const pokemon = await fetchPokemon(id);
     try {
       const moves = pokemon.moves;
-      const someMoves = await getMoveset(moves, 4);
+      const someMoves = await getMoveset(moves, 3);
 
       setMoveSet(someMoves);
     } catch (error) {
@@ -81,10 +81,10 @@ const Moves = ({ dexNo }) => {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getMovesByPokemon(dexNo);
     // eslint-disable-next-line
-  },[dexNo]);
+  }, [dexNo]);
 
   const movePower = (accuracy, power, pp) => {
     accuracy = accuracy ? accuracy : 0;

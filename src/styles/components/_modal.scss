@@ -1,7 +1,7 @@
 $overlay: rgba(0, 0, 0, 0.15) !important;
 $md-bg: #f9cf30;
 $modal-width: 900px;
-$modal-height: 600px;
+$modal-height: 550px;
 $modal-padding: 25px;
 
 /* modal styling */
@@ -20,9 +20,9 @@ $modal-padding: 25px;
   margin: 0 auto;
   border-radius: 25px;
   position: absolute;
-  top: 40%;
+  top: 15%;
   left: 50%;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -15%);
   z-index: 100;
 }
 
@@ -37,6 +37,7 @@ $modal-padding: 25px;
 
 .modalDetailsTop {
   display: flex;
+  height: 250px;
   padding: $modal-padding;
   justify-content: space-between;
 }
@@ -131,20 +132,20 @@ $modal-padding: 25px;
   height: 4px !important;
 }
 
-
 // evolution panel
 .spriteContainer {
   display: flex;
-  margin: 25px auto;
+  margin: 25px;
   align-content: center;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 .evolution-sprites {
   width: 175px;
   height: 175px;
-  border: 1px dashed green;
+  margin: 0 auto;
 }
 
 .evolutionImg {
