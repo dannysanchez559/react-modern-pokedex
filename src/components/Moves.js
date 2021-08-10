@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from "react";
-import {fetchMove, fetchPokemon} from '../util/fetchPokemonData';
+import React, { useState, useEffect } from "react";
+import { fetchMove, fetchPokemon } from "../util/fetchPokemonData";
 import { Bar } from "react-chartjs-2";
 import {
   Bug,
@@ -81,10 +81,10 @@ const Moves = ({ dexNo }) => {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getMovesByPokemon(dexNo);
     // eslint-disable-next-line
-  },[dexNo]);
+  }, [dexNo]);
 
   const movePower = (accuracy, power, pp) => {
     accuracy = accuracy ? accuracy : 0;
@@ -103,7 +103,7 @@ const Moves = ({ dexNo }) => {
     const typeIcon = imageUrls[`${typeName}`];
 
     return (
-      <React.Fragment key={name} >
+      <React.Fragment key={name}>
         <div className="movesGraphContainer">
           <div className="graphTitleContent">
             <div className="iconTitleContainer">

@@ -20,6 +20,7 @@ $md-bg: #f9cf30;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  outline: none;
 }
 
 .backgroundModalWrapper {
@@ -156,7 +157,6 @@ $md-bg: #f9cf30;
 
 .movesGraphContainer:last-child {
   margin-right: 80px;
-
 }
 
 .moveDescription {
