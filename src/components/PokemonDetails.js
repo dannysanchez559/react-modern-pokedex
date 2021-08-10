@@ -1,5 +1,5 @@
 import React from "react";
-import Loader from './Loader';
+import Spinner from './Spinner';
 
 const PokemonDetails = ({
   genera,
@@ -12,7 +12,7 @@ const PokemonDetails = ({
   return (
     <div className="aboutWrapper">
       <div className="aboutLeftContainer">
-          {!flavorText ? <Loader/> : flavorText}
+          {!flavorText ? <Spinner/> : flavorText}
       </div>
 
       <div className="aboutRightContainer">
@@ -24,7 +24,7 @@ const PokemonDetails = ({
         </div>
         <div className="valueContainer">
           <div className="aboutTabValue">
-            {!genera ? <Loader/> : genera}
+            {!genera ? <Spinner/> : genera}
           </div>
           <p className="aboutTabValue">{height}</p>
           <p className="aboutTabValue">{weight}</p>

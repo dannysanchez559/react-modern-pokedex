@@ -26,7 +26,6 @@ body {
   background-image: url('../img/wpkb.svg');
   background-repeat: no-repeat;
 }
-
 .pokeList {
   display: flex;
   flex-direction: column;
@@ -37,4 +36,4 @@ body {
 @import "components/card";
 @import "components/modal";
 @import "typography";
-@import "components/loader";
+@import "components/ball_spin";

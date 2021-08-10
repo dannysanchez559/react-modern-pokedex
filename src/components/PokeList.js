@@ -6,7 +6,7 @@ import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
 import Searched from "./Searched";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from './Loader';
+import Spinner from './Spinner';
 
 const PokeList = ({
   userDidSearch,
@@ -199,11 +199,7 @@ const PokeList = ({
           {/* end Filter */}
           <InfiniteScroll
             className="card-container"
-            style={{
-              display: 'flex',
-              flexDirection: 'row'
-            }}
-            loader={<Loader/>}
+            loader={<Spinner/>}
             dataLength={allPokemons.length}
             hasMore={true}
             scrollThreshold={0.8}
@@ -213,12 +209,12 @@ const PokeList = ({
                 <b>Yay! You have seen it all</b>
               </p>
             }>
-            {/* By default, display all Pokemons, else show  filtered/sorted cards. */}
+            {/* By default, display all Pokemon cards, else show  filtered/sorted cards. */}
             {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
           </InfiniteScroll>
-        </>)
+        </>)   // end react fragment
       ) : (
-        // end react fragment
+        // show single user search
         <Searched fetchedData={fetchedData} capitalizeType={capitalizeType} />
       )}
     </div>
