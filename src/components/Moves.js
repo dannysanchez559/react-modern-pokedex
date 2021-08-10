@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchMove, fetchPokemon } from '../util/fetchPokemonData';
 import { Bar } from "react-chartjs-2";
+import Spinner from './Spinner';
 import {
   Bug,
   Dark,
@@ -92,12 +93,12 @@ const Moves = ({ dexNo }) => {
     pp = pp ? pp : 0;
     return [accuracy, power, pp];
   };
-
+  let result;
   const moveInfo = moveSet.map((moveObj) => {
     const { accuracy, name, power, pp, flavor_text_entries, type } = moveObj;
     const typeName = type.name;
     // returns [accuracy, power, pp] with 0s intead of null values.
-    const result = movePower(accuracy, power, pp);
+    result = movePower(accuracy, power, pp);
 
     //get movetype icon
     const typeIcon = imageUrls[`${typeName}`];
@@ -191,7 +192,7 @@ const Moves = ({ dexNo }) => {
       </React.Fragment>
     );
   });
-  return <div className="moves-panel"> {moveInfo} </div>;
+  return <div className="moves-panel">{result ? moveInfo : <Spinner/>} </div>;
 };
 
 export default Moves;

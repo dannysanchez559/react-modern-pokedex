@@ -13,6 +13,10 @@ $big: 1.3rem;
 $purple1: #a29bcb;
 $purple2: #494089;
 
+a {
+  color: $purple2;
+}
+
 // header links
 .nav-link {
   font-size: $reg;
