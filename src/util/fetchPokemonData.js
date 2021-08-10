@@ -1,12 +1,6 @@
 // import wrapper
 const Pokedex = require("pokeapi-js-wrapper");
 
-const interval = {
-  offset: 0,
-  limit: 50,
-  // limit: 1119
-};
-
 const customOptions = {
   protocol: "https",
   // hostName
@@ -18,10 +12,9 @@ const customOptions = {
 
 const P = new Pokedex.Pokedex(customOptions);
 
-// returns array of all pokemon objects within the interval
-export const fetchAllPokemons = async () => {
+export const fetchPokemons = async (queryParams) => {
   try {
-    const pokeObjList = await P.getPokemonsList(interval).then(
+    const pokeObjList = await P.getPokemonsList(queryParams).then(
       (data) => data.results
     );
     return pokeObjList;
