@@ -8,6 +8,7 @@ $lite-border: 1px solid #ccc;
   justify-content: space-around;
   align-items: center;
   padding: 0 50px 0 50px;
+  margin: 25px;
 }
 
 .filterBar button {
@@ -18,6 +19,14 @@ $lite-border: 1px solid #ccc;
   color: $btn-font-color;
   display: flex;
   align-items: center;
+}
+
+.filterBar button:hover {
+  cursor: pointer;
+}
+
+.filterBar button img {
+  margin-left: 10px;
 }
 
 .filterDropDown {

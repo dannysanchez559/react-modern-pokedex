@@ -6,12 +6,14 @@ import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
 import Searched from "./Searched";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Spinner from './Spinner';
 
 const PokeList = ({
   userDidSearch,
   setUserDidSearch,
   fetchedData,
   allPokemons,
+  getMorePokemons
 }) => {
   const { types, height, weight } = fetchedData[0];
 
@@ -141,6 +143,7 @@ const PokeList = ({
 
   // create list of all PokeCards
   const generateSortedCards = (pokemonList) => {
+
     return pokemonList.map((pokeObj) => {
       const { id, name, sprites, types, stats, abilities } = pokeObj;
       // make type tags for card
@@ -180,7 +183,8 @@ const PokeList = ({
   return (
     <div className="pokeList">
       {!userDidSearch ? (
-        <>
+      (!allPokemons.length && !filteredPokemons.length) ? null :
+        (<>
           <Filter
             selectTypeOption={selectTypeOption}
             setSelectTypeOption={setSelectTypeOption}
@@ -195,18 +199,22 @@ const PokeList = ({
           {/* end Filter */}
           <InfiniteScroll
             className="card-container"
+            loader={<Spinner/>}
             dataLength={allPokemons.length}
+            hasMore={true}
+            scrollThreshold={0.8}
+            next={getMorePokemons}
             endMessage={
               <p style={{ textAlign: "center" }}>
                 <b>Yay! You have seen it all</b>
               </p>
             }>
-            {/* By default, display all Pokemons, else show  filtered/sorted cards. */}
+            {/* By default, display all Pokemon cards, else show  filtered/sorted cards. */}
             {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
           </InfiniteScroll>
-        </>
+        </>)   // end react fragment
       ) : (
-        // end react fragment
+        // show single user search
         <Searched fetchedData={fetchedData} capitalizeType={capitalizeType} />
       )}
     </div>
