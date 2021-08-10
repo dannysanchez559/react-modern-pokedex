@@ -34,15 +34,15 @@ const PokeCard = ({
 
   // takes in array, target key to return, and target language
   const findDescriptionByLanguage = (array, targetKey, lang) => {
-    if(array && Array.isArray(array)) {
-      const englishObject =  array.find(obj => obj["language"].name===lang);
-       // returns English text string
-       return englishObject[`${targetKey}`];
+    if (array && Array.isArray(array)) {
+      const englishObject = array.find(obj => obj["language"].name === lang);
+      // returns English text string
+      return englishObject[`${targetKey}`];
     }
   }
 
   // get modal content: pokemon species info and moveset
-  const triggerModalData = async() => {
+  const triggerModalData = async () => {
     const modalContent = await getPokemonModalAboutContent(dexNo);
     const { flavor_text_entries, genera } = modalContent;
     const generaText = findDescriptionByLanguage(genera, 'genus', 'en');
@@ -52,9 +52,9 @@ const PokeCard = ({
     setModalData(modalContent);
   };
 
-  const prepareModal = ()=> {
-     triggerModalData();
-     setModalIsOpen(true);
+  const prepareModal = () => {
+    triggerModalData();
+    setModalIsOpen(true);
   }
 
 

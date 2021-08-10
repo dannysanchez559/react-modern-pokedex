@@ -41,15 +41,19 @@ export const Modal = ({
     cry.play();
   };
 
-  const typeColor = types[0]["type"].name;
+  // get pokemon type, ex: "grass"
+  const pokemonType = types[0]["type"].name;
+
+  // get pokemon type color, ex: "grass" = "green"
+  const pokemonColor = getTypeColors[pokemonType];
 
   return (
     <>
       <div
         className="backgroundModalWrapper"
-        style={{ backgroundColor: getTypeColors[typeColor] }}>
+        style={{ backgroundColor: pokemonColor }}>
         <div className="modalDetailsTop">
-          <div className="dexNo">{dexNo}</div>
+          <div className="modalDexNo">{`#${dexNo}`}</div>
           <div className="spriteWrapper">
             <img src={sprite} alt={`${name} sprite`} />
           </div>
@@ -86,6 +90,7 @@ export const Modal = ({
             stats={stats}
             types={types}
             moveSet={moveSet}
+            pokemonColor={pokemonColor}
           />
         </div>
       </div>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from "react";
-import {fetchMove, fetchPokemon} from '../util/fetchPokemonData';
+import React, { useState, useEffect } from "react";
+import { fetchMove, fetchPokemon } from '../util/fetchPokemonData';
 import { Bar } from "react-chartjs-2";
 import Spinner from './Spinner';
 import {
@@ -44,7 +44,7 @@ const Moves = ({ dexNo }) => {
     const pokemon = await fetchPokemon(id);
     try {
       const moves = pokemon.moves;
-      const someMoves = await getMoveset(moves, 4);
+      const someMoves = await getMoveset(moves, 3);
 
       setMoveSet(someMoves);
     } catch (error) {
@@ -82,10 +82,10 @@ const Moves = ({ dexNo }) => {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getMovesByPokemon(dexNo);
     // eslint-disable-next-line
-  },[dexNo]);
+  }, [dexNo]);
 
   const movePower = (accuracy, power, pp) => {
     accuracy = accuracy ? accuracy : 0;
@@ -103,13 +103,20 @@ const Moves = ({ dexNo }) => {
     //get movetype icon
     const typeIcon = imageUrls[`${typeName}`];
 
+    // process move name to camel case - Capitalize each word
+    const camelize = (str) => {
+      return str.replace(/([A-Z]|\b\w)/g, function (word, index) {
+        return index === 0 ? word.toLowerCase() : word.toUpperCase();
+      }).replace(/\s+/g, '');
+    }
+
     return (
       <React.Fragment key={name} >
         <div className="movesGraphContainer">
           <div className="graphTitleContent">
             <div className="iconTitleContainer">
               <img src={`${typeIcon}`} alt="type icon" />
-              <p> {`${name.toUpperCase()}`} </p>{" "}
+              <p> {`${camelize(name)}`} </p>{" "}
             </div>
             <p className="moveDescription">
               {" "}
