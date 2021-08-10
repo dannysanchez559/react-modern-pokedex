@@ -139,7 +139,6 @@ $modal-padding: 25px;
   align-content: center;
   align-items: center;
   justify-content: space-between;
-  overflow: hidden;
 }
 
 .evolution-sprites {
@@ -156,9 +155,12 @@ $modal-padding: 25px;
 // moves panel
 .moves-panel {
   display: flex;
+  box-sizing: border-box;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .moves-panel ul {
@@ -167,23 +169,20 @@ $modal-padding: 25px;
 }
 
 .movesGraphContainer {
-  width: 25%;
+  width: 30%;
   height: 200px;
   margin: 35px 0px;
-}
-
-.movesGraphContainer:first-child {
-  margin-left: 80px;
-}
-
-.movesGraphContainer:last-child {
-  margin-right: 80px;
-
+  display: flex;
+  flex-direction: column;
+  
 }
 
 .moveDescription {
-  margin-bottom: 8px;
-  color: #818181;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: #5c5c5c;
+  width: 100%;
 }
 
 .graphTitleContent {

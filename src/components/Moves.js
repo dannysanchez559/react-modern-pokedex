@@ -102,13 +102,20 @@ const Moves = ({ dexNo }) => {
     //get movetype icon
     const typeIcon = imageUrls[`${typeName}`];
 
+    // process move name to camel case - Capitalize each word
+    const camelize = (str) => {
+      return str.replace(/([A-Z]|\b\w)/g, function (word, index) {
+        return index === 0 ? word.toLowerCase() : word.toUpperCase();
+      }).replace(/\s+/g, '');
+    }
+
     return (
       <React.Fragment key={name} >
         <div className="movesGraphContainer">
           <div className="graphTitleContent">
             <div className="iconTitleContainer">
               <img src={`${typeIcon}`} alt="type icon" />
-              <p> {`${name.toUpperCase()}`} </p>{" "}
+              <p> {`${camelize(name)}`} </p>{" "}
             </div>
             <p className="moveDescription">
               {" "}
