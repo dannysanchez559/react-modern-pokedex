@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import PokeList from "./PokeList";
 import Header from "./Header";
+import Spinner from './Spinner';
 import {
   fetchPokemon,
   fetchPokemons
 } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 import "../styles/main.scss";
-import Loader from './Loader';
+
 
 function PokeApp() {
   // Store search bar input value: could be dex number or pokemon name
@@ -15,7 +16,7 @@ function PokeApp() {
   // fetchedData is a single Pokemon object the user searched for
   const [fetchedData, setFetchedData] = useState([]);
   const [allPokemons, setAllPokemon] = useState([]);
-  const [queryParams, setQueryParams]=useState({offset: 0, limit: 12});
+  const [queryParams, setQueryParams]=useState({offset: 0, limit: 20});
   // Hook below is used for conditional rendering 1 Pokemon card user searched, and search on keypress
   const [userDidSearch, setUserDidSearch] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -50,12 +51,12 @@ function PokeApp() {
         return pokemonData;
       });
       Promise.all(pokemonPromises).then((data) => {
-        // make copy previous state, add next 20 pokemon objects, then set state with more data
+        // make copy previous state, add more pokemon objects, then set state with more data
          setAllPokemon([...allPokemons, ...data]);
          setFetchedData([...allPokemons, ...data]);
       }).then(setIsLoading(false));
 
-     setQueryParams({offset: queryParams.offset + 13, limit: queryParams.limit});
+     setQueryParams({offset: queryParams.offset + 21, limit: queryParams.limit});
      setIsLoading(false);
    } catch(error) {
      console.error(error);
@@ -75,6 +76,7 @@ function PokeApp() {
         setUserDidSearch={setUserDidSearch}
         setPokemonName={setPokemonName}
       />
+      {/* end header */}
       {isLoading === false && fetchedData.length> 0 ? (
         <PokeList
           getMorePokemons={getMorePokemons}
@@ -84,7 +86,7 @@ function PokeApp() {
           setUserDidSearch={setUserDidSearch}
         />
       ) :
-       <Loader/>
+        <Spinner/>
       }
     </div>
   );

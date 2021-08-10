@@ -5,8 +5,6 @@ import PokeCard from "./PokeCard";
 const Searched = ({fetchedData, getPokemonModalAboutContent, capitalizeType, modalData})=>{
   const { id, name, sprites, types, height, weight, abilities, stats } =
     fetchedData[0];
-
-
     // generate tags, check for tags and types
   let typeTags, sprite;
   if (types && sprites) {
@@ -26,6 +24,7 @@ const Searched = ({fetchedData, getPokemonModalAboutContent, capitalizeType, mod
       );
     });
   }
+
   return (<div>{!fetchedData.length ? (
         <h1>Please search pokemon.</h1>
       ) : (
