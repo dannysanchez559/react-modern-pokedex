@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { fetchMove, fetchPokemon } from '../util/fetchPokemonData';
+import { fetchMove, fetchPokemon } from "../util/fetchPokemonData";
 import { Bar } from "react-chartjs-2";
-import Spinner from './Spinner';
+import Spinner from "./Spinner";
 import {
   Bug,
   Dark,
@@ -105,13 +105,15 @@ const Moves = ({ dexNo }) => {
 
     // process move name to camel case - Capitalize each word
     const camelize = (str) => {
-      return str.replace(/([A-Z]|\b\w)/g, function (word, index) {
-        return index === 0 ? word.toLowerCase() : word.toUpperCase();
-      }).replace(/\s+/g, '');
-    }
+      return str
+        .replace(/([A-Z]|\b\w)/g, function (word, index) {
+          return index === 0 ? word.toLowerCase() : word.toUpperCase();
+        })
+        .replace(/\s+/g, "");
+    };
 
     return (
-      <React.Fragment key={name} >
+      <React.Fragment key={name}>
         <div className="movesGraphContainer">
           <div className="graphTitleContent">
             <div className="iconTitleContainer">
@@ -192,7 +194,7 @@ const Moves = ({ dexNo }) => {
       </React.Fragment>
     );
   });
-  return <div className="moves-panel">{result ? moveInfo : <Spinner/>} </div>;
+  return <div className="moves-panel">{result ? moveInfo : <Spinner />} </div>;
 };
 
 export default Moves;

@@ -16,6 +16,16 @@ $card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
   border-radius: 40px;
   margin: 25px;
   box-shadow: $card-shadow;
+  position: relative;
+  top: 0;
+  cursor: pointer;
+
+  // hover off
+  transition: all 0.4s ease;
+
+  &:hover {
+    transform: scale(1.05, 1.05);
+  }
 }
 
 .card ul {
@@ -31,7 +41,7 @@ $card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
 
 .sprite {
   width: 160px;
-  height: 160px;
+  height: auto;
 }
 
 .type-container {

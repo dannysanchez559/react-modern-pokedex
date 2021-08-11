@@ -24,6 +24,7 @@ $modal-padding: 25px;
   left: 50%;
   transform: translate(-50%, -15%);
   z-index: 100;
+  outline: none;
 }
 
 .backgroundModalWrapper {
@@ -117,7 +118,7 @@ $modal-padding: 25px;
 }
 
 // tab box
-.MuiBox-root { 
+.MuiBox-root {
   margin: 0 auto !important;
 }
 
@@ -174,7 +175,6 @@ $modal-padding: 25px;
   margin: 35px 0px;
   display: flex;
   flex-direction: column;
-  
 }
 
 .moveDescription {
