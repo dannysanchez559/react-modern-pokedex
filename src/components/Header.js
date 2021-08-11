@@ -14,13 +14,13 @@ function Header(props) {
 
   return (
     <div className="header">
-      <img src="logo.svg" alt="pokeball" className="logo" />
+      <img src="pocketDexLogo.svg" alt="pokeball" className="logo" />
       <nav>
         <ul className="nav-ul">
           <li className="nav-li">
             <a href="/" className="nav-link">
               <img
-                src="allPokemonLogo.png"
+                src="allPokemonLogo.svg"
                 alt="pokeball logo"
                 className="nav-icon"
               />
@@ -30,7 +30,7 @@ function Header(props) {
           <li className="nav-li">
             <a href="/" className="nav-link">
               <img
-                src="topPicksLogo.png"
+                src="topPicksLogo.svg"
                 alt="person logo"
                 className="nav-icon"
               />
@@ -40,7 +40,7 @@ function Header(props) {
 
           <li className="nav-li">
             <a href="/" className="nav-link">
-              <img src="gamesLogo.png" alt="game logo" className="nav-icon" />
+              <img src="gamesLogo.svg" alt="game logo" className="nav-icon" />
               Games
             </a>
           </li>
@@ -57,7 +57,7 @@ function Header(props) {
           />
           <button className="searchBarButton" onClick={() => onSubmit()}>
             <img
-              src="searchBarLogo.png"
+              src="searchBarLogo.svg"
               alt="searchbar magnifier logo"
               className="search-icon"
             />
