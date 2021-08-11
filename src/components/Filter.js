@@ -81,16 +81,16 @@ function Filter({
         styles={dropDownStyles}
       />
       <button onClick={() => setSortType(SortTypes.ABC)}>
-        A-Z <img src="toggle.png" alt="toggle icon" />
+        A-Z <img src="toggle.svg" alt="toggle icon" />
       </button>
       <button onClick={() => setSortType(SortTypes.HEIGHT)}>
-        HEIGHT <img src="toggle.png" alt="toggle icon" />
+        HEIGHT <img src="toggle.svg" alt="toggle icon" />
       </button>
       <button onClick={() => setSortType(SortTypes.WEIGHT)}>
-        WEIGHT <img src="toggle.png" alt="toggle icon" />
+        WEIGHT <img src="toggle.svg" alt="toggle icon" />
       </button>
       <button onClick={() => setSortType(SortTypes.DEX_NO)}>
-        DEX NO. <img src="toggle.png" alt="toggle icon" />
+        DEX NO. <img src="toggle.svg" alt="toggle icon" />
       </button>
     </div>
   );
