@@ -245,3 +245,52 @@ $modal-padding: 25px;
 .aboutSpecsLabel {
   margin-right: 15px;
 }
+
+
+// ***** RESPONSIVE STYLING *****
+
+// ipad pro landscape
+@media screen and (max-width: 1112px) {
+  // move modal down from top
+  .modalWindow {
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+  }
+}
+
+// ipad pro portrait
+@media screen and (max-width: 834px){
+  // resize modal 
+  .backgroundModalWrapper {
+    width: 725px;
+    height: 450px;
+  }
+
+  .modalWindow {
+    width: 725px;
+    height: 450px;
+  }
+
+  .modalDetailsTop {
+    height: 200px;
+  }
+
+  .spriteWrapper img {
+    height: 200px;
+    width: 200px;
+}
+
+  .modalDetailsBottom {
+    height: 375px;
+  }
+
+  .aboutWrapper, .graph-container, .spriteContainer, .moves-panel {
+    height: 200px;
+    margin-top: 10px;
+  }
+
+  .movesGraphContainer {
+    margin-top: 10px;
+  }
+}
