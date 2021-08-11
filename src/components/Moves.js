@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchMove, fetchPokemon } from "../util/fetchPokemonData";
 import { Bar } from "react-chartjs-2";
+import Spinner from "./Spinner";
 import {
   Bug,
   Dark,
@@ -43,7 +44,7 @@ const Moves = ({ dexNo }) => {
     const pokemon = await fetchPokemon(id);
     try {
       const moves = pokemon.moves;
-      const someMoves = await getMoveset(moves, 4);
+      const someMoves = await getMoveset(moves, 3);
 
       setMoveSet(someMoves);
     } catch (error) {
@@ -92,15 +93,24 @@ const Moves = ({ dexNo }) => {
     pp = pp ? pp : 0;
     return [accuracy, power, pp];
   };
-
+  let result;
   const moveInfo = moveSet.map((moveObj) => {
     const { accuracy, name, power, pp, flavor_text_entries, type } = moveObj;
     const typeName = type.name;
     // returns [accuracy, power, pp] with 0s intead of null values.
-    const result = movePower(accuracy, power, pp);
+    result = movePower(accuracy, power, pp);
 
     //get movetype icon
     const typeIcon = imageUrls[`${typeName}`];
+
+    // process move name to camel case - Capitalize each word
+    const camelize = (str) => {
+      return str
+        .replace(/([A-Z]|\b\w)/g, function (word, index) {
+          return index === 0 ? word.toLowerCase() : word.toUpperCase();
+        })
+        .replace(/\s+/g, "");
+    };
 
     return (
       <React.Fragment key={name}>
@@ -108,7 +118,7 @@ const Moves = ({ dexNo }) => {
           <div className="graphTitleContent">
             <div className="iconTitleContainer">
               <img src={`${typeIcon}`} alt="type icon" />
-              <p> {`${name.toUpperCase()}`} </p>{" "}
+              <p> {`${camelize(name)}`} </p>{" "}
             </div>
             <p className="moveDescription">
               {" "}
@@ -184,7 +194,7 @@ const Moves = ({ dexNo }) => {
       </React.Fragment>
     );
   });
-  return <div className="moves-panel"> {moveInfo} </div>;
+  return <div className="moves-panel">{result ? moveInfo : <Spinner />} </div>;
 };
 
 export default Moves;

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
@@ -26,6 +26,7 @@ export default function BasicTabs({
   moveSet,
   stats,
   types,
+  pokemonColor
 }) {
   // State
   const [value, setValue] = useState(0);
@@ -35,15 +36,19 @@ export default function BasicTabs({
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Box component="div" sx={{ width: "100%" }}>
+      <Box>
         <Tabs
+          TabIndicatorProps={{
+            style: { background: pokemonColor }
+          }}
           value={value}
           onChange={handleChange}
           aria-label="pokemon-modal-tabs"
           variant="fullWidth">
           {/* TAB TITLES */}
-          <Tab label="About" {...a11yProps(0)} />
+          <Tab
+            label="About" {...a11yProps(0)} />
           <Tab label="Base Stats" {...a11yProps(1)} />
           <Tab label="Evolutions" {...a11yProps(2)} />
           <Tab label="Moves" {...a11yProps(3)} />
@@ -68,7 +73,10 @@ export default function BasicTabs({
         </TabPanel>
         {/****** EVOLUTION TAB ******/}
         <TabPanel value={value} index={2}>
-          <EvolutionTab evolutionChainUrl={modalData["evolution_chain"]?.url} />
+          <EvolutionTab
+            evolutionChainUrl={modalData["evolution_chain"]?.url}
+            pokemonColor={pokemonColor}
+          />
         </TabPanel>
 
         {/****** MOVES TAB ******/}

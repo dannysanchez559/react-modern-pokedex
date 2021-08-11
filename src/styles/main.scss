@@ -15,7 +15,6 @@ $lite: #ccc;
 html,
 body {
   background-color: $purple1;
-
 }
 
 .pokeApp {
@@ -23,13 +22,29 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: url('../img/wpkb.svg');
+}
+
+.backgroundContainer {
+  position: absolute;
+  // overflow: hidden;
+  width: 100%;
+  height: 650px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background-image: url("../img/wpkb 2.svg");
   background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 600px;
+  opacity: 0.25;
 }
 
 .pokeList {
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 
 @import "components/header";
@@ -37,4 +52,4 @@ body {
 @import "components/card";
 @import "components/modal";
 @import "typography";
-@import "components/loader";
+@import "components/ball_spin";

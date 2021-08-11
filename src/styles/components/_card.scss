@@ -22,36 +22,10 @@ $card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
 
   // hover off
   transition: all 0.4s ease;
-  top: 5px;
 
   &:hover {
-    transition: all 0.4s ease;
-    top: -5px;
-    box-shadow: 0 12px 15px 0 rgba(75, 75, 75, 0.6),
-      0 6px 20px 0 rgba(75, 75, 75, 0.6);
-    text-align: center;
+    transform: scale(1.05, 1.05);
   }
-}
-
-.card:hover .sprite {
-  transition: all 0.4s ease-out;
-  width: 190px;
-  height: auto;
-}
-
-.card-name {
-  //hover off
-  transition: all 0.4s ease-out;
-}
-
-.card:hover .card-name {
-  transition: all 0.4s ease-out;
-  letter-spacing: 4px;
-}
-
-.card:hover .typeTags {
-  transition: all 0.3s ease-out;
-  opacity: 0;
 }
 
 .card ul {
@@ -68,16 +42,14 @@ $card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
 .sprite {
   width: 160px;
   height: auto;
+}
 
-  //hover off
-  transition: all 0.4s ease-out;
+.type-container {
+  margin: 10px;
 }
 
 .type-tag {
   border-radius: 5px;
-  padding: 3px 15px;
-  margin: 4px;
-
-  //hover off
-  transition: all 0.3s ease-out;
+  padding: 3px 10px;
+  margin: 0 8px;
 }

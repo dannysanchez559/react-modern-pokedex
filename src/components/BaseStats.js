@@ -1,17 +1,19 @@
 import React from "react";
 import getTypeColors from "../util/getTypeColor";
 import { Bar } from "react-chartjs-2";
-
+import Spinner from './Spinner';
 // Gets stat values for graph
 const BaseStats = ({ stats, types }) => {
-  const getBaseStats = stats.map((index) => index.base_stat);
-  const baseStatsData = getBaseStats.map((item) => item);
+  // map over stats objects array to get array of numbers(Base stats) only
+  const baseStatsArray = stats.map((index) => index.base_stat);
 
   const typeColor = types[0]["type"].name;
 
   return (
     <>
       <div className="graph-container">
+      {/* show bar graph or spinner by checking for baseStatsArray */}
+        {baseStatsArray?
         <Bar
           placeholder={"hi"}
           data={{
@@ -25,7 +27,7 @@ const BaseStats = ({ stats, types }) => {
             ],
             datasets: [
               {
-                data: [...baseStatsData],
+                data: [...baseStatsArray],
                 backgroundColor: [getTypeColors[typeColor]],
                 hoverBackgroundColor: [getTypeColors[typeColor]],
                 borderRadius: 50,
@@ -81,6 +83,8 @@ const BaseStats = ({ stats, types }) => {
             },
           }}
         />
+        : <Spinner/>
+         }
       </div>
     </>
   );

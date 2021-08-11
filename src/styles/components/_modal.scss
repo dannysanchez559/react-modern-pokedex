@@ -1,32 +1,36 @@
 $overlay: rgba(0, 0, 0, 0.15) !important;
 $md-bg: #f9cf30;
+$modal-width: 900px;
+$modal-height: 550px;
+$modal-padding: 25px;
 
 /* modal styling */
 .ReactModal__Overlay {
-  z-index: 1;
+  z-index: 100;
   background: $overlay;
 }
 
 .modalWindow {
   z-index: 100;
   box-sizing: border-box;
-  width: 975px;
-  height: 650px;
+  width: $modal-width;
+  height: $modal-height;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   border-radius: 25px;
   position: absolute;
-  top: 50%;
+  top: 15%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -15%);
+  z-index: 100;
   outline: none;
 }
 
 .backgroundModalWrapper {
   z-index: 1;
-  width: 975px;
-  height: 650px;
+  width: $modal-width;
+  height: $modal-height;
   border-radius: 25px;
   background: url("../../img/pokeballBG.svg") no-repeat;
   background-position: 98% 2%;
@@ -34,17 +38,18 @@ $md-bg: #f9cf30;
 
 .modalDetailsTop {
   display: flex;
-  padding: 20px;
+  height: 250px;
+  padding: $modal-padding;
   justify-content: space-between;
 }
 
 .spriteWrapper {
-  margin: -25px 0;
+  margin: -15px;
 }
 
 .spriteWrapper img {
-  height: 300px;
-  width: auto;
+  height: 250px;
+  width: 250px;
 }
 
 .modalCloseButton {
@@ -66,12 +71,13 @@ $md-bg: #f9cf30;
 
 .modalDetailsBottom {
   box-sizing: border-box;
-  height: 60%;
+  height: 400px;
   width: 100%;
   background-color: white;
   border-radius: 25px;
   position: absolute;
   box-shadow: 0px 10px 15px #555;
+  padding: 10px $modal-padding 30px $modal-padding;
 }
 
 // contains pokemon name and speaker
@@ -111,20 +117,35 @@ $md-bg: #f9cf30;
   margin: 10px;
 }
 
-// evolution panel
+// tab box
+.MuiBox-root {
+  margin: 0 auto !important;
+}
 
+// tab list bar
+.MuiTabs-scroller {
+  margin-bottom: 10px !important;
+  margin-top: 0 !important;
+}
+
+// tab indicator
+.MuiTabs-indicator {
+  height: 4px !important;
+}
+
+// evolution panel
 .spriteContainer {
   display: flex;
-  margin: 25px auto;
+  margin: 25px;
   align-content: center;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .evolution-sprites {
   width: 175px;
   height: 175px;
-  border: 1px dashed green;
+  margin: 0 auto;
 }
 
 .evolutionImg {
@@ -135,9 +156,12 @@ $md-bg: #f9cf30;
 // moves panel
 .moves-panel {
   display: flex;
+  box-sizing: border-box;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .moves-panel ul {
@@ -146,22 +170,19 @@ $md-bg: #f9cf30;
 }
 
 .movesGraphContainer {
-  width: 25%;
+  width: 30%;
   height: 200px;
   margin: 35px 0px;
-}
-
-.movesGraphContainer:first-child {
-  margin-left: 80px;
-}
-
-.movesGraphContainer:last-child {
-  margin-right: 80px;
+  display: flex;
+  flex-direction: column;
 }
 
 .moveDescription {
-  margin-bottom: 8px;
-  color: #818181;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: #5c5c5c;
+  width: 100%;
 }
 
 .graphTitleContent {

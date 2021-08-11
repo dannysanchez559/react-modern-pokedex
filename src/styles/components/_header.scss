@@ -1,5 +1,5 @@
 $btn-height: 40px;
-$nav-ele-padding: 20px;
+$nav-ele-padding: 5px;
 
 .header {
   display: flex;
@@ -8,11 +8,13 @@ $nav-ele-padding: 20px;
   padding: 0 50px 0 50px;
   width: auto;
   margin-bottom: 20px;
+  z-index: 2;
 }
 
 .logo {
   height: 15%;
   width: 15%;
+  margin-bottom: 20px;
 }
 /* contains nav-ul and searchBarContainer*/
 nav {
@@ -25,6 +27,7 @@ nav {
 
 /* contains all the nav links */
 .nav-ul {
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -32,43 +35,74 @@ nav {
   flex-wrap: wrap;
   background-color: rgb(255, 250, 250);
   border-radius: 20px;
-  padding: $nav-ele-padding;
-  width: 40%;
-  height: 70px;
+  padding: 20px 35px;
+  width: 520px;
+  height: 75px;
   list-style: none;
 }
 
 .nav-link {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
   text-decoration: none;
+  padding-bottom: 21px;
+  border-bottom: 4px solid white;
+  border-radius: 2px;
+  transition: all 0.2s ease-in;
+}
+
+.nav-link:hover {
+  border-bottom: 4px solid #382e76;
+  border-radius: 2px;
+  align-items: center;
+  z-index: 5;
+  transition: all 0.2s ease-in;
 }
 
 .nav-icon {
   padding-right: $nav-ele-padding;
-  height: auto;
-  width: auto;
+  height: 30px;
+  width: 35px;
 }
 
 .searchBarContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
+  align-content: center;
   flex-wrap: wrap;
   justify-content: space-between;
   border-radius: 20px;
   background-color: white;
-  width: 350px;
+  width: auto;
   height: 70px;
-  // padding: $nav-ele-padding;
+  padding: 18px 20px;
 }
 
 .searchbar-input {
   border-radius: 20px;
   border: none;
-  width: auto;
   padding-left: $nav-ele-padding;
+}
+
+// target search bar and add transition
+input[type="text"] {
+  box-sizing: border-box;
+  width: 225px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  outline: none;
+}
+
+// increase width on focus
+input[type="text"]:focus {
+  width: 275px;
+}
+
+.searchBarContainer img {
+  width: 40px;
+  height: 40px;
 }
 
 /* remove default outline when cursor is in input field */
@@ -79,7 +113,16 @@ nav {
 .searchBarButton {
   height: $btn-height;
   width: auto;
-  // border-radius: 20px;
   background-color: white;
   border: none;
+  -webkit-transition: all 0.075s ease-in-out;
+  transition: all 0.075s ease-in-out;
+}
+
+.searchBarButton:hover {
+  cursor: pointer;
+}
+
+.searchBarButton:active {
+  transform: scale(0.9, 0.9);
 }

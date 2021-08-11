@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchPokemon } from "../util/fetchPokemonData";
 import evolutionArrowImg from "../img/evolution-arrow.png";
 
-const EvolutionTab = ({ evolutionChainUrl }) => {
+const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
   const [evolutionNamesObjects, setEvolutionNamesObjects] = useState([]);
   const [evolutionNameStrings, setEvolutionNameStrings] = useState([]);
   const [spriteUrls, setSpriteUrls] = useState([]);
@@ -114,6 +114,8 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
     );
   };
 
+
+
   // return spritesList with evolution arrows added in between each image
   const spritesWithEvolutionArrows = () => {
     const organizedArray = [];
@@ -128,7 +130,21 @@ const EvolutionTab = ({ evolutionChainUrl }) => {
     return organizedArray;
   };
 
-  return <div className="spriteContainer">{spritesWithEvolutionArrows()}</div>;
+  return (
+    <>
+      <div
+        style={{
+          // custom scrollbar (firefox only)
+          scrollbarColor: `${pokemonColor} rgba(235, 232, 232, 0.4)`,
+          overflowX: "auto"
+          // ** unknown solution for safari and chrome **
+        }}
+        className={"spriteContainer"}
+
+      > {spritesWithEvolutionArrows()}</div>
+
+    </>
+  )
 };
 
 export default EvolutionTab;
