@@ -15,7 +15,6 @@ $lite: #ccc;
 html,
 body {
   background-color: $purple1;
-
 }
 
 .pokeApp {
@@ -23,7 +22,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
 }
 
 .backgroundContainer {
@@ -36,7 +34,7 @@ body {
   right: 0;
   bottom: 0;
   z-index: 0;
-  background-image: url('../img/wpkb 2.svg');
+  background-image: url("../img/wpkb 2.svg");
   background-repeat: no-repeat;
   background-position: top right;
   background-size: 600px;

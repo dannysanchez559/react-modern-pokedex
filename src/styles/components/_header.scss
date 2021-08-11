@@ -47,15 +47,17 @@ nav {
   align-items: center;
   text-decoration: none;
   padding-bottom: 21px;
-  border-bottom: 4px solid transparent;
+  border-bottom: 4px solid white;
   border-radius: 2px;
+  transition: all 0.2s ease-in;
 }
 
 .nav-link:hover {
-  border-bottom: 4px solid #382E76;
+  border-bottom: 4px solid #382e76;
   border-radius: 2px;
   align-items: center;
   z-index: 5;
+  transition: all 0.2s ease-in;
 }
 
 .nav-icon {
@@ -73,7 +75,7 @@ nav {
   justify-content: space-between;
   border-radius: 20px;
   background-color: white;
-  width: 350px;
+  width: auto;
   height: 70px;
   padding: 18px 20px;
 }
@@ -81,8 +83,21 @@ nav {
 .searchbar-input {
   border-radius: 20px;
   border: none;
-  width: auto;
   padding-left: $nav-ele-padding;
+}
+
+// target search bar and add transition
+input[type="text"] {
+  box-sizing: border-box;
+  width: 225px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  outline: none;
+}
+
+// increase width on focus
+input[type="text"]:focus {
+  width: 275px;
 }
 
 .searchBarContainer img {
@@ -100,9 +115,14 @@ nav {
   width: auto;
   background-color: white;
   border: none;
+  -webkit-transition: all 0.075s ease-in-out;
+  transition: all 0.075s ease-in-out;
 }
 
 .searchBarButton:hover {
   cursor: pointer;
 }
 
+.searchBarButton:active {
+  transform: scale(0.9, 0.9);
+}
