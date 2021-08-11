@@ -126,3 +126,117 @@ input[type="text"]:focus {
 .searchBarButton:active {
   transform: scale(0.9, 0.9);
 }
+
+// responsive header
+@media screen and (max-width: 1015px) {
+  nav {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .nav-ul {
+    margin-bottom: 25px;
+  }
+
+  .nav-link {
+    padding-bottom: 8px;
+    transition: none;
+  }
+
+  .searchBarContainer {
+    width: 520px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .header {
+    align-items: center;
+  }
+
+  .nav-ul {
+    width: 400px;
+    height: 55px;
+    padding: 13px 35px;
+  }
+
+  .nav-link {
+    padding-bottom: 13px;
+    padding-top: 5px;
+  }
+
+  .nav-icon {
+    height: 20px;
+    width: auto;
+  }
+
+  .searchBarContainer {
+    width: 400px;
+    height: 55px;
+  }
+
+  .logo {
+    margin-left: -5px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .nav-ul {
+    width: 325px;
+    height: 45px;
+    margin-bottom: 15px;
+    padding: 13px 20px;
+  }
+
+  .nav-link {
+    padding-bottom: 8px;
+    padding-top: 0px;
+  }
+
+  .searchBarContainer {
+    width: 325px;
+    height: 45px;
+    margin-bottom: -12px;
+    flex-wrap: nowrap;
+  }
+
+  .logo {
+    margin-top: 15px;
+  }
+
+  .searchBarButton {
+    transition: none;
+  }
+
+  .searchBarContainer img {
+    width: 30px;
+    height: 30px;
+  }
+  .header {
+    padding: 0 20px 0 20px;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .logo {
+    height: auto;
+    width: 250px;
+  }
+
+  .nav-ul {
+    width: 280px;
+    padding: 15px 15px;
+  }
+
+  .nav-icon {
+    height: 15px;
+    width: auto;
+  }
+
+  .searchBarContainer {
+    width: 280px;
+    height: 45px;
+    margin-bottom: -12px;
+    padding: 18px 10px;
+  }
+}

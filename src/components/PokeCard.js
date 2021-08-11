@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal as CustomModal } from "./Modal";
 import Modal from "react-modal";
 import { fetchSpecies } from "../util/fetchPokemonData";
-import { useSpring, animated, to } from "react-spring";
+import { useSpring, animated } from "react-spring";
 
 const PokeCard = ({
   name,

@@ -53,3 +53,20 @@ $card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
   padding: 3px 10px;
   margin: 0 8px;
 }
+
+// responsive cards
+@media screen and (max-width: 833px) {
+  .card {
+    width: 310px;
+    height: 250px;
+    margin: 15px 10px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .card {
+    width: 325px;
+    height: 250px;
+    margin: 15px 10px;
+  }
+}
