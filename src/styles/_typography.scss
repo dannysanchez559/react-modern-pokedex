@@ -127,3 +127,21 @@ a {
     font-size: 0.9rem;
   }
 }
+
+@media screen and (max-width: 525px) {
+  .nav-link {
+    font-size: 0.75rem;
+  }
+
+  .searchbar-input {
+    font-size: 0.9rem;
+  }
+
+  .filterBar {
+    font-size: 0.85rem;
+
+    button {
+      font-size: 0.85rem;
+    }
+  }
+}
