@@ -15,7 +15,6 @@ const PokeList = ({
   allPokemons,
   getMorePokemons
 }) => {
-  const { types, height, weight } = fetchedData[0];
 
   const [selectTypeOption, setSelectTypeOption] = useState("");
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
@@ -145,7 +144,7 @@ const PokeList = ({
   const generateSortedCards = (pokemonList) => {
 
     return pokemonList.map((pokeObj) => {
-      const { id, name, sprites, types, stats, abilities } = pokeObj;
+      const { id, name, sprites, types, stats, abilities, height, weight } = pokeObj;
       // make type tags for card
       const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
@@ -182,8 +181,10 @@ const PokeList = ({
 
   return (
     <div className="pokeList">
-      {!userDidSearch ? (
-      (!allPokemons.length && !filteredPokemons.length) ? null :
+      {!userDidSearch
+      ?
+      ((!allPokemons.length && !filteredPokemons.length)
+        ? null :
         (<>
           <Filter
             selectTypeOption={selectTypeOption}
@@ -194,7 +195,6 @@ const PokeList = ({
             setAbilityOptions={setAbilityOptions}
             setSortType={setSortTypeFlags}
             setFilterType={setFilterType}
-            types={types}
           />
           {/* end Filter */}
           <InfiniteScroll
@@ -215,7 +215,8 @@ const PokeList = ({
         </>)   // end react fragment
       ) : (
         // show single user search
-        <Searched fetchedData={fetchedData} capitalizeType={capitalizeType} />
+        fetchedData[0] &&
+        <Searched fetchedData={fetchedData} capitalizeType={capitalizeType} userDidSearch={userDidSearch} />
       )}
     </div>
   );

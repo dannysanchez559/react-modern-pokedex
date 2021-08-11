@@ -23,14 +23,13 @@ function PokeApp() {
   // search bar onChange function for searching pokemon & conditional rendering
   const handleNameSearch = (e) => {
     const searchBarValue = e.target.value;
-    setUserDidSearch(true);
     setPokemonName(searchBarValue);
   };
 
-  const getSearchBarDataApi = async () => {
+  const getSearchBarDataApi = async (name) => {
     try {
       // call fetch api function
-      const pokemonData = await fetchPokemon(pokemonName);
+      const pokemonData = await fetchPokemon(name);
       if (!pokemonData.length) {
         setFetchedData([pokemonData]);
       } else {
@@ -53,11 +52,10 @@ function PokeApp() {
       Promise.all(pokemonPromises).then((data) => {
         // make copy previous state, add more pokemon objects, then set state with more data
          setAllPokemon([...allPokemons, ...data]);
-         setFetchedData([...allPokemons, ...data]);
+         //setFetchedData([...allPokemons, ...data]);
       }).then(setIsLoading(false));
 
      setQueryParams({offset: queryParams.offset + 21, limit: queryParams.limit});
-     setIsLoading(false);
    } catch(error) {
      console.error(error);
    }
@@ -72,14 +70,16 @@ function PokeApp() {
     <div className="pokeApp">
       <div className="backgroundContainer"></div>
       <Header
+        pokemonName={pokemonName}
         handleNameSearch={handleNameSearch}
         getSearchBarDataApi={getSearchBarDataApi}
         setUserDidSearch={setUserDidSearch}
         setPokemonName={setPokemonName}
       />
       {/* end header */}
-      {isLoading === false && fetchedData.length> 0 ? (
+      {isLoading === false ? (
         <PokeList
+
           getMorePokemons={getMorePokemons}
           fetchedData={fetchedData}
           allPokemons={allPokemons}
