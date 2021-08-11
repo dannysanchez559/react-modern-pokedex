@@ -90,7 +90,8 @@ function Filter({
         WEIGHT <img src="toggle.svg" alt="toggle icon" />
       </button>
       <button onClick={() => setSortType(SortTypes.DEX_NO)}>
-        DEX NO. <img src="toggle.svg" alt="toggle icon" />
+        DEX NO.
+        <img src="toggle.svg" alt="toggle icon" />
       </button>
     </div>
   );

@@ -32,3 +32,32 @@ $lite-border: 1px solid #ccc;
   width: 150px;
   padding: 0 8px 0 8px;
 }
+
+// responsive filter
+
+// medium-small screens
+@media screen and (max-width: 1015px) {
+  .filterBar {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0px;
+    width: 520;
+  }
+
+  .filterBar button {
+    width: 120px;
+    justify-content: space-between;
+    margin: 8px 8px;
+    padding: 6px 5px 6px 12px;
+  }
+
+  // .filterBar button img {
+  //   justify-self: flex-end;
+  // }
+
+  .filterDropDown {
+    width: 135px;
+    padding: 0 8px 0 8px;
+    margin: 8px 0px;
+  }
+}

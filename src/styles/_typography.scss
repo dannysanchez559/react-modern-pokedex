@@ -109,7 +109,7 @@ a {
 }
 // tab slider bar
 .MuiTab-root {
-  font-family: $raleway!important;
+  font-family: $raleway !important;
   font-size: $big !important;
   font-weight: 900;
   text-transform: none !important;
@@ -121,4 +121,9 @@ a {
   font-weight: 900 !important;
 }
 
-
+// responsive typography
+@media screen and (max-width: 650px) {
+  .nav-link {
+    font-size: 0.9rem;
+  }
+}
