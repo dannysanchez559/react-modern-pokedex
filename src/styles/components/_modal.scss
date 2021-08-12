@@ -245,3 +245,184 @@ $modal-padding: 25px;
 .aboutSpecsLabel {
   margin-right: 15px;
 }
+
+
+// ***** RESPONSIVE STYLING *****
+
+// ipad pro landscape
+@media screen and (max-width: 1112px) {
+  // move modal down from top
+  .modalWindow {
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+  }
+}
+
+// ipad pro portrait
+@media screen and (max-width: 834px){
+  // resize modal and some of its elements
+  .backgroundModalWrapper {
+    width: 725px;
+    height: 450px;
+  }
+
+  .modalWindow {
+    width: 725px;
+    height: 450px;
+  }
+
+  .modalDetailsTop {
+    height: 200px;
+  }
+
+  .spriteWrapper img {
+    height: 200px;
+    width: 200px;
+}
+
+  .modalDetailsBottom {
+    height: 375px;
+  }
+
+  .aboutWrapper, .graph-container, .spriteContainer, .moves-panel {
+    height: 200px;
+    margin-top: 10px;
+  }
+
+  .movesGraphContainer {
+    margin-top: 10px;
+  }
+}
+
+// up to iphone plus size screen widths
+@media screen and (max-width: 414px) {
+  // resize modal and some of its elements
+  .backgroundModalWrapper {
+    width: 350px;
+    height: 620px;
+    background-size: 200px auto;
+  }
+
+  // reposition modalWindow to be centered
+  .modalWindow {
+    width: 350px;
+    min-height: 650px;
+    margin: 0 auto;
+    top: 15%;
+    left: 20%;
+    transform: translate(-20%, -15%);
+  }
+
+  .modalDetailsBottom {
+    min-height: 475px;
+    max-height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px 30px 15px;
+}
+
+.MuiTab-root {
+  padding: 0 5px !important;
+}
+
+.aboutWrapper, .graph-container, .spriteContainer, .moves-panel {
+  display: flex;
+  box-sizing: content-box;
+  flex-direction: column;
+  min-height: 225px;
+  width: auto;
+  padding-bottom: 25px;
+  
+}
+
+.aboutWrapper {
+  overflow-y: auto;
+  margin-top: 10px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.aboutLeftContainer {
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.aboutRightContainer {
+  width: 90%;
+  min-height: 100px;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+
+.aboutRightContainer * {
+  margin: 3px 5px;
+}
+
+.graph-container {
+  margin-top: 20px;
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+.spriteContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 225px;
+  margin-top: 20px;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+// rotate evolution arrow 90 degree for vertical mobile scrolling
+.evolutionImg {
+  margin: 20px;
+  rotate: 90deg;
+}
+
+.moves-panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-top: 20px;
+}
+
+.movesGraphContainer {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+}
+
+// iphone screen width
+@media screen and (max-width: 375px) {
+  .backgroundModalWrapper {
+    min-height: 550px;
+  }
+  .modalWindow {
+    min-height: 550px;
+    top: 7%;
+    left: 9%;
+    transform: translate(-9%, -7%);
+  }
+
+  .modalDetailsBottom {
+    min-height: 425px;
+  }
+
+  .spriteContainer, .moves-panel {
+    padding-bottom: 10px;
+  }
+  
+}
