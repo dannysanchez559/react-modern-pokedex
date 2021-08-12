@@ -1,14 +1,24 @@
 import React from "react";
 
-function Header(props) {
+const Header=({
+  handleNameSearch,
+  setUserDidSearch,
+  getSearchBarDataApi,
+  pokemonName
+})=> {
+
   const onSubmit = () => {
-    // invoke api search function in pokeapp
-    props.setUserDidSearch(true);
-    props.getSearchBarDataApi();
+    if(pokemonName.length>=3){
+       // invoke api search function in pokeapp
+    setUserDidSearch(true);
+    getSearchBarDataApi(pokemonName);
+    }
+
   };
   const enterSubmit = (e) => {
-    if (e.key === "Enter") {
-      props.getSearchBarDataApi();
+    if (e.key === "Enter" && pokemonName.length>=3) {
+      setUserDidSearch(true);
+      getSearchBarDataApi(pokemonName);
     }
   };
 
@@ -51,7 +61,7 @@ function Header(props) {
             id="input"
             type="text"
             placeholder="Enter Pokemon Name..."
-            onChange={props.handleNameSearch}
+            onChange={handleNameSearch}
             onKeyPress={enterSubmit}
             className="searchbar-input"
           />
