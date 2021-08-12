@@ -122,3 +122,25 @@ a {
 }
 
 
+// ***** RESPONSIVE DESIGN *****
+
+// up to iphone plus size screen widths
+@media screen and (max-width: 414px) {
+
+  // adjust font sizes for mobile
+
+  .modalPokeName {
+    font-size: 1.5rem;
+  }
+
+// tab slider bar
+.MuiTab-root {
+  font-size: .9rem !important;
+  font-weight: 900;
+}
+
+.modalDexNo {
+  font-size: 1.6rem;
+}
+
+}
