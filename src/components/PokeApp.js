@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
 import PokeList from "./PokeList";
 import Header from "./Header";
-import Spinner from './Spinner';
-import {
-  fetchPokemon,
-  fetchPokemons
-} from "../util/fetchPokemonData";
+import Spinner from "./Spinner";
+import { fetchPokemon, fetchPokemons } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 import "../styles/main.scss";
 
-
-function PokeApp() {
+function PokeApp () {
   // Store search bar input value: could be dex number or pokemon name
   const [pokemonName, setPokemonName] = useState("");
   // fetchedData is a single Pokemon object the user searched for
   const [fetchedData, setFetchedData] = useState([]);
   const [allPokemons, setAllPokemon] = useState([]);
-  const [queryParams, setQueryParams]=useState({offset: 0, limit: 20});
+  const [queryParams, setQueryParams] = useState({ offset: 0, limit: 20 });
   // Hook below is used for conditional rendering 1 Pokemon card user searched, and search on keypress
   const [userDidSearch, setUserDidSearch] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -40,35 +36,39 @@ function PokeApp() {
     }
   };
 
-  const getMorePokemons = async()=>{
-   try {
-     const results =  await fetchPokemons(queryParams);
+  const getMorePokemons = async () => {
+    try {
+      const results = await fetchPokemons(queryParams);
 
-      const pokemonPromises = results.map(async(obj) => {
+      const pokemonPromises = results.map(async (obj) => {
         const name = obj["name"];
         const pokemonData = await fetchPokemon(name);
         return pokemonData;
       });
-      Promise.all(pokemonPromises).then((data) => {
-        // make copy previous state, add more pokemon objects, then set state with more data
-         setAllPokemon([...allPokemons, ...data]);
-         //setFetchedData([...allPokemons, ...data]);
-      }).then(setIsLoading(false));
+      Promise.all(pokemonPromises)
+        .then((data) => {
+          // make copy previous state, add more pokemon objects, then set state with more data
+          setAllPokemon([...allPokemons, ...data]);
+        })
+        .then(setIsLoading(false));
 
-     setQueryParams({offset: queryParams.offset + 21, limit: queryParams.limit});
-   } catch(error) {
-     console.error(error);
-   }
-  }
+      setQueryParams({
+        offset: queryParams.offset + 21,
+        limit: queryParams.limit,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-   useEffect(()=>{
+  useEffect(() => {
     getMorePokemons();
-   // eslint-disable-next-line
-   },[]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
-    <div className="pokeApp">
-      <div className="backgroundContainer"></div>
+    <div className='pokeApp'>
+      <div className='backgroundContainer'></div>
       <Header
         pokemonName={pokemonName}
         handleNameSearch={handleNameSearch}
@@ -79,16 +79,15 @@ function PokeApp() {
       {/* end header */}
       {isLoading === false ? (
         <PokeList
-
           getMorePokemons={getMorePokemons}
           fetchedData={fetchedData}
           allPokemons={allPokemons}
           userDidSearch={userDidSearch}
           setUserDidSearch={setUserDidSearch}
         />
-      ) :
-        <Spinner/>
-      }
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 }
