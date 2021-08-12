@@ -1,3 +1,4 @@
+// used for dynamic background colors for PokeCards/modal content
 const getTypeColors = {
   normal: "#A8A878",
   fire: "#F08030",

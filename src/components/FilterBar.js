@@ -6,7 +6,7 @@ import SortTypes from "../util/SortTypes";
 import FilterTypes from "../util/FilterTypes";
 import dropDownStyles from "../styles/dropDownStyles";
 
-function Filter({
+const FilterBar = ({
   selectTypeOption,
   setSelectTypeOption,
   selectAbilityOptions,
@@ -15,7 +15,7 @@ function Filter({
   setAbilityOptions,
   setSortType,
   setFilterType,
-}) {
+}) => {
   // handler for Type drop-down
   const handleTypeChange = (selectTypeOption) => {
     setFilterType(FilterTypes.TYPE);
@@ -95,6 +95,6 @@ function Filter({
       </button>
     </div>
   );
-}
+};
 
-export default Filter;
+export default FilterBar;

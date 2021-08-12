@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from "react";
 import PokeCard from "./PokeCard";
-import Filter from "./Filter";
+import FilterBar from "./FilterBar";
 import getTypeColors from "../util/getTypeColor";
 import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
 import Searched from "./Searched";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Spinner from './Spinner';
+import Spinner from "./Spinner";
 
 const PokeList = ({
   userDidSearch,
   setUserDidSearch,
-  fetchedData,
+  singlePokemon,
   allPokemons,
-  getMorePokemons
+  getMorePokemons,
 }) => {
-
   const [selectTypeOption, setSelectTypeOption] = useState("");
   const [selectAbilityOption, setSelectAbilityOption] = useState("");
   // abilityOptions: array of sorted ability names for drop-down
   const [abilityOptions, setAbilityOptions] = useState([]);
   // Set sort type; by default, sort by Dex number
   const [sortType, setSortType] = useState(SortTypes.DEX_NO);
-  const [filterType, setFilterType] = useState(null);
-  // stores sorted/filtered Pokemon array returned by sortAndFilter() in useEffect
-  const [filteredPokemons, setFilteredPokemons] = useState([]);
+  const [FilterBarType, setFilterBarType] = useState(null);
+  // stores sorted/FilterBared Pokemon array returned by sortAndFilter() in useEffect
+  const [FilterBaredPokemons, setFilterBaredPokemons] = useState([]);
   const [userDidSort, setUserDidSort] = useState(false);
   // Boolean for checking if user wants reverse sorted results
   const [reverse, setReverse] = useState(false);
@@ -40,9 +39,9 @@ const PokeList = ({
     setUserDidSort(true);
   };
 
-  // Filter for pokemon by selected type, returns pokemon obj that has type
-  const filteredByType = (pokemonList, selectedType) => {
-    return pokemonList.filter((pokemon) => {
+  // FilterBar for pokemon by selected type, returns pokemon obj that has type
+  const FilterBaredByType = (pokemonList, selectedType) => {
+    return pokemonList.FilterBar((pokemon) => {
       for (const typeObj of pokemon.types) {
         if (typeObj.type.name === selectedType) return true;
       }
@@ -50,8 +49,8 @@ const PokeList = ({
     });
   };
 
-  const filteredByAbil = (pokemonList, selectedAbility) => {
-    return pokemonList.filter((pokemon) => {
+  const FilterBaredByAbil = (pokemonList, selectedAbility) => {
+    return pokemonList.FilterBar((pokemon) => {
       for (const abiliObj of pokemon.abilities) {
         if (abiliObj.ability.name === selectedAbility) return true;
       }
@@ -93,47 +92,47 @@ const PokeList = ({
     });
   };
 
-  // Makes copy of allPokemons array, determines sort type, and calls filtered pokemons array to state variable
+  // Makes copy of allPokemons array, determines sort type, and calls FilterBared pokemons array to state variable
   const sortTypeCheck = () => {
-    let allPokemonsFiltered = [...allPokemons];
+    let allPokemonsFilterBared = [...allPokemons];
 
     if (selectTypeOption !== "") {
-      allPokemonsFiltered = filteredByType(
-        allPokemonsFiltered,
+      allPokemonsFilterBared = FilterBaredByType(
+        allPokemonsFilterBared,
         selectTypeOption
       );
     }
     if (selectAbilityOption !== "") {
-      allPokemonsFiltered = filteredByAbil(
-        allPokemonsFiltered,
+      allPokemonsFilterBared = FilterBaredByAbil(
+        allPokemonsFilterBared,
         selectAbilityOption
       );
     }
 
     switch (sortType) {
       case SortTypes.DEX_NO:
-        allPokemonsFiltered = sortByDexNumber(allPokemonsFiltered);
+        allPokemonsFilterBared = sortByDexNumber(allPokemonsFilterBared);
         break;
       case SortTypes.ABC:
-        allPokemonsFiltered = sortByName(allPokemonsFiltered);
+        allPokemonsFilterBared = sortByName(allPokemonsFilterBared);
         break;
       case SortTypes.HEIGHT:
-        allPokemonsFiltered = sortByHeight(allPokemonsFiltered);
+        allPokemonsFilterBared = sortByHeight(allPokemonsFilterBared);
         break;
       case SortTypes.WEIGHT:
-        allPokemonsFiltered = sortByWeight(allPokemonsFiltered);
+        allPokemonsFilterBared = sortByWeight(allPokemonsFilterBared);
         break;
       default:
         console.error(`Invalid sort type: ${sortType}`);
     }
 
-    setFilteredPokemons(allPokemonsFiltered);
+    setFilterBaredPokemons(allPokemonsFilterBared);
   };
 
   useEffect(() => {
     sortTypeCheck();
     // eslint-disable-next-line
-  }, [sortType, filterType, reverse, selectTypeOption, selectAbilityOption]);
+  }, [sortType, FilterBarType, reverse, selectTypeOption, selectAbilityOption]);
 
   const capitalizeType = (typeString) => {
     const capitalize = typeString[0].toUpperCase() + typeString.slice(1);
@@ -142,9 +141,17 @@ const PokeList = ({
 
   // create list of all PokeCards
   const generateSortedCards = (pokemonList) => {
-
     return pokemonList.map((pokeObj) => {
-      const { id, name, sprites, types, stats, abilities, height, weight } = pokeObj;
+      const {
+        id,
+        name,
+        sprites,
+        types,
+        stats,
+        abilities,
+        height,
+        weight,
+      } = pokeObj;
       // make type tags for card
       const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
@@ -181,42 +188,48 @@ const PokeList = ({
 
   return (
     <div className="pokeList">
-      {!userDidSearch
-      ?
-      ((!allPokemons.length && !filteredPokemons.length)
-        ? null :
-        (<>
-          <Filter
-            selectTypeOption={selectTypeOption}
-            setSelectTypeOption={setSelectTypeOption}
-            selectAbilityOption={selectAbilityOption}
-            setSelectAbilityOption={setSelectAbilityOption}
-            abilityOptions={abilityOptions}
-            setAbilityOptions={setAbilityOptions}
-            setSortType={setSortTypeFlags}
-            setFilterType={setFilterType}
-          />
-          {/* end Filter */}
-          <InfiniteScroll
-            className="card-container"
-            loader={<Spinner/>}
-            dataLength={allPokemons.length}
-            hasMore={true}
-            scrollThreshold={0.8}
-            next={getMorePokemons}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
-              </p>
-            }>
-            {/* By default, display all Pokemon cards, else show  filtered/sorted cards. */}
-            {generateSortedCards(userDidSort ? filteredPokemons : allPokemons)}
-          </InfiniteScroll>
-        </>)   // end react fragment
+      {!userDidSearch ? (
+        !allPokemons.length && !FilterBaredPokemons.length ? null : (
+          <>
+            <FilterBar
+              selectTypeOption={selectTypeOption}
+              setSelectTypeOption={setSelectTypeOption}
+              selectAbilityOption={selectAbilityOption}
+              setSelectAbilityOption={setSelectAbilityOption}
+              abilityOptions={abilityOptions}
+              setAbilityOptions={setAbilityOptions}
+              setSortType={setSortTypeFlags}
+              setFilterBarType={setFilterBarType}
+            />
+            {/* end FilterBar */}
+            <InfiniteScroll
+              className="card-container"
+              loader={<Spinner />}
+              dataLength={allPokemons.length}
+              hasMore={true}
+              scrollThreshold={0.8}
+              next={getMorePokemons}
+              endMessage={
+                <p style={{ textAlign: "center" }}>
+                  <b>Yay! You have seen it all</b>
+                </p>
+              }>
+              {/* By default, display all Pokemon cards, else show  FilterBared/sorted cards. */}
+              {generateSortedCards(
+                userDidSort ? FilterBaredPokemons : allPokemons
+              )}
+            </InfiniteScroll>
+          </>
+        ) // end react fragment
       ) : (
         // show single user search
-        fetchedData[0] &&
-        <Searched fetchedData={fetchedData} capitalizeType={capitalizeType} userDidSearch={userDidSearch} />
+        singlePokemon[0] && (
+          <Searched
+            singlePokemon={singlePokemon}
+            capitalizeType={capitalizeType}
+            userDidSearch={userDidSearch}
+          />
+        )
       )}
     </div>
   );

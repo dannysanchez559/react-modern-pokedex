@@ -1,11 +1,24 @@
-import React from 'react';
+import React from "react";
 import getTypeColors from "../util/getTypeColor";
 import PokeCard from "./PokeCard";
 
-const Searched = ({fetchedData, getPokemonModalAboutContent, capitalizeType, modalData})=>{
-  const { id, name, sprites, types, height, weight, abilities, stats } =
-    fetchedData[0];
-    // generate tags, check for tags and types
+const Searched = ({
+  singlePokemon,
+  getPokemonModalAboutContent,
+  capitalizeType,
+  modalData,
+}) => {
+  const {
+    id,
+    name,
+    sprites,
+    types,
+    height,
+    weight,
+    abilities,
+    stats,
+  } = singlePokemon[0];
+  // generate tags, check for tags and types
   let typeTags, sprite;
   if (types && sprites) {
     sprite = sprites["other"]["official-artwork"]["front_default"];
@@ -25,7 +38,9 @@ const Searched = ({fetchedData, getPokemonModalAboutContent, capitalizeType, mod
     });
   }
 
-  return (<div>{!fetchedData.length ? (
+  return (
+    <div>
+      {!singlePokemon.length ? (
         <h1>Please search pokemon.</h1>
       ) : (
         <PokeCard
@@ -42,7 +57,8 @@ const Searched = ({fetchedData, getPokemonModalAboutContent, capitalizeType, mod
           types={types}
         />
       )}
-      </div>)
-}
+    </div>
+  );
+};
 
 export default Searched;

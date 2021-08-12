@@ -1,24 +1,22 @@
 import React from "react";
 
-const Header=({
+const Header = ({
   handleNameSearch,
   setUserDidSearch,
-  getSearchBarDataApi,
-  pokemonName
-})=> {
-
+  getSinglePokemon,
+  pokemonName,
+}) => {
   const onSubmit = () => {
-    if(pokemonName.length>=3){
-       // invoke api search function in pokeapp
-    setUserDidSearch(true);
-    getSearchBarDataApi(pokemonName);
+    if (pokemonName.length >= 3) {
+      // invoke api search function in pokeapp
+      setUserDidSearch(true);
+      getSinglePokemon(pokemonName);
     }
-
   };
   const enterSubmit = (e) => {
-    if (e.key === "Enter" && pokemonName.length>=3) {
+    if (e.key === "Enter" && pokemonName.length >= 3) {
       setUserDidSearch(true);
-      getSearchBarDataApi(pokemonName);
+      getSinglePokemon(pokemonName);
     }
   };
 
@@ -76,6 +74,6 @@ const Header=({
       </nav>
     </div>
   );
-}
+};
 
 export default Header;
