@@ -54,6 +54,11 @@ $card-shadow: 2px 7px 4px 0 rgba(75, 75, 75, 0.45);
   margin: 0 8px;
 }
 
+// center card that user searched on desktop and mobile
+.searchedCard {
+  margin: 0 auto;
+}
+
 // responsive cards
 @media screen and (max-width: 833px) {
   .card {
