@@ -64,15 +64,24 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
     try {
       // array of Promises
       const urlList = evolutionNameStrings.map(async (string) => {
-        const data = await fetchPokemon(string);
-        const { name } = data;
 
-        const url = data["sprites"]["other"]["official-artwork"].front_default;
-        return {
-          name,
-          url,
-        };
-      });
+        const data = await fetchPokemon(string);
+        if(data) {
+          const { name } = data;
+
+          const url = data["sprites"]["other"]["official-artwork"].front_default;
+          return {
+            name,
+            url,
+          };
+        } else {
+          return {
+            name: 'Unavailable ',
+            url: ''
+          }
+        }
+
+      }); // end evolutionNameStrings map
 
       Promise.all(urlList).then((data) => {
         setSpriteUrls(data);

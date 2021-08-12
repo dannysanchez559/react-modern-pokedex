@@ -44,16 +44,23 @@ const PokeCard = ({
   // get modal content: pokemon species info and moveset
   const triggerModalData = async () => {
     const modalContent = await getPokemonModalAboutContent(dexNo);
-    const { flavor_text_entries, genera } = modalContent;
-    const generaText = findDescriptionByLanguage(genera, "genus", "en");
-    const description = findDescriptionByLanguage(
-      flavor_text_entries,
-      "flavor_text",
-      "en"
-    );
-    setGeneraString(generaText);
-    setFlavorText(description);
-    setModalData(modalContent);
+    // check for undefined modalContent
+    if(modalContent){
+        const { flavor_text_entries, genera } = modalContent;
+        const generaText = findDescriptionByLanguage(genera, "genus", "en");
+        const description = findDescriptionByLanguage(
+          flavor_text_entries,
+          "flavor_text",
+          "en"
+        );
+        setGeneraString(generaText);
+        setFlavorText(description);
+        setModalData(modalContent);
+    } else {
+      setGeneraString('Unavailable');
+      setFlavorText('Unavailable');
+      setModalData({})
+    }
   };
 
   const prepareModal = () => {
