@@ -31,3 +31,10 @@
   top: 70%;
   left: 52%;
 }
+
+@media screen and (max-width: 414px) {
+  .modalSpinner {
+    top: 60%;
+    left: 55%;
+  }
+}
