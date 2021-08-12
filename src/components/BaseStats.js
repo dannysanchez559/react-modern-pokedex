@@ -15,7 +15,6 @@ const BaseStats = ({ stats, types }) => {
         {/* show bar graph or spinner by checking for baseStatsArray */}
         {baseStatsArray ? (
           <Bar
-            placeholder={"hi"}
             data={{
               labels: [
                 "HP",
@@ -75,7 +74,7 @@ const BaseStats = ({ stats, types }) => {
                 },
                 tooltip: {
                   enabled: true,
-                  backgroundColor: "rgb(0,0,0,0.6",
+                  backgroundColor: "rgb(0,0,0,0.6)",
                   titleColor: "#fff",
                   bodyColor: "#fff",
                   displayColors: false,

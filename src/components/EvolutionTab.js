@@ -138,7 +138,6 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
           // ** unknown solution for safari and chrome **
         }}
         className={"spriteContainer"}>
-        {" "}
         {spritesWithEvolutionArrows()}
       </div>
     </>
