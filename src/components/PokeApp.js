@@ -6,14 +6,14 @@ import { fetchPokemon, fetchPokemons } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 import "../styles/main.scss";
 
-function PokeApp() {
+const PokeApp = () => {
   // Store search bar input value: could be dex number or pokemon name
   const [pokemonName, setPokemonName] = useState("");
-  // fetchedData is a single Pokemon object the user searched for
-  const [fetchedData, setFetchedData] = useState([]);
+  // singlePokemon is a single Pokemon object the user searched for
+  const [singlePokemon, setSinglePokemon] = useState([]);
   const [allPokemons, setAllPokemon] = useState([]);
   const [queryParams, setQueryParams] = useState({ offset: 0, limit: 20 });
-  // Hook below is used for conditional rendering 1 Pokemon card user searched, and search on keypress
+  // Hook below is used for conditional rendering 1 Pokemon card user searched(Searched component), and search on keypress
   const [userDidSearch, setUserDidSearch] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   // search bar onChange function for searching pokemon & conditional rendering
@@ -22,14 +22,15 @@ function PokeApp() {
     setPokemonName(searchBarValue);
   };
 
-  const getSearchBarDataApi = async (name) => {
+  // Function for single pokemon fetch, invoked in Header
+  const getSinglePokemon = async (name) => {
     try {
       // call fetch api function
       const pokemonData = await fetchPokemon(name);
       if (!pokemonData.length) {
-        setFetchedData([pokemonData]);
+        setSinglePokemon([pokemonData]);
       } else {
-        setFetchedData(pokemonData);
+        setSinglePokemon(pokemonData);
       }
     } catch (error) {
       console.error(error);
@@ -72,7 +73,7 @@ function PokeApp() {
       <Header
         pokemonName={pokemonName}
         handleNameSearch={handleNameSearch}
-        getSearchBarDataApi={getSearchBarDataApi}
+        getSinglePokemon={getSinglePokemon}
         setUserDidSearch={setUserDidSearch}
         setPokemonName={setPokemonName}
       />
@@ -80,7 +81,7 @@ function PokeApp() {
       {isLoading === false ? (
         <PokeList
           getMorePokemons={getMorePokemons}
-          fetchedData={fetchedData}
+          singlePokemon={singlePokemon}
           allPokemons={allPokemons}
           userDidSearch={userDidSearch}
           setUserDidSearch={setUserDidSearch}
@@ -90,6 +91,6 @@ function PokeApp() {
       )}
     </div>
   );
-}
+};
 
 export default PokeApp;

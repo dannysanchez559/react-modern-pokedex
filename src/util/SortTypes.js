@@ -1,3 +1,4 @@
+// used in PokeList for sorting function
 const SortTypes = {
   ABC: 1,
   HEIGHT: 2,

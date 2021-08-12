@@ -3,13 +3,21 @@ import getTypeColors from "../util/getTypeColor";
 import PokeCard from "./PokeCard";
 
 const Searched = ({
-  fetchedData,
+  singlePokemon,
   getPokemonModalAboutContent,
   capitalizeType,
   modalData,
 }) => {
-  const { id, name, sprites, types, height, weight, abilities, stats } =
-    fetchedData[0];
+  const {
+    id,
+    name,
+    sprites,
+    types,
+    height,
+    weight,
+    abilities,
+    stats,
+  } = singlePokemon[0];
   // generate tags, check for tags and types
   let typeTags, sprite;
   if (types && sprites) {
@@ -32,7 +40,7 @@ const Searched = ({
 
   return (
     <div className="searchedCard">
-      {!fetchedData.length ? (
+      {!singlePokemon.length ? (
         <h1>Please search pokemon.</h1>
       ) : (
         <PokeCard

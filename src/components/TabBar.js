@@ -6,7 +6,7 @@ import BaseStats from "./BaseStats";
 import EvolutionTab from "./EvolutionTab";
 import Moves from "./Moves";
 import PokemonDetails from "./PokemonDetails";
-import TabPanel from './TabPanel';
+import TabPanel from "./TabPanel";
 
 function a11yProps(index) {
   return {
@@ -26,7 +26,7 @@ export default function BasicTabs({
   moveSet,
   stats,
   types,
-  pokemonColor
+  pokemonColor,
 }) {
   // State
   const [value, setValue] = useState(0);
@@ -40,15 +40,14 @@ export default function BasicTabs({
       <Box>
         <Tabs
           TabIndicatorProps={{
-            style: { background: pokemonColor }
+            style: { background: pokemonColor },
           }}
           value={value}
           onChange={handleChange}
           aria-label="pokemon-modal-tabs"
           variant="fullWidth">
           {/* TAB TITLES */}
-          <Tab
-            label="About" {...a11yProps(0)} />
+          <Tab label="About" {...a11yProps(0)} />
           <Tab label="Base Stats" {...a11yProps(1)} />
           <Tab label="Evolutions" {...a11yProps(2)} />
           <Tab label="Moves" {...a11yProps(3)} />

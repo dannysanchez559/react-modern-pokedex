@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PokeCard from "./PokeCard";
-import Filter from "./Filter";
+import FilterBar from "./FilterBar";
 import getTypeColors from "../util/getTypeColor";
 import "../styles/pokeAppStyle.css";
 import SortTypes from "../util/SortTypes";
@@ -11,7 +11,7 @@ import Spinner from "./Spinner";
 const PokeList = ({
   userDidSearch,
   setUserDidSearch,
-  fetchedData,
+  singlePokemon,
   allPokemons,
   getMorePokemons,
 }) => {
@@ -22,7 +22,7 @@ const PokeList = ({
   // Set sort type; by default, sort by Dex number
   const [sortType, setSortType] = useState(SortTypes.DEX_NO);
   const [filterType, setFilterType] = useState(null);
-  // stores sorted/filtered Pokemon array returned by sortAndFilter() in useEffect
+  // stores sorted/FilterBared Pokemon array returned by sortAndFilter() in useEffect
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [userDidSort, setUserDidSort] = useState(false);
   // Boolean for checking if user wants reverse sorted results
@@ -39,9 +39,9 @@ const PokeList = ({
     setUserDidSort(true);
   };
 
-  // Filter for pokemon by selected type, returns pokemon obj that has type
-  const filteredByType = (pokemonList, selectedType) => {
-    return pokemonList.filter((pokemon) => {
+  // FilterBar for pokemon by selected type, returns pokemon obj that has type
+  const FilterBaredByType = (pokemonList, selectedType) => {
+    return pokemonList.FilterBar((pokemon) => {
       for (const typeObj of pokemon.types) {
         if (typeObj.type.name === selectedType) return true;
       }
@@ -49,8 +49,8 @@ const PokeList = ({
     });
   };
 
-  const filteredByAbil = (pokemonList, selectedAbility) => {
-    return pokemonList.filter((pokemon) => {
+  const FilterBaredByAbil = (pokemonList, selectedAbility) => {
+    return pokemonList.FilterBar((pokemon) => {
       for (const abiliObj of pokemon.abilities) {
         if (abiliObj.ability.name === selectedAbility) return true;
       }
@@ -92,18 +92,18 @@ const PokeList = ({
     });
   };
 
-  // Makes copy of allPokemons array, determines sort type, and calls filtered pokemons array to state variable
+  // Makes copy of allPokemons array, determines sort type, and calls FilterBared pokemons array to state variable
   const sortTypeCheck = () => {
     let allPokemonsFiltered = [...allPokemons];
 
     if (selectTypeOption !== "") {
-      allPokemonsFiltered = filteredByType(
+      allPokemonsFiltered = FilterBaredByType(
         allPokemonsFiltered,
         selectTypeOption
       );
     }
     if (selectAbilityOption !== "") {
-      allPokemonsFiltered = filteredByAbil(
+      allPokemonsFiltered = FilterBaredByAbil(
         allPokemonsFiltered,
         selectAbilityOption
       );
@@ -142,8 +142,16 @@ const PokeList = ({
   // create list of all PokeCards
   const generateSortedCards = (pokemonList) => {
     return pokemonList.map((pokeObj) => {
-      const { id, name, sprites, types, stats, abilities, height, weight } =
-        pokeObj;
+      const {
+        id,
+        name,
+        sprites,
+        types,
+        stats,
+        abilities,
+        height,
+        weight,
+      } = pokeObj;
       // make type tags for card
       const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
@@ -183,7 +191,7 @@ const PokeList = ({
       {!userDidSearch ? (
         !allPokemons.length && !filteredPokemons.length ? null : (
           <>
-            <Filter
+            <FilterBar
               selectTypeOption={selectTypeOption}
               setSelectTypeOption={setSelectTypeOption}
               selectAbilityOption={selectAbilityOption}
@@ -206,7 +214,7 @@ const PokeList = ({
                   <b>Yay! You have seen it all</b>
                 </p>
               }>
-              {/* By default, display all Pokemon cards, else show  filtered/sorted cards. */}
+              {/* By default, display all Pokemon cards, else show  FilterBared/sorted cards. */}
               {generateSortedCards(
                 userDidSort ? filteredPokemons : allPokemons
               )}
@@ -215,9 +223,9 @@ const PokeList = ({
         ) // end react fragment
       ) : (
         // show single user search
-        fetchedData[0] && (
+        singlePokemon[0] && (
           <Searched
-            fetchedData={fetchedData}
+            singlePokemon={singlePokemon}
             capitalizeType={capitalizeType}
             userDidSearch={userDidSearch}
           />

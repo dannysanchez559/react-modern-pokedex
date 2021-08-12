@@ -1,4 +1,4 @@
- // array of options for Type drop-down
+ // array of options for Type drop-down in Filter component
   const allTypes = [
     {
       value: "fire",
