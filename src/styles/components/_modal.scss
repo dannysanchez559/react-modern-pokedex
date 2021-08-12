@@ -89,6 +89,10 @@ $modal-padding: 25px;
   padding-bottom: 10px;
 }
 
+.pokeApp {
+  overflow: hidden;
+}
+
 /* speaker img */
 .nameContainer img {
   width: 30px;
@@ -246,7 +250,6 @@ $modal-padding: 25px;
   margin-right: 15px;
 }
 
-
 // ***** RESPONSIVE STYLING *****
 
 // ipad pro landscape
@@ -260,7 +263,7 @@ $modal-padding: 25px;
 }
 
 // ipad pro portrait
-@media screen and (max-width: 834px){
+@media screen and (max-width: 834px) {
   // resize modal and some of its elements
   .backgroundModalWrapper {
     width: 725px;
@@ -279,13 +282,16 @@ $modal-padding: 25px;
   .spriteWrapper img {
     height: 200px;
     width: 200px;
-}
+  }
 
   .modalDetailsBottom {
     height: 375px;
   }
 
-  .aboutWrapper, .graph-container, .spriteContainer, .moves-panel {
+  .aboutWrapper,
+  .graph-container,
+  .spriteContainer,
+  .moves-panel {
     height: 200px;
     margin-top: 10px;
   }
@@ -311,7 +317,7 @@ $modal-padding: 25px;
     margin: 0 auto;
     top: 15%;
     left: 20%;
-    transform: translate(-20%, -15%);
+    transform: translate(-15%, -12%);
   }
 
   .modalDetailsBottom {
@@ -320,89 +326,89 @@ $modal-padding: 25px;
     display: flex;
     flex-direction: column;
     padding: 10px 15px 30px 15px;
-}
+  }
 
-.MuiTab-root {
-  padding: 0 5px !important;
-}
+  .MuiTab-root {
+    padding: 0 5px !important;
+  }
 
-.aboutWrapper, .graph-container, .spriteContainer, .moves-panel {
-  display: flex;
-  box-sizing: content-box;
-  flex-direction: column;
-  min-height: 225px;
-  width: auto;
-  padding-bottom: 25px;
-  
-}
+  .aboutWrapper,
+  .graph-container,
+  .spriteContainer,
+  .moves-panel {
+    display: flex;
+    box-sizing: content-box;
+    flex-direction: column;
+    min-height: 225px;
+    width: auto;
+    padding-bottom: 25px;
+  }
 
-.aboutWrapper {
-  overflow-y: auto;
-  margin-top: 10px;
-  padding-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
+  .aboutWrapper {
+    overflow-y: auto;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 
-.aboutLeftContainer {
-  width: 90%;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  text-align: center;
-}
+  .aboutLeftContainer {
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
 
-.aboutRightContainer {
-  width: 90%;
-  min-height: 100px;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 0 auto;
-}
+  .aboutRightContainer {
+    width: 90%;
+    min-height: 100px;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+  }
 
-.aboutRightContainer * {
-  margin: 3px 5px;
-}
+  .aboutRightContainer * {
+    margin: 3px 5px;
+  }
 
-.graph-container {
-  margin-top: 20px;
-  padding-right: 20px;
-  padding-left: 0;
-}
+  .graph-container {
+    margin-top: 20px;
+    padding-right: 20px;
+    padding-left: 0;
+  }
 
-.spriteContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 225px;
-  margin-top: 20px;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-}
+  .spriteContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 225px;
+    margin-top: 20px;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
 
-// rotate evolution arrow 90 degree for vertical mobile scrolling
-.evolutionImg {
-  margin: 20px;
-  rotate: 90deg;
-}
+  // rotate evolution arrow 90 degree for vertical mobile scrolling
+  .evolutionImg {
+    margin: 20px;
+    transform: rotate(90deg);
+  }
 
-.moves-panel {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  margin-top: 20px;
-}
+  .moves-panel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-top: 20px;
+  }
 
-.movesGraphContainer {
-  width: 100%;
-  margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-
+  .movesGraphContainer {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 // iphone screen width
@@ -414,15 +420,15 @@ $modal-padding: 25px;
     min-height: 550px;
     top: 7%;
     left: 9%;
-    transform: translate(-9%, -7%);
+    transform: translate(-6%, 7%);
   }
 
   .modalDetailsBottom {
     min-height: 425px;
   }
 
-  .spriteContainer, .moves-panel {
+  .spriteContainer,
+  .moves-panel {
     padding-bottom: 10px;
   }
-  
 }
