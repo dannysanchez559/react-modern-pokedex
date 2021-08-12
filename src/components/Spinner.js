@@ -5,7 +5,7 @@ const Spinner = () => {
     <img
       src="ballSpin.png"
       alt="spinning pokeball loader"
-      className="ball-spin"
+      className="ball-spin modalSpinner"
     />
   );
 };

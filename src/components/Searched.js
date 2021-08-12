@@ -39,7 +39,7 @@ const Searched = ({
   }
 
   return (
-    <div>
+    <div className="searchedCard">
       {!singlePokemon.length ? (
         <h1>Please search pokemon.</h1>
       ) : (

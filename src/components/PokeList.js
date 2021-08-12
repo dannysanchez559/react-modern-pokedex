@@ -21,9 +21,9 @@ const PokeList = ({
   const [abilityOptions, setAbilityOptions] = useState([]);
   // Set sort type; by default, sort by Dex number
   const [sortType, setSortType] = useState(SortTypes.DEX_NO);
-  const [FilterBarType, setFilterBarType] = useState(null);
+  const [filterType, setFilterType] = useState(null);
   // stores sorted/FilterBared Pokemon array returned by sortAndFilter() in useEffect
-  const [FilterBaredPokemons, setFilterBaredPokemons] = useState([]);
+  const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [userDidSort, setUserDidSort] = useState(false);
   // Boolean for checking if user wants reverse sorted results
   const [reverse, setReverse] = useState(false);
@@ -94,45 +94,45 @@ const PokeList = ({
 
   // Makes copy of allPokemons array, determines sort type, and calls FilterBared pokemons array to state variable
   const sortTypeCheck = () => {
-    let allPokemonsFilterBared = [...allPokemons];
+    let allPokemonsFiltered = [...allPokemons];
 
     if (selectTypeOption !== "") {
-      allPokemonsFilterBared = FilterBaredByType(
-        allPokemonsFilterBared,
+      allPokemonsFiltered = FilterBaredByType(
+        allPokemonsFiltered,
         selectTypeOption
       );
     }
     if (selectAbilityOption !== "") {
-      allPokemonsFilterBared = FilterBaredByAbil(
-        allPokemonsFilterBared,
+      allPokemonsFiltered = FilterBaredByAbil(
+        allPokemonsFiltered,
         selectAbilityOption
       );
     }
 
     switch (sortType) {
       case SortTypes.DEX_NO:
-        allPokemonsFilterBared = sortByDexNumber(allPokemonsFilterBared);
+        allPokemonsFiltered = sortByDexNumber(allPokemonsFiltered);
         break;
       case SortTypes.ABC:
-        allPokemonsFilterBared = sortByName(allPokemonsFilterBared);
+        allPokemonsFiltered = sortByName(allPokemonsFiltered);
         break;
       case SortTypes.HEIGHT:
-        allPokemonsFilterBared = sortByHeight(allPokemonsFilterBared);
+        allPokemonsFiltered = sortByHeight(allPokemonsFiltered);
         break;
       case SortTypes.WEIGHT:
-        allPokemonsFilterBared = sortByWeight(allPokemonsFilterBared);
+        allPokemonsFiltered = sortByWeight(allPokemonsFiltered);
         break;
       default:
         console.error(`Invalid sort type: ${sortType}`);
     }
 
-    setFilterBaredPokemons(allPokemonsFilterBared);
+    setFilteredPokemons(allPokemonsFiltered);
   };
 
   useEffect(() => {
     sortTypeCheck();
     // eslint-disable-next-line
-  }, [sortType, FilterBarType, reverse, selectTypeOption, selectAbilityOption]);
+  }, [sortType, filterType, reverse, selectTypeOption, selectAbilityOption]);
 
   const capitalizeType = (typeString) => {
     const capitalize = typeString[0].toUpperCase() + typeString.slice(1);
@@ -189,7 +189,7 @@ const PokeList = ({
   return (
     <div className="pokeList">
       {!userDidSearch ? (
-        !allPokemons.length && !FilterBaredPokemons.length ? null : (
+        !allPokemons.length && !filteredPokemons.length ? null : (
           <>
             <FilterBar
               selectTypeOption={selectTypeOption}
@@ -199,9 +199,9 @@ const PokeList = ({
               abilityOptions={abilityOptions}
               setAbilityOptions={setAbilityOptions}
               setSortType={setSortTypeFlags}
-              setFilterBarType={setFilterBarType}
+              setFilterType={setFilterType}
             />
-            {/* end FilterBar */}
+            {/* end Filter */}
             <InfiniteScroll
               className="card-container"
               loader={<Spinner />}
@@ -216,7 +216,7 @@ const PokeList = ({
               }>
               {/* By default, display all Pokemon cards, else show  FilterBared/sorted cards. */}
               {generateSortedCards(
-                userDidSort ? FilterBaredPokemons : allPokemons
+                userDidSort ? filteredPokemons : allPokemons
               )}
             </InfiniteScroll>
           </>

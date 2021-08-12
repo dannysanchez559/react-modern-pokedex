@@ -5,7 +5,7 @@ const PokemonDetails = ({ genera, flavorText, height, weight, abilities }) => {
   return (
     <div className="aboutWrapper">
       <div className="aboutLeftContainer">
-        {!flavorText ? <Spinner /> : flavorText}
+        {!flavorText ? <Spinner className="modalSpinner" /> : flavorText}
       </div>
 
       <div className="aboutRightContainer">
@@ -16,7 +16,9 @@ const PokemonDetails = ({ genera, flavorText, height, weight, abilities }) => {
           <p className="aboutSpecsLabel">Abilities</p>
         </div>
         <div className="valueContainer">
-          <div className="aboutTabValue">{!genera ? <Spinner /> : genera}</div>
+          <div className="aboutTabValue">
+            {!genera ? <Spinner className="modalSpinner" /> : genera}
+          </div>
           <p className="aboutTabValue">{height}</p>
           <p className="aboutTabValue">{weight}</p>
           <p className="aboutTabValue">

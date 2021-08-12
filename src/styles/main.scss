@@ -46,6 +46,10 @@ body {
   z-index: 2;
 }
 
+.searchedCard {
+  margin-left: 23px;
+}
+
 @import "components/header";
 @import "components/filterbar";
 @import "components/card";
