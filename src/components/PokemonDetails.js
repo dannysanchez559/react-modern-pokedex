@@ -1,18 +1,11 @@
 import React from "react";
-import Spinner from './Spinner';
+import Spinner from "./Spinner";
 
-const PokemonDetails = ({
-  genera,
-  flavorText,
-  height,
-  weight,
-  abilities,
-}) => {
-
+const PokemonDetails = ({ genera, flavorText, height, weight, abilities }) => {
   return (
     <div className="aboutWrapper">
       <div className="aboutLeftContainer">
-          {!flavorText ? <Spinner/> : flavorText}
+        {!flavorText ? <Spinner className="modalSpinner" /> : flavorText}
       </div>
 
       <div className="aboutRightContainer">
@@ -24,7 +17,7 @@ const PokemonDetails = ({
         </div>
         <div className="valueContainer">
           <div className="aboutTabValue">
-            {!genera ? <Spinner/> : genera}
+            {!genera ? <Spinner className="modalSpinner" /> : genera}
           </div>
           <p className="aboutTabValue">{height}</p>
           <p className="aboutTabValue">{weight}</p>
@@ -33,7 +26,8 @@ const PokemonDetails = ({
           </p>
         </div>
       </div>
-    </div>)
+    </div>
+  );
 };
 
 export default PokemonDetails;

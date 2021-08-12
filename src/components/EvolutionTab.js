@@ -114,8 +114,6 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
     );
   };
 
-
-
   // return spritesList with evolution arrows added in between each image
   const spritesWithEvolutionArrows = () => {
     const organizedArray = [];
@@ -136,15 +134,14 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
         style={{
           // custom scrollbar (firefox only)
           scrollbarColor: `${pokemonColor} rgba(235, 232, 232, 0.4)`,
-          overflowX: "auto"
+          overflowX: "auto",
           // ** unknown solution for safari and chrome **
         }}
-        className={"spriteContainer"}
-
-      > {spritesWithEvolutionArrows()}</div>
-
+        className={"spriteContainer"}>
+        {spritesWithEvolutionArrows()}
+      </div>
     </>
-  )
+  );
 };
 
 export default EvolutionTab;

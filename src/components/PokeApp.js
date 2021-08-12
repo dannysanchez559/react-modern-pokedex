@@ -6,7 +6,7 @@ import { fetchPokemon, fetchPokemons } from "../util/fetchPokemonData";
 import "../styles/pokeAppStyle.css";
 import "../styles/main.scss";
 
-function PokeApp () {
+function PokeApp() {
   // Store search bar input value: could be dex number or pokemon name
   const [pokemonName, setPokemonName] = useState("");
   // fetchedData is a single Pokemon object the user searched for
@@ -67,8 +67,8 @@ function PokeApp () {
   }, []);
 
   return (
-    <div className='pokeApp'>
-      <div className='backgroundContainer'></div>
+    <div className="pokeApp">
+      <div className="backgroundContainer"></div>
       <Header
         pokemonName={pokemonName}
         handleNameSearch={handleNameSearch}

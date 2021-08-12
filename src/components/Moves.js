@@ -194,7 +194,11 @@ const Moves = ({ dexNo }) => {
       </React.Fragment>
     );
   });
-  return <div className="moves-panel">{result ? moveInfo : <Spinner />} </div>;
+  return (
+    <div className="moves-panel">
+      {result ? moveInfo : <Spinner className="modalSpinner" />}{" "}
+    </div>
+  );
 };
 
 export default Moves;
