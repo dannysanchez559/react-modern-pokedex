@@ -448,7 +448,7 @@ $modal-padding: 25px;
   }
 }
 
-@media screen and (max-height: 667px) {
+@media screen and (max-width: 667px) {
   .evo-stage-names {
     text-align: center;
   }
