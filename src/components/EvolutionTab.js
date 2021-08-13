@@ -51,7 +51,7 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
   2. Species name is pushed into tempArray, which is then store in state as evolutionNameStrings
  */
 
-  // get name strings of evolutions and save to hook
+  // get name strings of evolutions chain and save to hook for fetching in getImgUrlFromStrings
   const getNameStrings = (namesObjArray) => {
     const nameList = namesObjArray.map((nameObj) => {
       return nameObj.species_name;
@@ -84,7 +84,7 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
       }); // end evolutionNameStrings map
 
       Promise.all(urlList).then((data) => {
-        setSpriteUrls(data);
+        setSpriteUrls(data); // data: array of pokemon objects
       });
     } catch (error) {
       console.error(error);
@@ -104,14 +104,15 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
     getImgUrlFromStrings(evolutionNameStrings);
   }, [evolutionNameStrings]);
 
-  const spritesList = spriteUrls.map((urlObj) => (
+  // map and return an array of sprites of all evolutionary stages; urlObj has pokemon name and sprite url
+  const spritesList = spriteUrls.map((urlObj) => (<div key={urlObj.name}>
     <img
       src={urlObj.url}
       alt={`${urlObj.name}sprite`}
-      key={urlObj.name}
       className="evolution-sprites"
     />
-  ));
+    <p className="evo-stage-names">{urlObj.name.toUpperCase()}</p>
+  </div>));
 
   const evolutionImg = (index) => {
     return (
