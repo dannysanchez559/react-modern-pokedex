@@ -1,0 +1,242 @@
+$btn-height: 40px;
+$nav-ele-padding: 5px;
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 50px 0 50px;
+  width: auto;
+  margin-bottom: 20px;
+  z-index: 2;
+}
+
+.logo {
+  height: auto;
+  width: 350px;
+  margin-bottom: 20px;
+}
+/* contains nav-ul and searchBarContainer*/
+nav {
+  height: 15%;
+  margin: 10px 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* contains all the nav links */
+.nav-ul {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: rgb(255, 250, 250);
+  border-radius: 20px;
+  padding: 20px 35px;
+  width: 520px;
+  height: 75px;
+  list-style: none;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  padding-bottom: 21px;
+  border-bottom: 4px solid white;
+  border-radius: 2px;
+  transition: all 0.2s ease-in;
+}
+
+.nav-link:hover {
+  border-bottom: 4px solid #382e76;
+  border-radius: 2px;
+  align-items: center;
+  z-index: 5;
+  transition: all 0.2s ease-in;
+}
+
+.nav-icon {
+  padding-right: $nav-ele-padding;
+  height: 30px;
+  width: 35px;
+}
+
+.searchBarContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-radius: 20px;
+  background-color: white;
+  width: auto;
+  height: 70px;
+  padding: 18px 20px;
+}
+
+.searchbar-input {
+  border-radius: 20px;
+  border: none;
+  padding-left: $nav-ele-padding;
+}
+
+// target search bar and add transition
+input[type="text"] {
+  box-sizing: border-box;
+  width: 225px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  outline: none;
+}
+
+// increase width on focus
+input[type="text"]:focus {
+  width: 275px;
+}
+
+.searchBarContainer img {
+  width: 40px;
+  height: 40px;
+}
+
+/* remove default outline when cursor is in input field */
+.searchbar-input:focus {
+  outline: none;
+}
+
+.searchBarButton {
+  height: $btn-height;
+  width: auto;
+  background-color: white;
+  border: none;
+  -webkit-transition: all 0.075s ease-in-out;
+  transition: all 0.075s ease-in-out;
+}
+
+.searchBarButton:hover {
+  cursor: pointer;
+}
+
+.searchBarButton:active {
+  transform: scale(0.9, 0.9);
+}
+
+// responsive header
+@media screen and (max-width: 1015px) {
+  nav {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .nav-ul {
+    margin-bottom: 25px;
+  }
+
+  .nav-link {
+    padding-bottom: 8px;
+    transition: none;
+  }
+
+  .searchBarContainer {
+    width: 520px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .header {
+    align-items: center;
+  }
+
+  .nav-ul {
+    width: 400px;
+    height: 55px;
+    padding: 13px 35px;
+  }
+
+  .nav-link {
+    padding-bottom: 13px;
+    padding-top: 5px;
+  }
+
+  .nav-icon {
+    height: 20px;
+    width: auto;
+  }
+
+  .searchBarContainer {
+    width: 400px;
+    height: 55px;
+  }
+
+  .logo {
+    margin-left: -5px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .nav-ul {
+    width: 325px;
+    height: 45px;
+    margin-bottom: 15px;
+    padding: 13px 20px;
+  }
+
+  .nav-link {
+    padding-bottom: 8px;
+    padding-top: 0px;
+  }
+
+  .searchBarContainer {
+    width: 325px;
+    height: 45px;
+    margin-bottom: -12px;
+    flex-wrap: nowrap;
+  }
+
+  .logo {
+    margin-top: 15px;
+  }
+
+  .searchBarButton {
+    transition: none;
+  }
+
+  .searchBarContainer img {
+    width: 30px;
+    height: 30px;
+  }
+  .header {
+    padding: 0 20px 0 20px;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .logo {
+    height: auto;
+    width: 250px;
+  }
+
+  .nav-ul {
+    width: 280px;
+    padding: 15px 15px;
+  }
+
+  .nav-icon {
+    height: 15px;
+    width: auto;
+  }
+
+  .searchBarContainer {
+    width: 280px;
+    height: 45px;
+    margin-bottom: -12px;
+    padding: 18px 10px;
+  }
+}

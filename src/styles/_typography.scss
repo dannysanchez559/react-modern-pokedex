@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&family=Raleway:wght@500;700&family=Rubik&display=swap");
+
+// Google fonts
+$raleway: "Raleway", sans-serif;
+$rubik: "Rubik", sans-serif;
+$nunito: "Nunito", sans-serif; // 800 for bold, 600 for semibold
+$small: 0.9rem;
+$reg: 1rem;
+$med: 1.25rem;
+$big: 1.3rem;
+
+// colors
+$purple1: #a29bcb;
+$purple2: #494089;
+
+a {
+  color: $purple2;
+}
+
+// header links
+.nav-link {
+  font-size: $reg;
+  font-family: $nunito;
+  font-weight: bold;
+}
+
+.nav-link:active {
+  color: $purple1;
+}
+
+.searchbar-input {
+  font-size: $big;
+  font-weight: 600;
+}
+
+.searchbar-input::placeholder {
+  font-family: $nunito;
+  font-weight: 600;
+  color: $purple1;
+}
+
+// filter
+.filterBar {
+  color: $purple2;
+  font-family: $rubik;
+  font-size: $reg;
+
+  button {
+    font-size: $reg;
+  }
+}
+
+// card
+.card-name {
+  font-family: $nunito;
+  margin-bottom: 10px;
+}
+
+.type-tag {
+  font-family: $rubik;
+  color: white;
+  font-size: $small;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+// modal
+.modalDexNo {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.modalPokeName {
+  font-size: 1.7rem;
+  font-family: $rubik;
+}
+
+//modal about tab
+.aboutLeftContainer {
+  font-family: $raleway;
+  line-height: 27px;
+  font-size: $reg;
+}
+
+.aboutSpecsLabel {
+  font-weight: 700;
+  font-family: $raleway;
+  letter-spacing: 0.7px;
+}
+
+.aboutTabValue {
+  font-family: $raleway;
+  text-transform: capitalize;
+}
+
+//modal moves tab
+.graphTitleContent {
+  font-family: $raleway;
+}
+
+.moveDescription {
+  font-size: $small;
+}
+
+.iconTitleContainer {
+  font-size: $med;
+  font-weight: 600;
+}
+// tab slider bar
+.MuiTab-root {
+  font-family: $raleway !important;
+  font-size: $big !important;
+  font-weight: 900;
+  text-transform: none !important;
+}
+
+// selected tab
+.MuiTab-root.Mui-selected {
+  color: #000 !important;
+  font-weight: 900 !important;
+}
+
+// evolutions tab
+.evo-stage-names {
+  font-weight: 600;
+}
+
+// responsive typography
+@media screen and (max-width: 650px) {
+  .nav-link {
+    font-size: 0.9rem;
+  }
+}
+
+// ***** RESPONSIVE DESIGN *****
+
+// up to iphone plus size screen widths
+@media screen and (max-width: 414px) {
+
+  // adjust font sizes for mobile
+
+  .modalPokeName {
+    font-size: 1.5rem;
+  }
+
+// tab slider bar
+.MuiTab-root {
+  font-size: .9rem !important;
+  font-weight: 900;
+}
+
+.modalDexNo {
+  font-size: 1.6rem;
+}
+
+}
+@media screen and (max-width: 525px) {
+  .nav-link {
+    font-size: 0.75rem;
+  }
+
+  .searchbar-input {
+    font-size: 0.9rem;
+  }
+
+  .filterBar {
+    font-size: 0.85rem;
+
+    button {
+      font-size: 0.85rem;
+    }
+  }
+}

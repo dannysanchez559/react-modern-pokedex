@@ -1,0 +1,73 @@
+$btn-font-color: #494089;
+$lite-border: 1px solid #ccc;
+
+.filterBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 50px 0 50px;
+  margin: 25px;
+}
+
+.filterBar button {
+  padding: 8px 20px;
+  border-radius: 20px;
+  outline: none;
+  border: $lite-border;
+  color: $btn-font-color;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.filterBar button:hover {
+  cursor: pointer;
+}
+
+.filterBar button img {
+  margin-left: 10px;
+}
+
+.filterDropDown {
+  width: 150px;
+  padding: 0 8px 0 8px;
+}
+
+// responsive filter bar
+@media screen and (max-width: 1015px) {
+  .filterBar {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0px;
+    padding: 0 20px;
+  }
+
+  .filterBar button {
+    width: 120px;
+    justify-content: space-between;
+    margin: 8px 8px;
+    padding: 8px 5px 8px 12px;
+  }
+
+  .filterDropDown {
+    width: 135px;
+    padding: 0 8px;
+    margin: 8px 0px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .filterBar {
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  .filterBar button {
+    width: 110px;
+  }
+
+  .filterDropDown {
+    width: 125px;
+  }
+}

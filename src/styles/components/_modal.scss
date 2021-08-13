@@ -1,0 +1,460 @@
+$overlay: rgba(0, 0, 0, 0.15) !important;
+$md-bg: #f9cf30;
+$modal-width: 900px;
+$modal-height: 550px;
+$modal-padding: 25px;
+
+/* modal styling */
+.ReactModal__Overlay {
+  z-index: 100;
+  background: $overlay;
+}
+
+.modalWindow {
+  z-index: 100;
+  box-sizing: border-box;
+  width: $modal-width;
+  height: $modal-height;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 25px;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -15%);
+  z-index: 100;
+  outline: none;
+}
+
+.backgroundModalWrapper {
+  z-index: 1;
+  width: $modal-width;
+  height: $modal-height;
+  border-radius: 25px;
+  background: url("../../img/pokeballBG.svg") no-repeat;
+  background-position: 98% 2%;
+}
+
+.modalDetailsTop {
+  display: flex;
+  height: 250px;
+  padding: $modal-padding;
+  justify-content: space-between;
+}
+
+.spriteWrapper {
+  margin: -15px;
+}
+
+.spriteWrapper img {
+  height: 250px;
+  width: 250px;
+}
+
+.modalCloseButton {
+  background-size: contain;
+  z-index: 2;
+}
+
+.modalCloseButton button {
+  background: transparent;
+  border: none;
+  opacity: 0.7;
+}
+
+.modalCloseButton button img {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.modalDetailsBottom {
+  box-sizing: border-box;
+  height: 400px;
+  width: 100%;
+  background-color: white;
+  border-radius: 25px;
+  position: absolute;
+  box-shadow: 0px 10px 15px #555;
+  padding: 10px $modal-padding 30px $modal-padding;
+}
+
+// contains pokemon name and speaker
+.nameContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+/* speaker img */
+.nameContainer img {
+  width: 30px;
+  height: 30px;
+}
+
+.nameSpeakerContainer {
+  display: flex;
+  justify-content: center;
+}
+
+// speaker button
+.nameContainer button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.modalPokeName {
+  margin: 10px;
+  text-transform: uppercase;
+}
+
+.modalTabBar {
+  padding: 10px;
+  margin: 10px;
+}
+
+// tab box
+.MuiBox-root {
+  margin: 0 auto !important;
+}
+
+// tab list bar
+.MuiTabs-scroller {
+  margin-bottom: 10px !important;
+  margin-top: 0 !important;
+}
+
+// tab indicator
+.MuiTabs-indicator {
+  height: 4px !important;
+}
+
+// evolution panel
+.spriteContainer {
+  display: flex;
+  margin: 25px;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.evolution-sprites {
+  width: 175px;
+  height: 175px;
+  margin: 0 auto;
+}
+
+.evolutionImg {
+  width: 45px;
+  height: 45px;
+}
+
+// moves panel
+.moves-panel {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.moves-panel ul {
+  list-style: none;
+  line-height: 2;
+}
+
+.movesGraphContainer {
+  width: 30%;
+  height: 200px;
+  margin: 35px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.moveDescription {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: #5c5c5c;
+  width: 100%;
+}
+
+.graphTitleContent {
+  height: 80px;
+}
+
+.iconTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 0 8px;
+}
+
+.iconTitleContainer img {
+  margin-right: 12px;
+  height: 30px;
+  width: auto;
+}
+
+// base stats tab
+.graph-container {
+  width: 90%;
+  height: 100%;
+  margin: 25px auto 0 auto;
+}
+
+// about tab
+.aboutWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 200px;
+  margin-top: 25px;
+}
+
+.aboutLeftContainer {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutRightContainer {
+  display: flex;
+  height: 150px;
+}
+
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.valueContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.aboutSpecsLabel {
+  margin-right: 15px;
+}
+
+// ***** RESPONSIVE STYLING *****
+
+// ipad pro landscape
+@media screen and (max-width: 1112px) {
+  .evo-stage-names {
+    text-align: center;
+  }
+  // move modal down from top
+  .modalWindow {
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+  }
+}
+
+// ipad pro portrait
+@media screen and (max-width: 834px) {
+  // resize modal and some of its elements
+  .backgroundModalWrapper {
+    width: 725px;
+    height: 450px;
+  }
+
+  .modalWindow {
+    width: 725px;
+    height: 450px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .modalDetailsTop {
+    height: 200px;
+  }
+
+  .spriteWrapper img {
+    height: 200px;
+    width: 200px;
+  }
+
+  .modalDetailsBottom {
+    height: 375px;
+  }
+
+  .aboutWrapper,
+  .graph-container,
+  .spriteContainer,
+  .moves-panel {
+    height: 200px;
+    margin-top: 10px;
+  }
+
+  .movesGraphContainer {
+    margin-top: 10px;
+  }
+}
+
+// up to iphone plus size screen widths
+@media screen and (max-width: 414px) {
+  .evo-stage-names {
+    text-align: center;
+  }
+  // resize modal and some of its elements
+  .backgroundModalWrapper {
+    width: 350px;
+    height: 620px;
+    background-size: 200px auto;
+  }
+
+  // reposition modalWindow to be centered
+  .modalWindow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    min-height: 650px;
+  }
+
+  .modalDetailsBottom {
+    min-height: 475px;
+    max-height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px 30px 15px;
+  }
+
+  .MuiTab-root {
+    padding: 0 5px !important;
+  }
+
+  .aboutWrapper,
+  .graph-container,
+  .spriteContainer,
+  .moves-panel {
+    display: flex;
+    box-sizing: content-box;
+    flex-direction: column;
+    min-height: 225px;
+    width: auto;
+    padding-bottom: 25px;
+  }
+
+  .aboutWrapper {
+    overflow-y: auto;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .aboutLeftContainer {
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .aboutRightContainer {
+    width: 90%;
+    min-height: 100px;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+  }
+
+  .aboutRightContainer * {
+    margin: 3px 5px;
+  }
+
+  .graph-container {
+    margin-top: 20px;
+    padding-right: 20px;
+    padding-left: 0;
+  }
+
+  .spriteContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 225px;
+    margin-top: 20px;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  // rotate evolution arrow 90 degree for vertical mobile scrolling
+  .evolutionImg {
+    margin: 20px;
+    transform: rotate(90deg);
+  }
+
+  .moves-panel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-top: 20px;
+  }
+
+  .movesGraphContainer {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.evo-stage-names {
+  text-align: center;
+}
+
+// iphone screen width
+@media screen and (max-width: 375px) {
+  .evo-stage-names {
+    text-align: center;
+  }
+
+  .backgroundModalWrapper {
+    min-height: 550px;
+  }
+  .modalWindow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .modalDetailsBottom {
+    min-height: 425px;
+  }
+
+  .spriteContainer,
+  .moves-panel {
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 667px) {
+  .evo-stage-names {
+    text-align: center;
+  }
+  .modalWindow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
