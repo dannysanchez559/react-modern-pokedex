@@ -121,6 +121,11 @@ a {
   font-weight: 900 !important;
 }
 
+// evolutions tab
+.evo-stage-names {
+  font-weight: 600;
+}
+
 // responsive typography
 @media screen and (max-width: 650px) {
   .nav-link {

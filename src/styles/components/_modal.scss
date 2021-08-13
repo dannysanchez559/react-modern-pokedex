@@ -407,6 +407,11 @@ $modal-padding: 25px;
   }
 }
 
+  // position sprite/pokemon name in evolutions tab
+.evo-stage-names {
+  text-align: center;
+}
+
 // iphone screen width
 @media screen and (max-width: 375px) {
   .backgroundModalWrapper {
