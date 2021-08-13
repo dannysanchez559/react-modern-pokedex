@@ -250,6 +250,9 @@ $modal-padding: 25px;
 
 // ipad pro landscape
 @media screen and (max-width: 1112px) {
+  .evo-stage-names {
+    text-align: center;
+  }
   // move modal down from top
   .modalWindow {
     top: 30%;
@@ -269,6 +272,10 @@ $modal-padding: 25px;
   .modalWindow {
     width: 725px;
     height: 450px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .modalDetailsTop {
@@ -299,6 +306,9 @@ $modal-padding: 25px;
 
 // up to iphone plus size screen widths
 @media screen and (max-width: 414px) {
+  .evo-stage-names {
+    text-align: center;
+  }
   // resize modal and some of its elements
   .backgroundModalWrapper {
     width: 350px;
@@ -308,12 +318,12 @@ $modal-padding: 25px;
 
   // reposition modalWindow to be centered
   .modalWindow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 350px;
     min-height: 650px;
-    margin: 0 auto;
-    top: 15%;
-    left: 20%;
-    transform: translate(-15%, -12%);
   }
 
   .modalDetailsBottom {
@@ -407,21 +417,24 @@ $modal-padding: 25px;
   }
 }
 
-  // position sprite/pokemon name in evolutions tab
 .evo-stage-names {
   text-align: center;
 }
 
 // iphone screen width
 @media screen and (max-width: 375px) {
+  .evo-stage-names {
+    text-align: center;
+  }
+
   .backgroundModalWrapper {
     min-height: 550px;
   }
   .modalWindow {
-    min-height: 550px;
-    top: 7%;
-    left: 9%;
-    transform: translate(-6%, 7%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .modalDetailsBottom {
@@ -434,8 +447,14 @@ $modal-padding: 25px;
   }
 }
 
-@media screen and (max-height: 667px) {
+@media screen and (max-width: 667px) {
+  .evo-stage-names {
+    text-align: center;
+  }
   .modalWindow {
-    transform: translate(-6%, -5%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
