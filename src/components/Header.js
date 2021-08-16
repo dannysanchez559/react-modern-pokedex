@@ -35,23 +35,6 @@ const Header = ({
               All Pokemon
             </a>
           </li>
-          <li className="nav-li">
-            <a href="/" className="nav-link">
-              <img
-                src="topPicksLogo.svg"
-                alt="person logo"
-                className="nav-icon"
-              />
-              Top Picks
-            </a>
-          </li>
-
-          <li className="nav-li">
-            <a href="/" className="nav-link">
-              <img src="gamesLogo.svg" alt="game logo" className="nav-icon" />
-              Games
-            </a>
-          </li>
         </ul>
 
         <div className="searchBarContainer">
