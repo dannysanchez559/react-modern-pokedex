@@ -18,7 +18,7 @@ const PokeApp = () => {
   const [isLoading, setIsLoading] = useState(true);
   // search bar onChange function for searching pokemon & conditional rendering
   const handleNameSearch = (e) => {
-    const searchBarValue = e.target.value.trim();
+    const searchBarValue = e.target.value.toLowerCase().trim();
     setPokemonName(searchBarValue);
   };
 
