@@ -1,15 +1,37 @@
-// pokeball spinner styling
+
+// pokemon spinner container
+.spinner-wrapper {
+  // dark transparent background
+  background: rgba($color: #000000, $alpha: 0.25);
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  // reposition spinner to show as user scrolls down
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// pokeball image styling and positioning in wrapper
 .ball-spin {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   width: 80px;
   height: 80px;
-  margin: -60px 0 0 -60px;
+  margin: 0 auto;
   -webkit-animation: spin 1s linear infinite;
   -moz-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
 }
+
+@media screen and (max-width: 414px) {
+  .modalSpinner {
+    top: 60%;
+    left: 55%;
+  }
+}
+
 @-moz-keyframes spin {
   100% {
     -moz-transform: rotate(360deg);
@@ -27,14 +49,3 @@
   }
 }
 
-.modalSpinner {
-  top: 70%;
-  left: 52%;
-}
-
-@media screen and (max-width: 414px) {
-  .modalSpinner {
-    top: 60%;
-    left: 55%;
-  }
-}
