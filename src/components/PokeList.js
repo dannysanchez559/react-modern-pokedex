@@ -39,9 +39,9 @@ const PokeList = ({
     setUserDidSort(true);
   };
 
-  // FilterBar for pokemon by selected type, returns pokemon obj that has type
-  const FilterBaredByType = (pokemonList, selectedType) => {
-    return pokemonList.FilterBar((pokemon) => {
+  // Filter for pokemon by selected type, returns pokemon obj that has type
+  const filteredByType = (pokemonList, selectedType) => {
+    return pokemonList.filter((pokemon) => {
       for (const typeObj of pokemon.types) {
         if (typeObj.type.name === selectedType) return true;
       }
@@ -49,8 +49,8 @@ const PokeList = ({
     });
   };
 
-  const FilterBaredByAbil = (pokemonList, selectedAbility) => {
-    return pokemonList.FilterBar((pokemon) => {
+  const filteredByAbil = (pokemonList, selectedAbility) => {
+    return pokemonList.filter((pokemon) => {
       for (const abiliObj of pokemon.abilities) {
         if (abiliObj.ability.name === selectedAbility) return true;
       }
@@ -92,18 +92,18 @@ const PokeList = ({
     });
   };
 
-  // Makes copy of allPokemons array, determines sort type, and calls FilterBared pokemons array to state variable
+  // Makes copy of allPokemons array, determines sort type, and calls filterByType pokemons array to state variable
   const sortTypeCheck = () => {
     let allPokemonsFiltered = [...allPokemons];
 
     if (selectTypeOption !== "") {
-      allPokemonsFiltered = FilterBaredByType(
+      allPokemonsFiltered = filteredByType(
         allPokemonsFiltered,
         selectTypeOption
       );
     }
     if (selectAbilityOption !== "") {
-      allPokemonsFiltered = FilterBaredByAbil(
+      allPokemonsFiltered = filteredByAbil(
         allPokemonsFiltered,
         selectAbilityOption
       );
