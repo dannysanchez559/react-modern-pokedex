@@ -1,7 +1,6 @@
 import React from "react";
 import getTypeColors from "../util/getTypeColor";
 import { Bar } from "react-chartjs-2";
-import Spinner from "./Spinner";
 // Gets stat values for graph
 const BaseStats = ({ stats, types }) => {
   // map over stats objects array to get array of numbers(Base stats) only
@@ -83,7 +82,9 @@ const BaseStats = ({ stats, types }) => {
             }}
           />
         ) : (
-          <Spinner className="modalSpinner" />
+          <h3 style={{
+            margin: "50px auto"
+          }}>Loading...</h3>
         )}
       </div>
     </>
