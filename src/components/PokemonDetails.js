@@ -1,6 +1,10 @@
 import React from "react";
 
 const PokemonDetails = ({ genera, flavorText, height, weight, abilities }) => {
+
+  // format flavor text to replace "\f" with " "
+  flavorText = flavorText.replace(/\f/g, " ");
+
   return (
     <div className="aboutWrapper">
       <div className="aboutLeftContainer">
