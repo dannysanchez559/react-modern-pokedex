@@ -145,6 +145,7 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
           // custom scrollbar (firefox only)
           scrollbarColor: `${pokemonColor} rgba(235, 232, 232, 0.4)`,
           overflowX: "auto",
+
           // ** unknown solution for safari and chrome **
         }}
         className={"spriteContainer"}>
