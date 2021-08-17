@@ -53,10 +53,11 @@ const PokeApp = () => {
         .then(setIsLoading(false));
 
       setQueryParams({
-        offset: queryParams.offset + 21,
+        offset: queryParams.offset + 20,
         limit: queryParams.limit,
       });
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
     }
   };
