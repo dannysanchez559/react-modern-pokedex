@@ -35,14 +35,13 @@ const Header = ({
               All Pokemon
             </a>
           </li>
-
         </ul>
 
         <div className="searchBarContainer">
           <input
             id="input"
             type="text"
-            placeholder="Enter Pokemon Name or # ..."
+            placeholder="Enter Name or #..."
             onChange={handleNameSearch}
             onKeyPress={enterSubmit}
             className="searchbar-input"
