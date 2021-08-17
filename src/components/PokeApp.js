@@ -57,6 +57,7 @@ const PokeApp = () => {
         limit: queryParams.limit,
       });
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
     }
   };
