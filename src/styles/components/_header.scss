@@ -53,6 +53,13 @@ nav {
   margin-top: 4px;
 }
 
+@-moz-document url-prefix() {
+  .nav-link {
+    margin-top: 4px;
+    padding-bottom: 20.5px;
+  }
+}
+
 .nav-link:hover {
   border-bottom: 4px solid #382e76;
   border-radius: 2px;
@@ -145,6 +152,13 @@ input[type="text"]:focus {
     transition: none;
   }
 
+  @-moz-document url-prefix() {
+    .nav-link {
+      margin-top: 4px;
+      padding-bottom: 20.5px;
+    }
+  }
+
   .searchBarContainer {
     width: 520px;
   }
@@ -163,6 +177,13 @@ input[type="text"]:focus {
 
   .nav-link {
     padding-bottom: 13px;
+  }
+
+  @-moz-document url-prefix() {
+    .nav-link {
+      margin-top: 4px;
+      padding-bottom: 13.5px;
+    }
   }
 
   .nav-icon {
@@ -231,6 +252,12 @@ input[type="text"]:focus {
 
   .nav-link {
     padding-bottom: 10px;
+  }
+
+  @-moz-document url-prefix() {
+    .nav-link {
+      padding-bottom: 9px;
+    }
   }
 
   .nav-icon {
