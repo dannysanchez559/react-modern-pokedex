@@ -17,7 +17,7 @@ const Searched = ({
     weight,
     abilities,
     stats,
-  } = singlePokemon[0];
+  } = singlePokemon;
   // generate tags, check for tags and types
   let typeTags, sprite;
   if (types && sprites) {
@@ -40,9 +40,7 @@ const Searched = ({
 
   return (
     <div className="searchedCard">
-      {!singlePokemon.length ? (
-        <h1>Please search pokemon.</h1>
-      ) : (
+      {singlePokemon && (
         <PokeCard
           dexNo={id}
           name={name}

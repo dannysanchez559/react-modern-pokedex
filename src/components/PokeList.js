@@ -223,13 +223,13 @@ const PokeList = ({
         ) // end react fragment
       ) : (
         // show single user search
-        singlePokemon[0] && (
+        singlePokemon? (
           <Searched
             singlePokemon={singlePokemon}
             capitalizeType={capitalizeType}
             userDidSearch={userDidSearch}
           />
-        )
+        ) : <div style={{textAlign:'center'}}><h3>Unavailable. Please search valid pokemon.</h3></div>
       )}
     </div>
   );

@@ -28,13 +28,14 @@ const Header = ({
           <li className="nav-li">
             <a href="/" className="nav-link">
               <img
-                src="allPokemonLogo.svg"
+                src="allPokemons.png"
                 alt="pokeball logo"
                 className="nav-icon"
               />
               All Pokemon
             </a>
           </li>
+
         </ul>
 
         <div className="searchBarContainer">
