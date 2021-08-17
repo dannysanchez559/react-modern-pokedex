@@ -62,8 +62,8 @@ nav {
 
 .nav-icon {
   padding-right: $nav-ele-padding;
-  height: 30px;
-  width: 35px;
+  max-height: 30px;
+  max-width: 30px;
 }
 
 .searchBarContainer {
