@@ -137,23 +137,21 @@ a {
 
 // up to iphone plus size screen widths
 @media screen and (max-width: 414px) {
-
   // adjust font sizes for mobile
 
   .modalPokeName {
     font-size: 1.5rem;
   }
 
-// tab slider bar
-.MuiTab-root {
-  font-size: .9rem !important;
-  font-weight: 900;
-}
+  // tab slider bar
+  .MuiTab-root {
+    font-size: 0.9rem !important;
+    font-weight: 900;
+  }
 
-.modalDexNo {
-  font-size: 1.6rem;
-}
-
+  .modalDexNo {
+    font-size: 1.6rem;
+  }
 }
 @media screen and (max-width: 525px) {
   .nav-link {

@@ -50,6 +50,7 @@ nav {
   border-bottom: 4px solid white;
   border-radius: 2px;
   transition: all 0.2s ease-in;
+  margin-top: 4px;
 }
 
 .nav-link:hover {
@@ -139,7 +140,8 @@ input[type="text"]:focus {
   }
 
   .nav-link {
-    padding-bottom: 8px;
+    margin-top: 5px;
+    padding-bottom: 20px;
     transition: none;
   }
 
@@ -161,7 +163,6 @@ input[type="text"]:focus {
 
   .nav-link {
     padding-bottom: 13px;
-    padding-top: 5px;
   }
 
   .nav-icon {
@@ -189,7 +190,7 @@ input[type="text"]:focus {
 
   .nav-link {
     padding-bottom: 8px;
-    padding-top: 0px;
+    margin-top: 0;
   }
 
   .searchBarContainer {
@@ -226,6 +227,10 @@ input[type="text"]:focus {
   .nav-ul {
     width: 280px;
     padding: 15px 15px;
+  }
+
+  .nav-link {
+    padding-bottom: 10px;
   }
 
   .nav-icon {
