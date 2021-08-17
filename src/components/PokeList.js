@@ -28,6 +28,12 @@ const PokeList = ({
   // Boolean for checking if user wants reverse sorted results
   const [reverse, setReverse] = useState(false);
 
+  // called when
+  const updateFilterType = (filter) => {
+    setFilterType(filter);
+    setUserDidSort(true);
+  };
+
   // reverse sorting
   const setSortTypeFlags = (newSortFlag) => {
     if (newSortFlag === sortType) {
@@ -142,16 +148,8 @@ const PokeList = ({
   // create list of all PokeCards
   const generateSortedCards = (pokemonList) => {
     return pokemonList.map((pokeObj) => {
-      const {
-        id,
-        name,
-        sprites,
-        types,
-        stats,
-        abilities,
-        height,
-        weight,
-      } = pokeObj;
+      const { id, name, sprites, types, stats, abilities, height, weight } =
+        pokeObj;
       // make type tags for card
       const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
@@ -199,13 +197,14 @@ const PokeList = ({
               abilityOptions={abilityOptions}
               setAbilityOptions={setAbilityOptions}
               setSortType={setSortTypeFlags}
-              setFilterType={setFilterType}
+              setFilterType={updateFilterType}
             />
             {/* end Filter */}
             <InfiniteScroll
               className="card-container"
-              loader={<Spinner />}
-              dataLength={allPokemons.length}
+              dataLength={
+                userDidSort ? filteredPokemons.length : allPokemons.length
+              }
               hasMore={true}
               scrollThreshold={0.8}
               next={getMorePokemons}
@@ -221,15 +220,17 @@ const PokeList = ({
             </InfiniteScroll>
           </>
         ) // end react fragment
+      ) : // show single user search
+      singlePokemon ? (
+        <Searched
+          singlePokemon={singlePokemon}
+          capitalizeType={capitalizeType}
+          userDidSearch={userDidSearch}
+        />
       ) : (
-        // show single user search
-        singlePokemon? (
-          <Searched
-            singlePokemon={singlePokemon}
-            capitalizeType={capitalizeType}
-            userDidSearch={userDidSearch}
-          />
-        ) : <div style={{textAlign:'center'}}><h3>Unavailable. Please search valid pokemon.</h3></div>
+        <div style={{ textAlign: "center" }}>
+          <h3>Unavailable. Please search valid pokemon.</h3>
+        </div>
       )}
     </div>
   );
