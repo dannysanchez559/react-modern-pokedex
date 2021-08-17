@@ -137,9 +137,9 @@ $modal-padding: 25px;
 .spriteContainer {
   display: flex;
   margin: 25px;
-  align-content: center;
   align-items: center;
-  justify-content: space-between;
+  justify-content: safe center;
+  overflow-wrap: inherit;
 }
 
 .evolution-sprites {
@@ -151,6 +151,7 @@ $modal-padding: 25px;
 .evolutionImg {
   width: 45px;
   height: 45px;
+  margin: 25px;
 }
 
 // moves panel
@@ -385,6 +386,7 @@ $modal-padding: 25px;
   }
 
   .spriteContainer {
+    border: 2px solid red;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
