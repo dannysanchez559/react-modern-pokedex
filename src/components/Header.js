@@ -7,14 +7,14 @@ const Header = ({
   pokemonName,
 }) => {
   const onSubmit = () => {
-    if (pokemonName.length >= 3) {
+    if (pokemonName.length >= 1) {
       // invoke api search function in pokeapp
       setUserDidSearch(true);
       getSinglePokemon(pokemonName);
     }
   };
   const enterSubmit = (e) => {
-    if (e.key === "Enter" && pokemonName.length >= 3) {
+    if (e.key === "Enter" && pokemonName.length >= 1) {
       setUserDidSearch(true);
       getSinglePokemon(pokemonName);
     }
@@ -42,7 +42,7 @@ const Header = ({
           <input
             id="input"
             type="text"
-            placeholder="Enter Pokemon Name..."
+            placeholder="Enter Pokemon Name or # ..."
             onChange={handleNameSearch}
             onKeyPress={enterSubmit}
             className="searchbar-input"
