@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchMove, fetchPokemon } from "../util/fetchPokemonData";
 import { Bar } from "react-chartjs-2";
-import Spinner from "./Spinner";
 import {
   Bug,
   Dark,
@@ -196,7 +195,8 @@ const Moves = ({ dexNo }) => {
   });
   return (
     <div className="moves-panel">
-      {result ? moveInfo : <Spinner className="modalSpinner" />}{" "}
+      {result ? moveInfo :
+        <h3 style={{ margin: "50px auto" }}>Loading...</h3>}{" "}
     </div>
   );
 };

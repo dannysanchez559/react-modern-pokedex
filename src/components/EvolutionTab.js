@@ -66,7 +66,7 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
       const urlList = evolutionNameStrings.map(async (string) => {
 
         const data = await fetchPokemon(string);
-        if(data) {
+        if (data) {
           const { name } = data;
 
           const url = data["sprites"]["other"]["official-artwork"].front_default;
@@ -138,8 +138,8 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
     return organizedArray;
   };
 
-  return (
-    <>
+  const evolutionWrapper = () => {
+    return (
       <div
         style={{
           // custom scrollbar (firefox only)
@@ -150,6 +150,13 @@ const EvolutionTab = ({ evolutionChainUrl, pokemonColor }) => {
         className={"spriteContainer"}>
         {spritesWithEvolutionArrows()}
       </div>
+    )
+  }
+
+  return (
+    <>
+      {spriteUrls ? evolutionWrapper() : <h3 style={{ margin: "50px auto" }}>Loading...</h3>}{" "}
+
     </>
   );
 };
