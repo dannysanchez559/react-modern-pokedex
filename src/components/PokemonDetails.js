@@ -8,9 +8,16 @@ const PokemonDetails = ({ genera, flavorText, height, weight, abilities }) => {
   return (
     <div className="aboutWrapper">
       <div className="aboutLeftContainer">
-        {!flavorText ? <h3 style={{
-          margin: "50px auto"
-        }}>Loading...</h3> : flavorText}
+        {!flavorText ? (
+          <h3
+            style={{
+              margin: "50px auto",
+            }}>
+            Loading...
+          </h3>
+        ) : (
+          flavorText
+        )}
       </div>
 
       <div className="aboutRightContainer">
@@ -22,12 +29,19 @@ const PokemonDetails = ({ genera, flavorText, height, weight, abilities }) => {
         </div>
         <div className="valueContainer">
           <div className="aboutTabValue">
-            {!genera ? <h3 style={{
-              margin: "50px auto"
-            }}>Loading...</h3> : genera}
+            {!genera ? (
+              <h3
+                style={{
+                  margin: "50px auto",
+                }}>
+                Loading...
+              </h3>
+            ) : (
+              genera
+            )}
           </div>
-          <p className="aboutTabValue">{height}</p>
-          <p className="aboutTabValue">{weight}</p>
+          <p className="aboutTabValue">{height} dm</p>
+          <p className="aboutTabValue">{weight} hg</p>
           <p className="aboutTabValue">
             {abilities.map((index) => index["ability"].name).join(", ")}
           </p>
