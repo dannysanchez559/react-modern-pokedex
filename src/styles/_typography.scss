@@ -5,7 +5,7 @@ $raleway: "Raleway", sans-serif;
 $rubik: "Rubik", sans-serif;
 $nunito: "Nunito", sans-serif; // 800 for bold, 600 for semibold
 $small: 0.9rem;
-$reg: 1rem;
+$reg: 1.2rem;
 $med: 1.25rem;
 $big: 1.3rem;
 
@@ -137,23 +137,21 @@ a {
 
 // up to iphone plus size screen widths
 @media screen and (max-width: 414px) {
-
   // adjust font sizes for mobile
 
   .modalPokeName {
     font-size: 1.5rem;
   }
 
-// tab slider bar
-.MuiTab-root {
-  font-size: .9rem !important;
-  font-weight: 900;
-}
+  // tab slider bar
+  .MuiTab-root {
+    font-size: 0.9rem !important;
+    font-weight: 900;
+  }
 
-.modalDexNo {
-  font-size: 1.6rem;
-}
-
+  .modalDexNo {
+    font-size: 1.6rem;
+  }
 }
 @media screen and (max-width: 525px) {
   .nav-link {

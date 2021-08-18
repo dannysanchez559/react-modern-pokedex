@@ -28,6 +28,12 @@ const PokeList = ({
   // Boolean for checking if user wants reverse sorted results
   const [reverse, setReverse] = useState(false);
 
+  // called when
+  const updateFilterType = (filter) => {
+    setFilterType(filter);
+    setUserDidSort(true);
+  };
+
   // reverse sorting
   const setSortTypeFlags = (newSortFlag) => {
     if (newSortFlag === sortType) {
@@ -39,9 +45,9 @@ const PokeList = ({
     setUserDidSort(true);
   };
 
-  // FilterBar for pokemon by selected type, returns pokemon obj that has type
-  const FilterBaredByType = (pokemonList, selectedType) => {
-    return pokemonList.FilterBar((pokemon) => {
+  // Filter for pokemon by selected type, returns pokemon obj that has type
+  const filteredByType = (pokemonList, selectedType) => {
+    return pokemonList.filter((pokemon) => {
       for (const typeObj of pokemon.types) {
         if (typeObj.type.name === selectedType) return true;
       }
@@ -49,8 +55,8 @@ const PokeList = ({
     });
   };
 
-  const FilterBaredByAbil = (pokemonList, selectedAbility) => {
-    return pokemonList.FilterBar((pokemon) => {
+  const filteredByAbil = (pokemonList, selectedAbility) => {
+    return pokemonList.filter((pokemon) => {
       for (const abiliObj of pokemon.abilities) {
         if (abiliObj.ability.name === selectedAbility) return true;
       }
@@ -92,18 +98,18 @@ const PokeList = ({
     });
   };
 
-  // Makes copy of allPokemons array, determines sort type, and calls FilterBared pokemons array to state variable
+  // Makes copy of allPokemons array, determines sort type, and calls filterByType pokemons array to state variable
   const sortTypeCheck = () => {
     let allPokemonsFiltered = [...allPokemons];
 
     if (selectTypeOption !== "") {
-      allPokemonsFiltered = FilterBaredByType(
+      allPokemonsFiltered = filteredByType(
         allPokemonsFiltered,
         selectTypeOption
       );
     }
     if (selectAbilityOption !== "") {
-      allPokemonsFiltered = FilterBaredByAbil(
+      allPokemonsFiltered = filteredByAbil(
         allPokemonsFiltered,
         selectAbilityOption
       );
@@ -142,16 +148,8 @@ const PokeList = ({
   // create list of all PokeCards
   const generateSortedCards = (pokemonList) => {
     return pokemonList.map((pokeObj) => {
-      const {
-        id,
-        name,
-        sprites,
-        types,
-        stats,
-        abilities,
-        height,
-        weight,
-      } = pokeObj;
+      const { id, name, sprites, types, stats, abilities, height, weight } =
+        pokeObj;
       // make type tags for card
       const typeTags = types.map((typeObj, i) => {
         const typeName = typeObj["type"]["name"];
@@ -199,13 +197,14 @@ const PokeList = ({
               abilityOptions={abilityOptions}
               setAbilityOptions={setAbilityOptions}
               setSortType={setSortTypeFlags}
-              setFilterType={setFilterType}
+              setFilterType={updateFilterType}
             />
             {/* end Filter */}
             <InfiniteScroll
               className="card-container"
-              loader={<Spinner />}
-              dataLength={allPokemons.length}
+              dataLength={
+                userDidSort ? filteredPokemons.length : allPokemons.length
+              }
               hasMore={true}
               scrollThreshold={0.8}
               next={getMorePokemons}
@@ -221,15 +220,17 @@ const PokeList = ({
             </InfiniteScroll>
           </>
         ) // end react fragment
+      ) : // show single user search
+      singlePokemon ? (
+        <Searched
+          singlePokemon={singlePokemon}
+          capitalizeType={capitalizeType}
+          userDidSearch={userDidSearch}
+        />
       ) : (
-        // show single user search
-        singlePokemon[0] && (
-          <Searched
-            singlePokemon={singlePokemon}
-            capitalizeType={capitalizeType}
-            userDidSearch={userDidSearch}
-          />
-        )
+        <div style={{ textAlign: "center" }}>
+          <h3>Unavailable. Please search valid pokemon.</h3>
+        </div>
       )}
     </div>
   );

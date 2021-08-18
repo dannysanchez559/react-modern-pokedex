@@ -30,13 +30,13 @@ nav {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   background-color: rgb(255, 250, 250);
   border-radius: 20px;
   padding: 20px 35px;
-  width: 520px;
+  width: 220px;
   height: 75px;
   list-style: none;
 }
@@ -50,6 +50,14 @@ nav {
   border-bottom: 4px solid white;
   border-radius: 2px;
   transition: all 0.2s ease-in;
+  margin-top: 4px;
+}
+
+@-moz-document url-prefix() {
+  .nav-link {
+    margin-top: 4px;
+    padding-bottom: 20.5px;
+  }
 }
 
 .nav-link:hover {
@@ -62,8 +70,8 @@ nav {
 
 .nav-icon {
   padding-right: $nav-ele-padding;
-  height: 30px;
-  width: 35px;
+  max-height: 30px;
+  max-width: 30px;
 }
 
 .searchBarContainer {
@@ -139,8 +147,16 @@ input[type="text"]:focus {
   }
 
   .nav-link {
-    padding-bottom: 8px;
+    margin-top: 5px;
+    padding-bottom: 20px;
     transition: none;
+  }
+
+  @-moz-document url-prefix() {
+    .nav-link {
+      margin-top: 4px;
+      padding-bottom: 20.5px;
+    }
   }
 
   .searchBarContainer {
@@ -161,7 +177,13 @@ input[type="text"]:focus {
 
   .nav-link {
     padding-bottom: 13px;
-    padding-top: 5px;
+  }
+
+  @-moz-document url-prefix() {
+    .nav-link {
+      margin-top: 4px;
+      padding-bottom: 13.5px;
+    }
   }
 
   .nav-icon {
@@ -189,7 +211,7 @@ input[type="text"]:focus {
 
   .nav-link {
     padding-bottom: 8px;
-    padding-top: 0px;
+    margin-top: 0;
   }
 
   .searchBarContainer {
@@ -226,6 +248,16 @@ input[type="text"]:focus {
   .nav-ul {
     width: 280px;
     padding: 15px 15px;
+  }
+
+  .nav-link {
+    padding-bottom: 10px;
+  }
+
+  @-moz-document url-prefix() {
+    .nav-link {
+      padding-bottom: 9px;
+    }
   }
 
   .nav-icon {

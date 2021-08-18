@@ -45,17 +45,17 @@ const PokeCard = ({
   const triggerModalData = async () => {
     const modalContent = await getPokemonModalAboutContent(dexNo);
     // check for undefined modalContent
-    if(modalContent){
-        const { flavor_text_entries, genera } = modalContent;
-        const generaText = findDescriptionByLanguage(genera, "genus", "en");
-        const description = findDescriptionByLanguage(
-          flavor_text_entries,
-          "flavor_text",
-          "en"
-        );
-        setGeneraString(generaText);
-        setFlavorText(description);
-        setModalData(modalContent);
+    if (modalContent) {
+      const { flavor_text_entries, genera } = modalContent;
+      const generaText = findDescriptionByLanguage(genera, "genus", "en");
+      const description = findDescriptionByLanguage(
+        flavor_text_entries,
+        "flavor_text",
+        "en"
+      );
+      setGeneraString(generaText);
+      setFlavorText(description);
+      setModalData(modalContent);
     } else {
       setGeneraString('Unavailable');
       setFlavorText('Unavailable');

@@ -10,7 +10,7 @@ const PokeApp = () => {
   // Store search bar input value: could be dex number or pokemon name
   const [pokemonName, setPokemonName] = useState("");
   // singlePokemon is a single Pokemon object the user searched for
-  const [singlePokemon, setSinglePokemon] = useState([]);
+  const [singlePokemon, setSinglePokemon] = useState(null);
   const [allPokemons, setAllPokemon] = useState([]);
   const [queryParams, setQueryParams] = useState({ offset: 0, limit: 20 });
   // Hook below is used for conditional rendering 1 Pokemon card user searched(Searched component), and search on keypress
@@ -18,17 +18,17 @@ const PokeApp = () => {
   const [isLoading, setIsLoading] = useState(true);
   // search bar onChange function for searching pokemon & conditional rendering
   const handleNameSearch = (e) => {
-    const searchBarValue = e.target.value;
+    const searchBarValue = e.target.value.toLowerCase().trim();
     setPokemonName(searchBarValue);
   };
 
-  // Function for single pokemon fetch, invoked in Header
+  // Function for single pokemon fetch(by name or dex number), invoked in Header
   const getSinglePokemon = async (name) => {
     try {
       // call fetch api function
       const pokemonData = await fetchPokemon(name);
-      if (!pokemonData.length) {
-        setSinglePokemon([pokemonData]);
+      if (pokemonData) {
+        setSinglePokemon(pokemonData);
       } else {
         setSinglePokemon(pokemonData);
       }
@@ -40,7 +40,6 @@ const PokeApp = () => {
   const getMorePokemons = async () => {
     try {
       const results = await fetchPokemons(queryParams);
-
       const pokemonPromises = results.map(async (obj) => {
         const name = obj["name"];
         const pokemonData = await fetchPokemon(name);
@@ -54,10 +53,11 @@ const PokeApp = () => {
         .then(setIsLoading(false));
 
       setQueryParams({
-        offset: queryParams.offset + 21,
+        offset: queryParams.offset + 20,
         limit: queryParams.limit,
       });
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
     }
   };

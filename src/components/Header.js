@@ -7,14 +7,14 @@ const Header = ({
   pokemonName,
 }) => {
   const onSubmit = () => {
-    if (pokemonName.length >= 3) {
+    if (pokemonName.length >= 1) {
       // invoke api search function in pokeapp
       setUserDidSearch(true);
       getSinglePokemon(pokemonName);
     }
   };
   const enterSubmit = (e) => {
-    if (e.key === "Enter" && pokemonName.length >= 3) {
+    if (e.key === "Enter" && pokemonName.length >= 1) {
       setUserDidSearch(true);
       getSinglePokemon(pokemonName);
     }
@@ -28,28 +28,11 @@ const Header = ({
           <li className="nav-li">
             <a href="/" className="nav-link">
               <img
-                src="allPokemonLogo.svg"
+                src="allPokemons.png"
                 alt="pokeball logo"
                 className="nav-icon"
               />
               All Pokemon
-            </a>
-          </li>
-          <li className="nav-li">
-            <a href="/" className="nav-link">
-              <img
-                src="topPicksLogo.svg"
-                alt="person logo"
-                className="nav-icon"
-              />
-              Top Picks
-            </a>
-          </li>
-
-          <li className="nav-li">
-            <a href="/" className="nav-link">
-              <img src="gamesLogo.svg" alt="game logo" className="nav-icon" />
-              Games
             </a>
           </li>
         </ul>
@@ -58,7 +41,7 @@ const Header = ({
           <input
             id="input"
             type="text"
-            placeholder="Enter Pokemon Name..."
+            placeholder="Enter Name or #..."
             onChange={handleNameSearch}
             onKeyPress={enterSubmit}
             className="searchbar-input"
